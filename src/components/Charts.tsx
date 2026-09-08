@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, type ReactNode } from "react";
 import {
   Area,
   AreaChart,
@@ -22,7 +23,7 @@ const GOLD = "#d4af69";
 const GOLD_BRIGHT = "#efd39a";
 const RED = "#d41828";
 const MUTED = "#8f8a84";
-const GRID = "rgba(212, 175, 105, 0.1)";
+const GRID = "rgba(212, 175, 105, 0.12)";
 
 function ChartTooltip({
   active,
@@ -50,26 +51,47 @@ function ChartTooltip({
 
 const tooltipWrapper = { outline: "none", zIndex: 20 } as const;
 const darkCursorBar = {
-  fill: "rgba(212, 175, 105, 0.1)",
+  fill: "rgba(212, 24, 40, 0.12)",
   stroke: "transparent",
 } as const;
 const darkCursorLine = {
-  stroke: "rgba(212, 175, 105, 0.45)",
+  stroke: "rgba(212, 175, 105, 0.5)",
   strokeWidth: 1,
   strokeDasharray: "4 4",
 } as const;
 
-function SectionHead({
-  title,
-  copy,
-}: {
-  title: string;
-  copy: string;
-}) {
+function SectionHead({ title, copy }: { title: string; copy: string }) {
   return (
     <div className="mb-5 max-w-2xl">
       <h2 className="section-title">{title}</h2>
       <p className="section-copy">{copy}</p>
+    </div>
+  );
+}
+
+function ChartFrame({
+  heightClass,
+  children,
+}: {
+  heightClass: string;
+  children: ReactNode;
+}) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    setReady(true);
+  }, []);
+
+  return (
+    <div className={`${heightClass} w-full`}>
+      {ready ? (
+        <ResponsiveContainer width="100%" height="100%">
+          {children}
+        </ResponsiveContainer>
+      ) : (
+        <div className="flex h-full items-center justify-center text-sm text-muted">
+          Loading chart…
+        </div>
+      )}
     </div>
   );
 }
@@ -86,58 +108,65 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
         title="Cumulative Unit Curve"
         copy="Running total of units won and lost, with defining moments marked along the way."
       />
-      <div className="h-[280px] w-full sm:h-[340px]">
-        {data.length === 0 ? (
-          <EmptyChart />
-        ) : (
-          <ResponsiveContainer width="100%" height="100%">
-            <AreaChart data={data} margin={{ top: 24, right: 12, left: 0, bottom: 0 }}>
-              <defs>
-                <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={GOLD} stopOpacity={0.35} />
-                  <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid stroke={GRID} vertical={false} />
-              <XAxis
-                dataKey="label"
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                interval="preserveStartEnd"
-              />
-              <YAxis
-                tickFormatter={(v) => `${v > 0 ? "+" : ""}${v}u`}
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                width={48}
-              />
-              <Tooltip
-                cursor={darkCursorLine}
-                wrapperStyle={tooltipWrapper}
-                content={({ active, payload, label }) => (
-                  <ChartTooltip
-                    active={active}
-                    payload={payload as never}
-                    label={`Week of ${label}`}
-                    suffix="u cumulative"
-                  />
-                )}
-              />
-              <Area
-                type="monotone"
-                dataKey="cumulative"
-                stroke={GOLD_BRIGHT}
-                strokeWidth={2.4}
-                fill="url(#cumFill)"
-                dot={false}
-                activeDot={{ r: 5, fill: GOLD_BRIGHT, stroke: "#070707" }}
-              />
-              {stats.annotations.map((a) => (
+      {data.length === 0 ? (
+        <div className="flex h-[280px] items-center justify-center text-sm text-muted sm:h-[340px]">
+          No chart data yet.
+        </div>
+      ) : (
+        <ChartFrame heightClass="h-[280px] sm:h-[340px]">
+          <AreaChart data={data} margin={{ top: 24, right: 12, left: 0, bottom: 0 }}>
+            <defs>
+              <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={GOLD} stopOpacity={0.4} />
+                <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid stroke={GRID} vertical={false} />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              interval="preserveStartEnd"
+            />
+            <YAxis
+              tickFormatter={(v) => `${v > 0 ? "+" : ""}${v}u`}
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              width={48}
+              domain={[0, "auto"]}
+            />
+            <Tooltip
+              cursor={darkCursorLine}
+              wrapperStyle={tooltipWrapper}
+              content={({ active, payload, label }) => (
+                <ChartTooltip
+                  active={active}
+                  payload={payload as never}
+                  label={`Week of ${label}`}
+                  suffix="u cumulative"
+                />
+              )}
+            />
+            <Area
+              type="monotone"
+              dataKey="cumulative"
+              stroke={GOLD_BRIGHT}
+              strokeWidth={2.6}
+              fill="url(#cumFill)"
+              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#070707", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#070707" }}
+            />
+            {stats.annotations.map((a) => {
+              const point = [...stats.cumulativeSeries]
+                .reverse()
+                .find((c) => c.date === a.date && c.label !== "Open");
+              if (!point) return null;
+              return (
                 <ReferenceDot
                   key={a.date + a.label}
-                  x={stats.cumulativeSeries.find((c) => c.date === a.date)?.label}
+                  x={point.label}
                   y={a.cumulative}
                   r={3.5}
                   fill={GOLD}
@@ -149,11 +178,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                     fontSize: 10,
                   }}
                 />
-              ))}
-            </AreaChart>
-          </ResponsiveContainer>
-        )}
-      </div>
+              );
+            })}
+          </AreaChart>
+        </ChartFrame>
+      )}
       <div className="mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
         <MetricLine
           label="Peak"
@@ -171,10 +200,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               : "—"
           }
         />
-        <MetricLine
-          label="Season finish"
-          value={`${formatSigned(stats.netUnits)}u`}
-        />
+        <MetricLine label="Season finish" value={`${formatSigned(stats.netUnits)}u`} />
       </div>
     </div>
   );
@@ -198,46 +224,44 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
         title="Weekly Performance"
         copy="Net units week by week — gold above zero, red below."
       />
-      <div className="h-[220px] w-full sm:h-[260px]">
-        {stats.weekly.length === 0 ? (
-          <EmptyChart />
-        ) : (
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={stats.weekly}>
-              <CartesianGrid stroke={GRID} vertical={false} />
-              <XAxis
-                dataKey="label"
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                interval="preserveStartEnd"
-              />
-              <YAxis
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                width={36}
-              />
-              <Tooltip
-                cursor={darkCursorBar}
-                wrapperStyle={tooltipWrapper}
-                content={({ active, payload, label }) => (
-                  <ChartTooltip
-                    active={active}
-                    payload={payload as never}
-                    label={`Week of ${label}`}
-                  />
-                )}
-              />
-              <Bar dataKey="units" radius={[3, 3, 0, 0]}>
-                {stats.weekly.map((w) => (
-                  <Cell key={w.weekStart} fill={w.units >= 0 ? GOLD : RED} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        )}
-      </div>
+      {stats.weekly.length === 0 ? (
+        <EmptyChart />
+      ) : (
+        <ChartFrame heightClass="h-[220px] sm:h-[260px]">
+          <BarChart data={stats.weekly}>
+            <CartesianGrid stroke={GRID} vertical={false} />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              interval="preserveStartEnd"
+            />
+            <YAxis
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              width={36}
+            />
+            <Tooltip
+              cursor={darkCursorBar}
+              wrapperStyle={tooltipWrapper}
+              content={({ active, payload, label }) => (
+                <ChartTooltip
+                  active={active}
+                  payload={payload as never}
+                  label={`Week of ${label}`}
+                />
+              )}
+            />
+            <Bar dataKey="units" radius={[3, 3, 0, 0]}>
+              {stats.weekly.map((w) => (
+                <Cell key={w.weekStart} fill={w.units >= 0 ? GOLD : RED} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ChartFrame>
+      )}
     </div>
   );
 }
@@ -245,49 +269,44 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
 export function MonthlyBars({ stats }: { stats: SeasonStats }) {
   return (
     <div className="panel h-full p-5 sm:p-6">
-      <SectionHead
-        title="Monthly Performance"
-        copy="Net units by calendar month."
-      />
-      <div className="h-[200px] w-full">
-        {stats.monthly.length === 0 ? (
-          <EmptyChart />
-        ) : (
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={stats.monthly}>
-              <CartesianGrid stroke={GRID} vertical={false} />
-              <XAxis
-                dataKey="label"
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-              />
-              <YAxis
-                tick={{ fill: MUTED, fontSize: 11 }}
-                axisLine={false}
-                tickLine={false}
-                width={36}
-              />
-              <Tooltip
-                cursor={darkCursorBar}
-                wrapperStyle={tooltipWrapper}
-                content={({ active, payload, label }) => (
-                  <ChartTooltip
-                    active={active}
-                    payload={payload as never}
-                    label={String(label)}
-                  />
-                )}
-              />
-              <Bar dataKey="units" radius={[3, 3, 0, 0]}>
-                {stats.monthly.map((m) => (
-                  <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
-                ))}
-              </Bar>
-            </BarChart>
-          </ResponsiveContainer>
-        )}
-      </div>
+      <SectionHead title="Monthly Performance" copy="Net units by calendar month." />
+      {stats.monthly.length === 0 ? (
+        <EmptyChart />
+      ) : (
+        <ChartFrame heightClass="h-[200px]">
+          <BarChart data={stats.monthly}>
+            <CartesianGrid stroke={GRID} vertical={false} />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+            />
+            <YAxis
+              tick={{ fill: MUTED, fontSize: 11 }}
+              axisLine={false}
+              tickLine={false}
+              width={36}
+            />
+            <Tooltip
+              cursor={darkCursorBar}
+              wrapperStyle={tooltipWrapper}
+              content={({ active, payload, label }) => (
+                <ChartTooltip
+                  active={active}
+                  payload={payload as never}
+                  label={String(label)}
+                />
+              )}
+            />
+            <Bar dataKey="units" radius={[3, 3, 0, 0]}>
+              {stats.monthly.map((m) => (
+                <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ChartFrame>
+      )}
     </div>
   );
 }
@@ -300,16 +319,13 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
 
   return (
     <div className="panel h-full p-5 sm:p-6">
-      <SectionHead
-        title="Wins vs Losses"
-        copy="Share of weeks by outcome."
-      />
+      <SectionHead title="Wins vs Losses" copy="Share of weeks by outcome." />
       <div className="relative mt-1 h-[200px] w-full">
         {data.length === 0 ? (
           <EmptyChart />
         ) : (
           <>
-            <ResponsiveContainer width="100%" height="100%">
+            <ChartFrame heightClass="h-[200px]">
               <PieChart>
                 <Pie
                   data={data}
@@ -338,7 +354,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   labelStyle={{ color: MUTED }}
                 />
               </PieChart>
-            </ResponsiveContainer>
+            </ChartFrame>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
               <p className="font-[family-name:var(--font-display)] text-3xl text-gold-bright">
                 {stats.weekWinRate.toFixed(1)}%
@@ -355,8 +371,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
           <span className="h-2 w-2 rounded-full bg-gold" /> Wins {stats.winningWeeks}
         </span>
         <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-brand-red" /> Losses{" "}
-          {stats.losingWeeks}
+          <span className="h-2 w-2 rounded-full bg-brand-red" /> Losses {stats.losingWeeks}
         </span>
       </div>
     </div>
@@ -365,7 +380,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
 
 function EmptyChart() {
   return (
-    <div className="flex h-full items-center justify-center text-sm text-muted">
+    <div className="flex h-[200px] items-center justify-center text-sm text-muted">
       No chart data yet.
     </div>
   );

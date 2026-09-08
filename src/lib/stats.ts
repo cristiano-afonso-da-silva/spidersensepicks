@@ -87,11 +87,21 @@ export function computeStats(picks: Pick[]): SeasonStats {
     };
   });
 
-  const cumulativeSeries = weekly.map((w) => ({
-    date: w.weekStart,
-    label: w.label,
-    cumulative: w.cumulative,
-  }));
+  const cumulativeSeries =
+    weekly.length === 0
+      ? []
+      : [
+          {
+            date: weekly[0].weekStart,
+            label: "Open",
+            cumulative: 0,
+          },
+          ...weekly.map((w) => ({
+            date: w.weekStart,
+            label: w.label,
+            cumulative: w.cumulative,
+          })),
+        ];
 
   const monthMap = new Map<string, number>();
   for (const p of settled) {

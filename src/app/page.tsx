@@ -63,6 +63,10 @@ export default async function HomePage() {
       </section>
 
       <section className="mb-8">
+        <WeeklyRecord stats={stats} picks={picks} />
+      </section>
+
+      <section className="mb-8">
         <CumulativeChart stats={stats} />
       </section>
 
@@ -75,12 +79,8 @@ export default async function HomePage() {
         <WeeklyBars stats={stats} />
       </section>
 
-      <section className="mb-8">
-        <HighlightStats stats={stats} />
-      </section>
-
       <section>
-        <WeeklyRecord stats={stats} picks={picks} />
+        <HighlightStats stats={stats} />
       </section>
     </main>
   );
