@@ -16,9 +16,7 @@ export function WeeklyRecord({
   stats: SeasonStats;
   picks: Pick[];
 }) {
-  const [openWeek, setOpenWeek] = useState<string | null>(
-    stats.weekly[stats.weekly.length - 1]?.weekStart ?? null,
-  );
+  const [openWeek, setOpenWeek] = useState<string | null>(null);
 
   const picksByWeek = useMemo(() => {
     const map = new Map<string, Pick[]>();
