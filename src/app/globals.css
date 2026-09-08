@@ -45,15 +45,76 @@ body {
   min-height: 100vh;
   color: var(--foreground);
   background-color: #140608;
-  background-image: linear-gradient(
-    180deg,
-    #2c0b12 0%,
-    #1c080e 32%,
-    #130609 68%,
-    #0d0507 100%
-  );
-  background-attachment: fixed;
   font-family: var(--font-body), "EB Garamond", Georgia, serif;
+}
+
+.parallax-root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+.parallax-stage {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.parallax-layer {
+  position: absolute;
+  inset: -20% 0;
+  will-change: transform;
+}
+
+.parallax-layer-far {
+  background: linear-gradient(
+    180deg,
+    #3a1018 0%,
+    #241016 35%,
+    #16080c 70%,
+    #0e0508 100%
+  );
+}
+
+.parallax-layer-mid {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 8%, rgba(212, 24, 40, 0.28), transparent 62%),
+    radial-gradient(ellipse 55% 40% at 80% 30%, rgba(212, 175, 105, 0.08), transparent 55%);
+  opacity: 0.95;
+}
+
+.parallax-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 6, 8, 0.15) 0%,
+    rgba(12, 5, 7, 0.35) 55%,
+    rgba(10, 4, 6, 0.55) 100%
+  );
+}
+
+.parallax-hero {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-layer,
+  .parallax-hero {
+    transform: none !important;
+  }
+
+  .parallax-hero {
+    opacity: 1 !important;
+  }
+
+  .hero-logo {
+    animation: none;
+  }
 }
 
 ::selection {
