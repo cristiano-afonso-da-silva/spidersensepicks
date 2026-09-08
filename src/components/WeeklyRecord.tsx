@@ -40,7 +40,7 @@ export function WeeklyRecord({
 
   return (
     <div className="panel overflow-hidden">
-      <div className="border-b border-border px-5 py-5 sm:px-6">
+      <div className="border-b border-border px-5 py-6 sm:px-7">
         <p className="section-label">Full pick ledger</p>
         <h2 className="section-title">All Records</h2>
         <p className="section-copy">
@@ -68,11 +68,11 @@ export function WeeklyRecord({
                         prev === w.weekStart ? null : w.weekStart,
                       )
                     }
-                    className="flex w-full items-center gap-3 px-5 py-3.5 text-left transition hover:bg-white/[0.02] sm:px-6"
+                    className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-gold/[0.04] sm:px-7"
                     aria-expanded={open}
                   >
                     <span
-                      className={`text-gold transition ${open ? "rotate-90" : ""}`}
+                      className={`text-gold transition duration-200 ${open ? "rotate-90" : ""}`}
                       aria-hidden
                     >
                       ▸
@@ -112,7 +112,7 @@ export function WeeklyRecord({
                   </button>
 
                   {open ? (
-                    <div className="border-t border-border/60 bg-black/40 px-5 py-3 sm:px-6">
+                    <div className="border-t border-border/60 bg-black/30 px-5 py-4 sm:px-7">
                       {weekPicks.length === 0 ? (
                         <p className="py-2 text-sm text-muted">
                           No picks stored for this week.

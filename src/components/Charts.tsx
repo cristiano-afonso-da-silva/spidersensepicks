@@ -103,7 +103,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
   }));
 
   return (
-    <div className="panel-soft p-5 sm:p-7">
+    <div className="panel-soft p-6 sm:p-8">
       <SectionHead
         title="Cumulative Unit Curve"
         copy="Running total of units won and lost, with defining moments marked along the way."
@@ -219,7 +219,7 @@ function MetricLine({ label, value }: { label: string; value: string }) {
 
 export function WeeklyBars({ stats }: { stats: SeasonStats }) {
   return (
-    <div className="panel p-5 sm:p-6">
+    <div className="panel p-6 sm:p-7">
       <SectionHead
         title="Weekly Performance"
         copy="Net units week by week — gold above zero, red below."
@@ -268,7 +268,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
 
 export function MonthlyBars({ stats }: { stats: SeasonStats }) {
   return (
-    <div className="panel h-full p-5 sm:p-6">
+    <div className="panel h-full p-6 sm:p-7">
       <SectionHead title="Monthly Performance" copy="Net units by calendar month." />
       {stats.monthly.length === 0 ? (
         <EmptyChart />
@@ -318,7 +318,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   ].filter((d) => d.value > 0);
 
   return (
-    <div className="panel h-full p-5 sm:p-6">
+    <div className="panel h-full p-6 sm:p-7">
       <SectionHead title="Wins vs Losses" copy="Share of weeks by outcome." />
       <div className="relative mt-1 h-[200px] w-full">
         {data.length === 0 ? (

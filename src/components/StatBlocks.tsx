@@ -32,23 +32,23 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
   ];
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className="panel animate-rise px-4 py-4"
-          style={{ animationDelay: `${i * 80}ms` }}
+          className="panel animate-rise px-5 py-5"
+          style={{ animationDelay: `${i * 90}ms` }}
         >
           <div className="flex items-start justify-between gap-2">
-            <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
+            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
               {c.label}
             </p>
             <StatIcon kind={c.icon} />
           </div>
-          <p className="mt-3 font-[family-name:var(--font-display)] text-4xl leading-none text-gold-bright">
+          <p className="mt-4 font-[family-name:var(--font-display)] text-[2.35rem] leading-none tracking-tight text-gold-bright">
             {c.value}
           </p>
-          <p className="mt-3 text-xs text-muted">{c.foot}</p>
+          <p className="mt-3 text-xs leading-relaxed text-muted">{c.foot}</p>
         </div>
       ))}
     </div>
@@ -148,21 +148,25 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
   ];
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {items.map((item) => (
-        <div key={item.label} className="panel px-4 py-4">
-          <p className="text-[11px] uppercase tracking-[0.16em] text-muted">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {items.map((item, i) => (
+        <div
+          key={item.label}
+          className="panel animate-rise px-5 py-5"
+          style={{ animationDelay: `${i * 70}ms` }}
+        >
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
             {item.label}
           </p>
           <p
-            className={`mt-2 font-[family-name:var(--font-display)] text-[1.85rem] leading-none ${
+            className={`mt-3 font-[family-name:var(--font-display)] text-[1.95rem] leading-none ${
               item.tone === "red" ? "text-red-bright" : "text-gold-bright"
             }`}
           >
             {item.value}
           </p>
           {item.sub ? (
-            <p className="mt-2 font-[family-name:var(--font-mono)] text-xs text-muted">
+            <p className="mt-3 font-[family-name:var(--font-mono)] text-xs text-muted">
               {item.sub}
             </p>
           ) : null}
