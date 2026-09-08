@@ -1,5 +1,4 @@
 import { format, parseISO } from "date-fns";
-import Image from "next/image";
 import {
   CumulativeChart,
   MonthlyBars,
@@ -10,6 +9,8 @@ import { HeroStats, HighlightStats } from "@/components/StatBlocks";
 import { WeeklyRecord } from "@/components/WeeklyRecord";
 import { readPicks } from "@/lib/picks-store";
 import { computeStats, formatSigned } from "@/lib/stats";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default async function HomePage() {
   const picks = await readPicks();
@@ -25,13 +26,13 @@ export default async function HomePage() {
   return (
     <main className="shell py-10 sm:py-14">
       <section className="animate-rise mb-10 text-center">
-        <Image
-          src="/logo.jpg"
+        {/* Plain img so GitHub Pages basePath is applied reliably */}
+        <img
+          src={`${basePath}/logo.jpg`}
           alt="Spider Sense Picks logo"
           width={160}
           height={160}
           className="mx-auto mb-5 h-28 w-28 rounded-full object-cover ring-2 ring-gold/45 sm:h-36 sm:w-36"
-          priority
         />
         <p className="text-[11px] uppercase tracking-[0.28em] text-muted">
           Private Performance Report

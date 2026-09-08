@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "BASE_PATH= NEXT_PUBLIC_BASE_PATH= next dev",
     "build": "next build",
+    "build:pages": "BASE_PATH=/spidersensepicks NEXT_PUBLIC_BASE_PATH=/spidersensepicks next build",
     "start": "next start",
     "lint": "eslint"
   },

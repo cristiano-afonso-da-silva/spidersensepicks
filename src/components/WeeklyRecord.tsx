@@ -41,10 +41,10 @@ export function WeeklyRecord({
   return (
     <div className="panel overflow-hidden">
       <div className="border-b border-border px-5 py-5 sm:px-6">
-        <p className="section-label">Week-by-week ledger</p>
-        <h2 className="section-title">Weekly Record</h2>
+        <p className="section-label">Full pick ledger</p>
+        <h2 className="section-title">All Records</h2>
         <p className="section-copy">
-          Tap a week to expand its picks
+          Tap a date to expand its picks
           {stats.weeksTracked ? ` — ${stats.weeksTracked} weeks tracked` : ""}.
         </p>
       </div>
