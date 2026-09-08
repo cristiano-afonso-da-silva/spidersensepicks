@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spider Sense Picks
 
-## Getting Started
+Display-only performance dashboard. Picks are stored in `data/picks.json` and updated offline (not through the public site).
 
-First, run the development server:
+## Daily update workflow
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Each day, send the new card in chat (example):
+
+```
+5 Unit Plays
+Florida State (+3.5) ✅  -140
+
+1 Unit Plays
+Dodgers ML ✅  -220
+SMU @ FSU Under 54.5 ✅  -110
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Include for each play when you can: **pick**, **units**, **odds** (American), **win/loss/push**.  
+The agent appends them to `data/picks.json`; the dashboard recalculates automatically.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pick record shape
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```json
+{
+  "id": "2026-09-08-fsu",
+  "date": "2026-09-08",
+  "pick": "Florida State (+3.5)",
+  "sport": "NCAAF",
+  "odds": -140,
+  "units": 5,
+  "result": "win",
+  "notes": "5 Unit Play"
+}
+```
 
-## Learn More
+## Run locally
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000)

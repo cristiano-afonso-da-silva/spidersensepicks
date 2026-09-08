@@ -1,0 +1,52 @@
+[
+  {
+    "id": "2026-09-08-fsu",
+    "date": "2026-09-08",
+    "pick": "Florida State (+3.5)",
+    "sport": "NCAAF",
+    "odds": -132,
+    "units": 5,
+    "result": "win",
+    "notes": "5 Unit Play · FanDuel"
+  },
+  {
+    "id": "2026-09-08-under",
+    "date": "2026-09-08",
+    "pick": "SMU @ Florida State Under 54.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · FanDuel"
+  },
+  {
+    "id": "2026-09-08-zverev",
+    "date": "2026-09-08",
+    "pick": "Alexander Zverev -6.5",
+    "sport": "Tennis",
+    "odds": -165,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · FanDuel"
+  },
+  {
+    "id": "2026-09-08-f5",
+    "date": "2026-09-08",
+    "pick": "Reds @ Dodgers First 5 Innings Under 4.5",
+    "sport": "MLB",
+    "odds": -122,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · FanDuel"
+  },
+  {
+    "id": "2026-09-08-dodgers",
+    "date": "2026-09-08",
+    "pick": "Dodgers ML",
+    "sport": "MLB",
+    "odds": -172,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · FanDuel"
+  }
+]

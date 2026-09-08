@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050505;
+  --foreground: #f7ecec;
+  --surface: #120808;
+  --surface-2: #1a0c0c;
+  --border: rgba(225, 29, 46, 0.35);
+  --red: #e11d2e;
+  --red-bright: #ff2a3d;
+  --red-deep: #8e121c;
+  --gold: #c5a059;
+  --gold-bright: #e0bf78;
+  --gold-dim: #8a6f3d;
+  --burgundy: #5c1a1a;
+  --muted: #b09a9a;
+  --forest: #140808;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-gold: var(--gold);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-dim: var(--gold-dim);
+  --color-brand-red: var(--red);
+  --color-red-bright: var(--red-bright);
+  --color-burgundy: var(--burgundy);
+  --color-muted: var(--muted);
+  --color-forest: var(--forest);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -15%, rgba(225, 29, 46, 0.28), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 10%, rgba(197, 160, 89, 0.1), transparent 45%),
+    radial-gradient(ellipse 40% 30% at 0% 80%, rgba(225, 29, 46, 0.08), transparent 50%),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), "EB Garamond", Georgia, serif;
+}
+
+::selection {
+  background: rgba(225, 29, 46, 0.45);
+  color: #fff;
+}
+
+.panel {
+  background: linear-gradient(180deg, rgba(28, 10, 12, 0.96), rgba(8, 4, 4, 0.98));
+  border: 1px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(225, 29, 46, 0.08);
+}
+
+.panel-forest {
+  background:
+    linear-gradient(180deg, rgba(32, 10, 12, 0.95), rgba(8, 3, 4, 0.98)),
+    radial-gradient(ellipse at 30% 0%, rgba(225, 29, 46, 0.16), transparent 55%);
+}
+
+.gold-text {
+  color: var(--gold-bright);
+}
+
+.ledger-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ledger-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--red), var(--gold));
+  border-radius: 999px;
+}
+
+.ledger-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 0 rgba(225, 29, 46, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(225, 29, 46, 0.45));
+  }
+}
+
+.animate-rise {
+  animation: rise-in 0.7s ease both;
+}
+
+.animate-glow {
+  animation: glow-pulse 4s ease-in-out infinite;
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(225, 29, 46, 0.3);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.65rem 0.8rem;
+  color: #f7ecec;
+  outline: none;
+  font-family: inherit;
+}
+
+.field:focus {
+  border-color: rgba(225, 29, 46, 0.85);
+  box-shadow: 0 0 0 3px rgba(225, 29, 46, 0.18);
+}
+
+/* Keep Recharts hover panels dark — default tooltip/cursor can flash white */
+.recharts-default-tooltip {
+  background: #0a0505 !important;
+  border: 1px solid rgba(225, 29, 46, 0.4) !important;
+  border-radius: 8px !important;
+  color: #f7ecec !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.65) !important;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.recharts-rectangle.recharts-tooltip-cursor {
+  fill: rgba(225, 29, 46, 0.12) !important;
 }
