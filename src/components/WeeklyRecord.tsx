@@ -40,14 +40,10 @@ export function WeeklyRecord({
 
   return (
     <div className="panel overflow-hidden">
-      <div className="border-b border-border/50 px-5 py-5 sm:px-6">
-        <p className="text-[10px] uppercase tracking-[0.22em] text-brand-red">
-          Week-by-week ledger
-        </p>
-        <h2 className="mt-1 font-[family-name:var(--font-display)] text-3xl text-[#f7ecec]">
-          Weekly Record
-        </h2>
-        <p className="mt-1 text-sm text-muted">
+      <div className="border-b border-border px-5 py-5 sm:px-6">
+        <p className="section-label">Week-by-week ledger</p>
+        <h2 className="section-title">Weekly Record</h2>
+        <p className="section-copy">
           Tap a week to expand its picks
           {stats.weeksTracked ? ` — ${stats.weeksTracked} weeks tracked` : ""}.
         </p>
@@ -64,7 +60,7 @@ export function WeeklyRecord({
               const open = openWeek === w.weekStart;
               const weekPicks = picksByWeek.get(w.weekStart) ?? [];
               return (
-                <li key={w.weekStart} className="border-t border-border/30">
+                <li key={w.weekStart} className="border-t border-border">
                   <button
                     type="button"
                     onClick={() =>
@@ -72,16 +68,16 @@ export function WeeklyRecord({
                         prev === w.weekStart ? null : w.weekStart,
                       )
                     }
-                    className="flex w-full items-center gap-3 px-5 py-3.5 text-left transition hover:bg-brand-red/5 sm:px-6"
+                    className="flex w-full items-center gap-3 px-5 py-3.5 text-left transition hover:bg-white/[0.02] sm:px-6"
                     aria-expanded={open}
                   >
                     <span
-                      className={`text-brand-red transition ${open ? "rotate-90" : ""}`}
+                      className={`text-gold transition ${open ? "rotate-90" : ""}`}
                       aria-hidden
                     >
                       ▸
                     </span>
-                    <span className="min-w-[3.5rem] font-[family-name:var(--font-mono)] text-[#f7ecec]">
+                    <span className="min-w-[3.5rem] font-[family-name:var(--font-mono)] text-foreground">
                       {w.label}
                     </span>
                     <span
@@ -116,7 +112,7 @@ export function WeeklyRecord({
                   </button>
 
                   {open ? (
-                    <div className="border-t border-border/20 bg-black/35 px-5 py-3 sm:px-6">
+                    <div className="border-t border-border/60 bg-black/40 px-5 py-3 sm:px-6">
                       {weekPicks.length === 0 ? (
                         <p className="py-2 text-sm text-muted">
                           No picks stored for this week.
@@ -131,24 +127,21 @@ export function WeeklyRecord({
                             return (
                               <li
                                 key={p.id}
-                                className="grid grid-cols-[auto_1fr_auto] gap-x-3 gap-y-1 rounded-xl border border-border/25 bg-[#120808]/80 px-3 py-2.5 sm:grid-cols-[4.5rem_1fr_auto_auto_auto] sm:items-center"
+                                className="grid grid-cols-[auto_1fr_auto] gap-x-3 gap-y-1 rounded-lg border border-border/70 bg-surface px-3 py-2.5 sm:grid-cols-[4.5rem_1fr_auto_auto_auto] sm:items-center"
                               >
                                 <span className="font-[family-name:var(--font-mono)] text-xs text-muted">
                                   {format(parseISO(p.date), "M/d")}
                                 </span>
                                 <div className="col-span-2 sm:col-span-1">
-                                  <p className="text-sm text-[#f7ecec]">
-                                    {p.pick}
-                                  </p>
+                                  <p className="text-sm text-foreground">{p.pick}</p>
                                   <p className="text-[11px] text-muted">
                                     {[p.sport, p.notes]
                                       .filter(Boolean)
                                       .join(" · ")}
                                   </p>
                                 </div>
-                                <span className="font-[family-name:var(--font-mono)] text-xs text-gold-bright">
-                                  {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}
-                                  u
+                                <span className="font-[family-name:var(--font-mono)] text-xs text-muted">
+                                  {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}u
                                 </span>
                                 <span
                                   className={`justify-self-end rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
@@ -156,9 +149,7 @@ export function WeeklyRecord({
                                       ? "bg-gold text-black"
                                       : p.result === "loss"
                                         ? "bg-brand-red text-white"
-                                        : p.result === "push"
-                                          ? "bg-white/10 text-muted"
-                                          : "bg-white/10 text-muted"
+                                        : "bg-white/10 text-muted"
                                   }`}
                                 >
                                   {p.result}
@@ -186,11 +177,6 @@ export function WeeklyRecord({
             })}
           </ul>
         )}
-      </div>
-
-      <div className="flex flex-col gap-1 border-t border-border/40 px-5 py-3 text-[11px] text-muted sm:flex-row sm:justify-between sm:px-6">
-        <span>Spider Sense Picks — Internal Performance Report</span>
-        <span>Expand any week to review that week&apos;s plays</span>
       </div>
     </div>
   );

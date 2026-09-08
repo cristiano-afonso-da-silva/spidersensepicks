@@ -18,35 +18,27 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const RED = "#e11d2e";
-const RED_BRIGHT = "#ff2a3d";
-const GOLD = "#c5a059";
-const BURGUNDY = "#5c1a1a";
-const MUTED = "#b09a9a";
+const GOLD = "#d4af69";
+const GOLD_BRIGHT = "#efd39a";
+const RED = "#d41828";
+const MUTED = "#8f8a84";
+const GRID = "rgba(212, 175, 105, 0.1)";
 
 function ChartTooltip({
   active,
   payload,
   label,
-  valueKey = "value",
   suffix = "u",
 }: {
   active?: boolean;
-  payload?: Array<{ value?: number; payload?: Record<string, unknown> }>;
+  payload?: Array<{ value?: number }>;
   label?: string;
-  valueKey?: string;
   suffix?: string;
 }) {
   if (!active || !payload?.length) return null;
-  const row = payload[0];
-  const value =
-    typeof row.value === "number"
-      ? row.value
-      : typeof row.payload?.[valueKey] === "number"
-        ? (row.payload[valueKey] as number)
-        : 0;
+  const value = typeof payload[0].value === "number" ? payload[0].value : 0;
   return (
-    <div className="rounded-lg border border-brand-red/50 bg-[#0a0505] px-3 py-2 text-xs shadow-[0_8px_30px_rgba(0,0,0,0.65)]">
+    <div className="rounded-lg border border-border bg-[#0b0b0b] px-3 py-2 text-xs shadow-xl">
       <p className="text-muted">{label}</p>
       <p className="mt-0.5 font-medium text-gold-bright">
         {formatSigned(value)}
@@ -56,21 +48,31 @@ function ChartTooltip({
   );
 }
 
-const tooltipWrapper = {
-  outline: "none",
-  zIndex: 20,
-} as const;
-
+const tooltipWrapper = { outline: "none", zIndex: 20 } as const;
 const darkCursorBar = {
-  fill: "rgba(225, 29, 46, 0.12)",
+  fill: "rgba(212, 175, 105, 0.1)",
   stroke: "transparent",
 } as const;
-
 const darkCursorLine = {
-  stroke: "rgba(225, 29, 46, 0.55)",
+  stroke: "rgba(212, 175, 105, 0.45)",
   strokeWidth: 1,
   strokeDasharray: "4 4",
 } as const;
+
+function SectionHead({
+  title,
+  copy,
+}: {
+  title: string;
+  copy: string;
+}) {
+  return (
+    <div className="mb-5 max-w-2xl">
+      <h2 className="section-title">{title}</h2>
+      <p className="section-copy">{copy}</p>
+    </div>
+  );
+}
 
 export function CumulativeChart({ stats }: { stats: SeasonStats }) {
   const data = stats.cumulativeSeries.map((p) => ({
@@ -79,16 +81,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
   }));
 
   return (
-    <div className="panel panel-forest p-5 sm:p-7">
-      <div className="mb-5 max-w-2xl">
-        <h2 className="font-[family-name:var(--font-display)] text-2xl text-red-bright sm:text-3xl">
-          Cumulative Unit Curve
-        </h2>
-        <p className="mt-1 text-sm text-muted">
-          Running total of units won and lost across the full season, with the
-          season&apos;s defining moments marked along the way.
-        </p>
-      </div>
+    <div className="panel-soft p-5 sm:p-7">
+      <SectionHead
+        title="Cumulative Unit Curve"
+        copy="Running total of units won and lost, with defining moments marked along the way."
+      />
       <div className="h-[280px] w-full sm:h-[340px]">
         {data.length === 0 ? (
           <EmptyChart />
@@ -97,18 +94,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
             <AreaChart data={data} margin={{ top: 24, right: 12, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor={RED} stopOpacity={0.4} />
-                  <stop offset="100%" stopColor={RED} stopOpacity={0} />
+                  <stop offset="0%" stopColor={GOLD} stopOpacity={0.35} />
+                  <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
                 </linearGradient>
-                <filter id="glow">
-                  <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                  <feMerge>
-                    <feMergeNode in="coloredBlur" />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
               </defs>
-              <CartesianGrid stroke="rgba(225,29,46,0.12)" vertical={false} />
+              <CartesianGrid stroke={GRID} vertical={false} />
               <XAxis
                 dataKey="label"
                 tick={{ fill: MUTED, fontSize: 11 }}
@@ -138,21 +128,20 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               <Area
                 type="monotone"
                 dataKey="cumulative"
-                stroke={RED_BRIGHT}
-                strokeWidth={2.5}
+                stroke={GOLD_BRIGHT}
+                strokeWidth={2.4}
                 fill="url(#cumFill)"
-                filter="url(#glow)"
                 dot={false}
-                activeDot={{ r: 5, fill: GOLD, stroke: "#000" }}
+                activeDot={{ r: 5, fill: GOLD_BRIGHT, stroke: "#070707" }}
               />
               {stats.annotations.map((a) => (
                 <ReferenceDot
                   key={a.date + a.label}
                   x={stats.cumulativeSeries.find((c) => c.date === a.date)?.label}
                   y={a.cumulative}
-                  r={4}
+                  r={3.5}
                   fill={GOLD}
-                  stroke="#000"
+                  stroke="#070707"
                   label={{
                     value: a.label,
                     position: "top",
@@ -165,12 +154,12 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           </ResponsiveContainer>
         )}
       </div>
-      <div className="mt-5 grid gap-3 border-t border-border/50 pt-4 sm:grid-cols-3">
+      <div className="mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
         <MetricLine
           label="Peak"
           value={
             stats.peak
-              ? `${formatSigned(stats.peak.units)}u week of ${stats.peak.weekLabel}`
+              ? `${formatSigned(stats.peak.units)}u · ${stats.peak.weekLabel}`
               : "—"
           }
         />
@@ -178,7 +167,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           label="Largest drawdown"
           value={
             stats.largestDrawdown
-              ? `${formatSigned(stats.largestDrawdown.amount)}u ${stats.largestDrawdown.fromLabel} → ${stats.largestDrawdown.toLabel}`
+              ? `${formatSigned(stats.largestDrawdown.amount)}u · ${stats.largestDrawdown.fromLabel} → ${stats.largestDrawdown.toLabel}`
               : "—"
           }
         />
@@ -205,19 +194,17 @@ function MetricLine({ label, value }: { label: string; value: string }) {
 export function WeeklyBars({ stats }: { stats: SeasonStats }) {
   return (
     <div className="panel p-5 sm:p-6">
-      <h2 className="font-[family-name:var(--font-display)] text-2xl text-red-bright">
-        Weekly Performance
-      </h2>
-      <p className="mt-1 text-sm text-muted">
-        Net units, week by week — gold above the line, red below.
-      </p>
-      <div className="mt-4 h-[220px] w-full sm:h-[260px]">
+      <SectionHead
+        title="Weekly Performance"
+        copy="Net units week by week — gold above zero, red below."
+      />
+      <div className="h-[220px] w-full sm:h-[260px]">
         {stats.weekly.length === 0 ? (
           <EmptyChart />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={stats.weekly}>
-              <CartesianGrid stroke="rgba(197,160,89,0.08)" vertical={false} />
+              <CartesianGrid stroke={GRID} vertical={false} />
               <XAxis
                 dataKey="label"
                 tick={{ fill: MUTED, fontSize: 11 }}
@@ -242,12 +229,9 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
                   />
                 )}
               />
-              <Bar dataKey="units" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="units" radius={[3, 3, 0, 0]}>
                 {stats.weekly.map((w) => (
-                  <Cell
-                    key={w.weekStart}
-                    fill={w.units >= 0 ? GOLD : RED}
-                  />
+                  <Cell key={w.weekStart} fill={w.units >= 0 ? GOLD : RED} />
                 ))}
               </Bar>
             </BarChart>
@@ -260,18 +244,18 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
 
 export function MonthlyBars({ stats }: { stats: SeasonStats }) {
   return (
-    <div className="panel p-5 sm:p-6 h-full">
-      <h2 className="font-[family-name:var(--font-display)] text-2xl text-red-bright">
-        Monthly Performance
-      </h2>
-      <p className="mt-1 text-sm text-muted">Net units by calendar month.</p>
-      <div className="mt-4 h-[200px] w-full">
+    <div className="panel h-full p-5 sm:p-6">
+      <SectionHead
+        title="Monthly Performance"
+        copy="Net units by calendar month."
+      />
+      <div className="h-[200px] w-full">
         {stats.monthly.length === 0 ? (
           <EmptyChart />
         ) : (
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={stats.monthly}>
-              <CartesianGrid stroke="rgba(197,160,89,0.08)" vertical={false} />
+              <CartesianGrid stroke={GRID} vertical={false} />
               <XAxis
                 dataKey="label"
                 tick={{ fill: MUTED, fontSize: 11 }}
@@ -295,7 +279,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
                   />
                 )}
               />
-              <Bar dataKey="units" radius={[4, 4, 0, 0]}>
+              <Bar dataKey="units" radius={[3, 3, 0, 0]}>
                 {stats.monthly.map((m) => (
                   <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
                 ))}
@@ -315,12 +299,12 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   ].filter((d) => d.value > 0);
 
   return (
-    <div className="panel p-5 sm:p-6 h-full">
-      <h2 className="font-[family-name:var(--font-display)] text-2xl text-red-bright">
-        Wins vs Losses
-      </h2>
-      <p className="mt-1 text-sm text-muted">Share of weeks by outcome.</p>
-      <div className="relative mt-2 h-[200px] w-full">
+    <div className="panel h-full p-5 sm:p-6">
+      <SectionHead
+        title="Wins vs Losses"
+        copy="Share of weeks by outcome."
+      />
+      <div className="relative mt-1 h-[200px] w-full">
         {data.length === 0 ? (
           <EmptyChart />
         ) : (
@@ -332,7 +316,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   dataKey="value"
                   nameKey="name"
                   innerRadius={58}
-                  outerRadius={82}
+                  outerRadius={80}
                   paddingAngle={3}
                   stroke="none"
                 >
@@ -344,20 +328,19 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   formatter={(value) => [`${value} weeks`, ""]}
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
-                    background: "#0a0505",
-                    border: "1px solid rgba(225,29,46,0.4)",
+                    background: "#0b0b0b",
+                    border: "1px solid rgba(212,175,105,0.35)",
                     borderRadius: 8,
                     fontSize: 12,
-                    color: "#f7ecec",
-                    boxShadow: "0 8px 30px rgba(0,0,0,0.65)",
+                    color: "#f4f0ea",
                   }}
-                  itemStyle={{ color: "#e0bf78" }}
-                  labelStyle={{ color: "#b09a9a" }}
+                  itemStyle={{ color: GOLD_BRIGHT }}
+                  labelStyle={{ color: MUTED }}
                 />
               </PieChart>
             </ResponsiveContainer>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <p className="font-[family-name:var(--font-display)] text-3xl text-red-bright">
+              <p className="font-[family-name:var(--font-display)] text-3xl text-gold-bright">
                 {stats.weekWinRate.toFixed(1)}%
               </p>
               <p className="text-[10px] uppercase tracking-[0.16em] text-muted">
@@ -383,7 +366,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
 function EmptyChart() {
   return (
     <div className="flex h-full items-center justify-center text-sm text-muted">
-      Log settled picks to populate this chart.
+      No chart data yet.
     </div>
   );
 }
