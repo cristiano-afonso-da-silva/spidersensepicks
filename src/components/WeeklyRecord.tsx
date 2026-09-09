@@ -89,7 +89,28 @@ export function WeeklyRecord({
             No picks recorded yet.
           </p>
         ) : (
-          <ul>
+          <>
+            <div
+              className="sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-[#0c0c0c]/95 px-5 py-2.5 backdrop-blur-sm sm:px-7"
+              role="row"
+            >
+              <span className="w-4 shrink-0" aria-hidden />
+              <span className="min-w-[3.5rem] text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                Date
+              </span>
+              <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                Result
+              </span>
+              <span className="ml-auto flex items-center gap-4 sm:gap-8">
+                <span className="min-w-[4.25rem] text-right text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                  Day
+                </span>
+                <span className="min-w-[4.5rem] text-right text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                  Total
+                </span>
+              </span>
+            </div>
+            <ul>
             {days.map((d) => {
               const open = openDate === d.date;
               return (
@@ -103,7 +124,7 @@ export function WeeklyRecord({
                     aria-expanded={open}
                   >
                     <span
-                      className={`text-gold transition duration-200 ${open ? "rotate-90" : ""}`}
+                      className={`w-4 shrink-0 text-gold transition duration-200 ${open ? "rotate-90" : ""}`}
                       aria-hidden
                     >
                       ▸
@@ -124,9 +145,9 @@ export function WeeklyRecord({
                     </span>
                     <span className="ml-auto flex items-center gap-4 font-[family-name:var(--font-mono)] text-sm sm:gap-8">
                       <span
-                        className={
+                        className={`min-w-[4.25rem] text-right ${
                           d.units >= 0 ? "text-gold-bright" : "text-red-bright"
-                        }
+                        }`}
                       >
                         {formatSigned(d.units)}u
                       </span>
@@ -137,7 +158,7 @@ export function WeeklyRecord({
                             : "text-red-bright"
                         }`}
                       >
-                        {formatSigned(d.cumulative)}
+                        {formatSigned(d.cumulative)}u
                       </span>
                     </span>
                   </button>
@@ -195,7 +216,8 @@ export function WeeklyRecord({
                 </li>
               );
             })}
-          </ul>
+            </ul>
+          </>
         )}
       </div>
     </div>
