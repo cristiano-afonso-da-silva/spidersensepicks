@@ -6,21 +6,21 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
     {
       label: "Final Net Units",
       value: formatSigned(stats.netUnits),
-      foot: stats.weeksTracked
-        ? `Cumulative, week ${stats.weeksTracked}.`
-        : "No settled weeks yet.",
+      foot: stats.daysTracked
+        ? `Cumulative, day ${stats.daysTracked}.`
+        : "No settled days yet.",
       icon: "units" as const,
     },
     {
-      label: "Winning Weeks",
-      value: `${stats.winningWeeks} / ${stats.weeksTracked}`,
-      foot: `${stats.losingWeeks} losing week${stats.losingWeeks === 1 ? "" : "s"}.`,
+      label: "Winning Days",
+      value: `${stats.winningDays} / ${stats.daysTracked}`,
+      foot: `${stats.losingDays} losing day${stats.losingDays === 1 ? "" : "s"}.`,
       icon: "trophy" as const,
     },
     {
       label: "Win Rate",
-      value: `${stats.weekWinRate.toFixed(1)}%`,
-      foot: "Weeks closed positive.",
+      value: `${stats.dayWinRate.toFixed(1)}%`,
+      foot: "Days closed positive.",
       icon: "target" as const,
     },
     {
@@ -120,7 +120,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
       tone: "gold" as const,
     },
     {
-      label: "Best Week",
+      label: "Best Day",
       value: stats.largestWinningWeek
         ? `${formatSigned(stats.largestWinningWeek.units)}u`
         : "—",
@@ -128,7 +128,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
       tone: "gold" as const,
     },
     {
-      label: "Worst Week",
+      label: "Worst Day",
       value: stats.largestLosingWeek
         ? `${formatSigned(stats.largestLosingWeek.units)}u`
         : "—",
@@ -138,7 +138,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
     {
       label: "Win Streak",
       value: stats.longestWinStreak
-        ? `${stats.longestWinStreak.weeks} wk`
+        ? `${stats.longestWinStreak.weeks} day${stats.longestWinStreak.weeks === 1 ? "" : "s"}`
         : "—",
       sub: stats.longestWinStreak
         ? `${stats.longestWinStreak.fromLabel} – ${stats.longestWinStreak.toLabel}`

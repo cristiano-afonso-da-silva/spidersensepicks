@@ -41,9 +41,9 @@ export default async function HomePage() {
         </h1>
         <div className="divider" />
         <p className="mx-auto mt-5 max-w-xl text-[0.98rem] leading-relaxed text-muted sm:text-base">
-          Season-to-date results · Week ending {ending}
-          {stats.weeksTracked
-            ? ` · ${stats.weeksTracked} weeks tracked since ${since}`
+          Season-to-date results · Through {ending}
+          {stats.daysTracked
+            ? ` · ${stats.daysTracked} days tracked since ${since}`
             : ""}
         </p>
         <p className="mt-4 font-[family-name:var(--font-mono)] text-sm tracking-wide text-muted">

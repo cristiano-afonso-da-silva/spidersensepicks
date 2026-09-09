@@ -144,7 +144,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                 <ChartTooltip
                   active={active}
                   payload={payload as never}
-                  label={`Week of ${label}`}
+                  label={`Point ${label}`}
                   suffix="u cumulative"
                 />
               )}
@@ -221,14 +221,14 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
   return (
     <div className="panel p-6 sm:p-7">
       <SectionHead
-        title="Weekly Performance"
-        copy="Net units week by week — gold above zero, red below."
+        title="Daily Performance"
+        copy="Net units day by day — gold above zero, red below."
       />
-      {stats.weekly.length === 0 ? (
+      {stats.daily.length === 0 ? (
         <EmptyChart />
       ) : (
         <ChartFrame heightClass="h-[220px] sm:h-[260px]">
-          <BarChart data={stats.weekly}>
+          <BarChart data={stats.daily}>
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -250,13 +250,13 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
                 <ChartTooltip
                   active={active}
                   payload={payload as never}
-                  label={`Week of ${label}`}
+                  label={`${label}`}
                 />
               )}
             />
             <Bar dataKey="units" radius={[3, 3, 0, 0]}>
-              {stats.weekly.map((w) => (
-                <Cell key={w.weekStart} fill={w.units >= 0 ? GOLD : RED} />
+              {stats.daily.map((d) => (
+                <Cell key={d.date} fill={d.units >= 0 ? GOLD : RED} />
               ))}
             </Bar>
           </BarChart>
@@ -313,13 +313,13 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
 
 export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   const data = [
-    { name: "Wins", value: stats.winningWeeks, color: GOLD },
-    { name: "Losses", value: stats.losingWeeks, color: RED },
+    { name: "Wins", value: stats.winningDays, color: GOLD },
+    { name: "Losses", value: stats.losingDays, color: RED },
   ].filter((d) => d.value > 0);
 
   return (
     <div className="panel h-full p-6 sm:p-7">
-      <SectionHead title="Wins vs Losses" copy="Share of weeks by outcome." />
+      <SectionHead title="Wins vs Losses" copy="Share of days by outcome." />
       <div className="relative mt-1 h-[200px] w-full">
         {data.length === 0 ? (
           <EmptyChart />
@@ -341,7 +341,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   ))}
                 </Pie>
                 <Tooltip
-                  formatter={(value) => [`${value} weeks`, ""]}
+                  formatter={(value) => [`${value} days`, ""]}
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
                     background: "#0b0b0b",
@@ -357,7 +357,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
             </ChartFrame>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
               <p className="font-[family-name:var(--font-display)] text-3xl text-gold-bright">
-                {stats.weekWinRate.toFixed(1)}%
+                {stats.dayWinRate.toFixed(1)}%
               </p>
               <p className="text-[10px] uppercase tracking-[0.16em] text-muted">
                 Win rate
@@ -368,10 +368,10 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
       </div>
       <div className="mt-1 flex justify-center gap-5 text-xs text-muted">
         <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gold" /> Wins {stats.winningWeeks}
+          <span className="h-2 w-2 rounded-full bg-gold" /> Wins {stats.winningDays}
         </span>
         <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-brand-red" /> Losses {stats.losingWeeks}
+          <span className="h-2 w-2 rounded-full bg-brand-red" /> Losses {stats.losingDays}
         </span>
       </div>
     </div>

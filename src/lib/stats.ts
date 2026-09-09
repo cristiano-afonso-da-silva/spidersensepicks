@@ -6,6 +6,7 @@ import {
   startOfWeek,
 } from "date-fns";
 import type {
+  DayBucket,
   MonthBucket,
   Pick,
   PickResult,
@@ -54,6 +55,49 @@ export function computeStats(picks: Pick[]): SeasonStats {
   const decided = wins + losses;
   const winRate = decided === 0 ? 0 : round2((wins / decided) * 100);
 
+  // --- Daily buckets (drives charts + cumulative curve) ---
+  const dayMap = new Map<string, number>();
+  const dayPickCount = new Map<string, number>();
+  for (const p of settled) {
+    dayMap.set(
+      p.date,
+      round2((dayMap.get(p.date) ?? 0) + unitsFromPick(p.odds, p.units, p.result)),
+    );
+    dayPickCount.set(p.date, (dayPickCount.get(p.date) ?? 0) + 1);
+  }
+
+  let dayRunning = 0;
+  const daily: DayBucket[] = Array.from(dayMap.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, units]) => {
+      dayRunning = round2(dayRunning + units);
+      return {
+        date,
+        label: format(parseISO(date), "M/d"),
+        units,
+        cumulative: dayRunning,
+        result: units > 0 ? "WIN" : units < 0 ? "LOSS" : "PUSH",
+        pickCount: dayPickCount.get(date) ?? 0,
+      };
+    });
+
+  const cumulativeSeries =
+    daily.length === 0
+      ? []
+      : [
+          {
+            date: daily[0].date,
+            label: "Open",
+            cumulative: 0,
+          },
+          ...daily.map((d) => ({
+            date: d.date,
+            label: d.label,
+            cumulative: d.cumulative,
+          })),
+        ];
+
+  // --- Weekly buckets ---
   const weekMap = new Map<
     string,
     { weekStart: string; weekEnd: string; label: string; units: number; pickCount: number }
@@ -77,32 +121,17 @@ export function computeStats(picks: Pick[]): SeasonStats {
     a.weekStart.localeCompare(b.weekStart),
   );
 
-  let running = 0;
+  let weekRunning = 0;
   const weekly: WeekBucket[] = weeklyRaw.map((w) => {
-    running = round2(running + w.units);
+    weekRunning = round2(weekRunning + w.units);
     return {
       ...w,
-      cumulative: running,
+      cumulative: weekRunning,
       result: w.units > 0 ? "WIN" : w.units < 0 ? "LOSS" : "PUSH",
     };
   });
 
-  const cumulativeSeries =
-    weekly.length === 0
-      ? []
-      : [
-          {
-            date: weekly[0].weekStart,
-            label: "Open",
-            cumulative: 0,
-          },
-          ...weekly.map((w) => ({
-            date: w.weekStart,
-            label: w.label,
-            cumulative: w.cumulative,
-          })),
-        ];
-
+  // --- Monthly ---
   const monthMap = new Map<string, number>();
   for (const p of settled) {
     const key = format(parseISO(p.date), "yyyy-MM");
@@ -119,7 +148,13 @@ export function computeStats(picks: Pick[]): SeasonStats {
       units,
     }));
 
-  const netUnits = weekly.length ? weekly[weekly.length - 1].cumulative : 0;
+  const netUnits = daily.length ? daily[daily.length - 1].cumulative : 0;
+  const winningDays = daily.filter((d) => d.result === "WIN").length;
+  const losingDays = daily.filter((d) => d.result === "LOSS").length;
+  const closedDays = winningDays + losingDays;
+  const dayWinRate =
+    closedDays === 0 ? 0 : round2((winningDays / closedDays) * 100);
+
   const winningWeeks = weekly.filter((w) => w.result === "WIN").length;
   const losingWeeks = weekly.filter((w) => w.result === "LOSS").length;
   const pushWeeks = weekly.filter((w) => w.result === "PUSH").length;
@@ -128,28 +163,28 @@ export function computeStats(picks: Pick[]): SeasonStats {
     closedWeeks === 0 ? 0 : round2((winningWeeks / closedWeeks) * 100);
 
   let peak: SeasonStats["peak"] = null;
-  for (const w of weekly) {
-    if (!peak || w.cumulative > peak.units) {
-      peak = { units: w.cumulative, weekLabel: w.label };
+  for (const d of daily) {
+    if (!peak || d.cumulative > peak.units) {
+      peak = { units: d.cumulative, weekLabel: d.label };
     }
   }
 
   let largestDrawdown: SeasonStats["largestDrawdown"] = null;
   let peakSoFar = 0;
-  let drawdownStartLabel = weekly[0]?.label ?? "";
+  let drawdownStartLabel = daily[0]?.label ?? "";
   let maxDd = 0;
   let maxDdFrom = "";
   let maxDdTo = "";
-  for (const w of weekly) {
-    if (w.cumulative >= peakSoFar) {
-      peakSoFar = w.cumulative;
-      drawdownStartLabel = w.label;
+  for (const d of daily) {
+    if (d.cumulative >= peakSoFar) {
+      peakSoFar = d.cumulative;
+      drawdownStartLabel = d.label;
     } else {
-      const dd = round2(peakSoFar - w.cumulative);
+      const dd = round2(peakSoFar - d.cumulative);
       if (dd > maxDd) {
         maxDd = dd;
         maxDdFrom = drawdownStartLabel;
-        maxDdTo = w.label;
+        maxDdTo = d.label;
       }
     }
   }
@@ -173,28 +208,27 @@ export function computeStats(picks: Pick[]): SeasonStats {
 
   let largestWinningWeek: SeasonStats["largestWinningWeek"] = null;
   let largestLosingWeek: SeasonStats["largestLosingWeek"] = null;
-  for (const w of weekly) {
-    if (w.units > 0 && (!largestWinningWeek || w.units > largestWinningWeek.units)) {
-      largestWinningWeek = { units: w.units, label: `week of ${w.label}` };
+  for (const d of daily) {
+    if (d.units > 0 && (!largestWinningWeek || d.units > largestWinningWeek.units)) {
+      largestWinningWeek = { units: d.units, label: `day of ${d.label}` };
     }
-    if (w.units < 0 && (!largestLosingWeek || w.units < largestLosingWeek.units)) {
-      largestLosingWeek = { units: w.units, label: `week of ${w.label}` };
+    if (d.units < 0 && (!largestLosingWeek || d.units < largestLosingWeek.units)) {
+      largestLosingWeek = { units: d.units, label: `day of ${d.label}` };
     }
   }
 
   let longestWinStreak: SeasonStats["longestWinStreak"] = null;
   let streak = 0;
   let streakStart = "";
-  for (const w of weekly) {
-    if (w.result === "WIN") {
-      if (streak === 0) streakStart = w.label;
+  for (const d of daily) {
+    if (d.result === "WIN") {
+      if (streak === 0) streakStart = d.label;
       streak += 1;
-      const endLabel = w.label;
       if (!longestWinStreak || streak > longestWinStreak.weeks) {
         longestWinStreak = {
           weeks: streak,
           fromLabel: streakStart,
-          toLabel: endLabel,
+          toLabel: d.label,
         };
       }
     } else {
@@ -203,38 +237,38 @@ export function computeStats(picks: Pick[]): SeasonStats {
   }
 
   const annotations: SeasonStats["annotations"] = [];
-  if (weekly.length >= 2) {
-    let localPeak = weekly[0].cumulative;
-    let ddStart: WeekBucket | null = null;
-    let ddLow: WeekBucket | null = null;
-    for (let i = 1; i < weekly.length; i++) {
-      const w = weekly[i];
-      if (w.cumulative >= localPeak) {
-        localPeak = w.cumulative;
+  if (daily.length >= 2) {
+    let localPeak = daily[0].cumulative;
+    let ddStart: DayBucket | null = null;
+    let ddLow: DayBucket | null = null;
+    for (let i = 1; i < daily.length; i++) {
+      const d = daily[i];
+      if (d.cumulative >= localPeak) {
+        localPeak = d.cumulative;
         ddStart = null;
         ddLow = null;
       } else {
-        if (!ddStart) ddStart = weekly[i - 1];
-        if (!ddLow || w.cumulative < ddLow.cumulative) ddLow = w;
+        if (!ddStart) ddStart = daily[i - 1];
+        if (!ddLow || d.cumulative < ddLow.cumulative) ddLow = d;
       }
     }
-    if (ddStart && ddLow && ddStart.weekStart !== ddLow.weekStart) {
+    if (ddStart && ddLow && ddStart.date !== ddLow.date) {
       annotations.push({
-        date: ddStart.weekStart,
+        date: ddStart.date,
         label: `Drawdown begins · ${ddStart.label}`,
         cumulative: ddStart.cumulative,
       });
       annotations.push({
-        date: ddLow.weekStart,
+        date: ddLow.date,
         label: `Drawdown low · ${ddLow.label}`,
         cumulative: ddLow.cumulative,
       });
     }
     if (peak) {
-      const peakWeek = weekly.find((w) => w.cumulative === peak!.units);
-      if (peakWeek) {
+      const peakDay = [...daily].reverse().find((d) => d.cumulative === peak!.units);
+      if (peakDay) {
         annotations.push({
-          date: peakWeek.weekStart,
+          date: peakDay.date,
           label: `Season peak · +${peak.units.toFixed(1)}u`,
           cumulative: peak.units,
         });
@@ -251,13 +285,17 @@ export function computeStats(picks: Pick[]): SeasonStats {
     netUnits,
     winRate,
     profitAt100: round2(netUnits * 100),
+    daysTracked: daily.length,
     weeksTracked: weekly.length,
+    winningDays,
+    losingDays,
     winningWeeks,
     losingWeeks,
     pushWeeks,
+    dayWinRate,
     weekWinRate,
-    seasonStart: weekly[0]?.weekStart ?? null,
-    seasonEnd: weekly[weekly.length - 1]?.weekEnd ?? null,
+    seasonStart: daily[0]?.date ?? null,
+    seasonEnd: daily[daily.length - 1]?.date ?? null,
     peak,
     largestDrawdown,
     bestMonth,
@@ -265,6 +303,7 @@ export function computeStats(picks: Pick[]): SeasonStats {
     largestLosingWeek,
     longestWinStreak,
     cumulativeSeries,
+    daily,
     weekly,
     monthly,
     annotations,
@@ -284,7 +323,7 @@ export function formatMoney(n: number): string {
 }
 
 export function formatDateRange(start: string | null, end: string | null): string {
-  if (!start) return "No settled weeks yet";
+  if (!start) return "No settled days yet";
   const s = format(parseISO(start), "MMM d");
   if (!end) return s;
   return `${s} – ${format(parseISO(end), "MMM d, yyyy")}`;

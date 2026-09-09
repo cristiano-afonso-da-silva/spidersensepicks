@@ -33,6 +33,15 @@ export interface CreatePickInput {
   notes?: string;
 }
 
+export interface DayBucket {
+  date: string;
+  label: string;
+  units: number;
+  cumulative: number;
+  result: "WIN" | "LOSS" | "PUSH";
+  pickCount: number;
+}
+
 export interface WeekBucket {
   weekStart: string;
   weekEnd: string;
@@ -58,10 +67,14 @@ export interface SeasonStats {
   netUnits: number;
   winRate: number;
   profitAt100: number;
+  daysTracked: number;
   weeksTracked: number;
+  winningDays: number;
+  losingDays: number;
   winningWeeks: number;
   losingWeeks: number;
   pushWeeks: number;
+  dayWinRate: number;
   weekWinRate: number;
   seasonStart: string | null;
   seasonEnd: string | null;
@@ -80,6 +93,7 @@ export interface SeasonStats {
     toLabel: string;
   } | null;
   cumulativeSeries: { date: string; label: string; cumulative: number }[];
+  daily: DayBucket[];
   weekly: WeekBucket[];
   monthly: MonthBucket[];
   annotations: { date: string; label: string; cumulative: number }[];
