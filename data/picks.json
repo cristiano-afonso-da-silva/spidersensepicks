@@ -138,5 +138,95 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-myers",
+    "date": "2026-09-09",
+    "pick": "Jason Myers 8+ Kicking Points",
+    "sport": "NFL",
+    "odds": -133,
+    "units": 1.5,
+    "result": "loss",
+    "notes": "1.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-arsenal",
+    "date": "2026-09-09",
+    "pick": "Arsenal ML",
+    "sport": "Soccer",
+    "odds": -170,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-patriots",
+    "date": "2026-09-09",
+    "pick": "New England Patriots +3.5",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-maye",
+    "date": "2026-09-09",
+    "pick": "Drake Maye 225+ Passing Yards",
+    "sport": "NFL",
+    "odds": -138,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-btts",
+    "date": "2026-09-09",
+    "pick": "Liverpool @ Atletico Both Teams To Score Yes",
+    "sport": "Soccer",
+    "odds": -195,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-marlins",
+    "date": "2026-09-09",
+    "pick": "Miami Marlins ML",
+    "sport": "MLB",
+    "odds": -124,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-khachanov",
+    "date": "2026-09-09",
+    "pick": "Karen Khachanov ML",
+    "sport": "Tennis",
+    "odds": -195,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-braves",
+    "date": "2026-09-09",
+    "pick": "Atlanta Braves ML",
+    "sport": "MLB",
+    "odds": -124,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-09-mariners",
+    "date": "2026-09-09",
+    "pick": "SEA Mariners ML",
+    "sport": "MLB",
+    "odds": -148,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
