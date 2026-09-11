@@ -96,5 +96,5 @@ export interface SeasonStats {
   daily: DayBucket[];
   weekly: WeekBucket[];
   monthly: MonthBucket[];
-  annotations: { date: string; label: string; cumulative: number }[];
+  annotations: { date: string; label: string; cumulative: number; kind?: "peak" | "drawdown" }[];
 }

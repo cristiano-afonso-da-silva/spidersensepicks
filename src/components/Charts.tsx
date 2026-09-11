@@ -114,7 +114,10 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
         </div>
       ) : (
         <ChartFrame heightClass="h-[280px] sm:h-[340px]">
-          <AreaChart data={data} margin={{ top: 24, right: 12, left: 0, bottom: 0 }}>
+          <AreaChart
+            data={data}
+            margin={{ top: 36, right: 28, left: 0, bottom: 8 }}
+          >
             <defs>
               <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stopColor={GOLD} stopOpacity={0.4} />
@@ -158,25 +161,31 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#070707", strokeWidth: 2 }}
               activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#070707" }}
             />
-            {stats.annotations.map((a) => {
+            {stats.annotations.map((a, i) => {
               const point = [...stats.cumulativeSeries]
                 .reverse()
                 .find((c) => c.date === a.date && c.label !== "Open");
               if (!point) return null;
+              const isPeak = a.kind === "peak";
+              const nearEnd =
+                point.label === data[data.length - 1]?.label ||
+                i === stats.annotations.length - 1;
               return (
                 <ReferenceDot
-                  key={a.date + a.label}
+                  key={`${a.kind ?? "note"}-${a.date}`}
                   x={point.label}
                   y={a.cumulative}
                   r={3.5}
-                  fill={GOLD}
+                  fill={isPeak ? GOLD : RED}
                   stroke="#070707"
-                  label={{
-                    value: a.label,
-                    position: "top",
-                    fill: GOLD,
-                    fontSize: 10,
-                  }}
+                  label={(props) => (
+                    <AnnotationLabel
+                      viewBox={props.viewBox as { x?: number; y?: number }}
+                      text={a.label}
+                      kind={isPeak ? "peak" : "drawdown"}
+                      nearEnd={nearEnd && !isPeak}
+                    />
+                  )}
                 />
               );
             })}
@@ -203,6 +212,44 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
         <MetricLine label="Season finish" value={`${formatSigned(stats.netUnits)}u`} />
       </div>
     </div>
+  );
+}
+
+function AnnotationLabel({
+  text,
+  kind,
+  nearEnd,
+  viewBox,
+}: {
+  text: string;
+  kind: "peak" | "drawdown";
+  nearEnd?: boolean;
+  viewBox?: { x?: number; y?: number; width?: number; height?: number };
+}) {
+  const x = viewBox?.x ?? 0;
+  const y = viewBox?.y ?? 0;
+  const fill = kind === "peak" ? GOLD : MUTED;
+  // Peak sits above the point; drawdown low sits below (or left if near the chart edge).
+  let tx = x;
+  let ty = kind === "peak" ? y - 14 : y + 18;
+  let anchor: "middle" | "end" | "start" = "middle";
+  if (nearEnd) {
+    tx = x - 8;
+    ty = y - 4;
+    anchor = "end";
+  }
+
+  return (
+    <text
+      x={tx}
+      y={ty}
+      textAnchor={anchor}
+      fill={fill}
+      fontSize={10}
+      fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+    >
+      {text}
+    </text>
   );
 }
 
