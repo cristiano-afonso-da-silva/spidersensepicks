@@ -237,40 +237,14 @@ export function computeStats(picks: Pick[]): SeasonStats {
   }
 
   const annotations: SeasonStats["annotations"] = [];
-  if (daily.length >= 2) {
-    let localPeak = daily[0].cumulative;
-    let ddLow: DayBucket | null = null;
-    for (let i = 1; i < daily.length; i++) {
-      const d = daily[i];
-      if (d.cumulative >= localPeak) {
-        localPeak = d.cumulative;
-        ddLow = null;
-      } else if (!ddLow || d.cumulative < ddLow.cumulative) {
-        ddLow = d;
-      }
-    }
-
-    // Only mark distinct moments. Peak and "drawdown begins" used to share
-    // a day and stacked on the chart — keep peak + drawdown low only.
-    let peakDate: string | null = null;
-    if (peak) {
-      const peakDay = [...daily].reverse().find((d) => d.cumulative === peak!.units);
-      if (peakDay) {
-        peakDate = peakDay.date;
-        annotations.push({
-          date: peakDay.date,
-          label: `Peak · ${formatSigned(peak.units)}u`,
-          cumulative: peak.units,
-          kind: "peak",
-        });
-      }
-    }
-    if (ddLow && !(peakDate && ddLow.date === peakDate)) {
+  if (peak && daily.length >= 1) {
+    const peakDay = [...daily].reverse().find((d) => d.cumulative === peak.units);
+    if (peakDay) {
       annotations.push({
-        date: ddLow.date,
-        label: `Low · ${ddLow.label}`,
-        cumulative: ddLow.cumulative,
-        kind: "drawdown",
+        date: peakDay.date,
+        label: `Peak · ${formatSigned(peak.units)}u`,
+        cumulative: peak.units,
+        kind: "peak",
       });
     }
   }
