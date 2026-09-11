@@ -174,17 +174,19 @@ export function WeeklyRecord({
                           return (
                             <li
                               key={p.id}
-                              className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-1 rounded-lg border border-border/70 bg-surface px-3 py-2.5 sm:grid-cols-[1fr_auto_auto_auto] sm:items-center"
+                              className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:items-center"
                             >
-                              <div>
-                                <p className="text-sm text-foreground">{p.pick}</p>
-                                <p className="text-[11px] text-muted">
-                                  {[p.sport, p.notes].filter(Boolean).join(" · ")}
-                                </p>
-                              </div>
-                              <span className="font-[family-name:var(--font-mono)] text-xs text-muted">
+                              <p className="text-sm text-foreground">{p.pick}</p>
+                              <span className="font-[family-name:var(--font-mono)] text-xs text-muted sm:justify-self-end">
                                 {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}u
                               </span>
+                              {p.sport ? (
+                                <span className="justify-self-end rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
+                                  {p.sport}
+                                </span>
+                              ) : (
+                                <span className="hidden sm:block" />
+                              )}
                               <span
                                 className={`justify-self-end rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
                                   p.result === "win"
@@ -205,7 +207,7 @@ export function WeeklyRecord({
                                       : "text-red-bright"
                                 }`}
                               >
-                                {pl === null ? "—" : formatSigned(pl)}
+                                {pl === null ? "—" : `${formatSigned(pl)}u`}
                               </span>
                             </li>
                           );
