@@ -11,6 +11,7 @@ import type {
   Pick,
   PickResult,
   SeasonStats,
+  SportBucket,
   WeekBucket,
 } from "./types";
 
@@ -148,6 +149,68 @@ export function computeStats(picks: Pick[]): SeasonStats {
       units,
     }));
 
+  // --- By sport ---
+  type SportAgg = {
+    sport: string;
+    picks: number;
+    wins: number;
+    losses: number;
+    pushes: number;
+    units: number;
+    stake: number;
+  };
+  const sportMap = new Map<string, SportAgg>();
+  let totalStake = 0;
+  for (const p of settled) {
+    const sport = p.sport?.trim() || "Other";
+    const prev = sportMap.get(sport) ?? {
+      sport,
+      picks: 0,
+      wins: 0,
+      losses: 0,
+      pushes: 0,
+      units: 0,
+      stake: 0,
+    };
+    prev.picks += 1;
+    if (p.result === "win") prev.wins += 1;
+    else if (p.result === "loss") prev.losses += 1;
+    else if (p.result === "push") prev.pushes += 1;
+    prev.units = round2(prev.units + unitsFromPick(p.odds, p.units, p.result));
+    prev.stake = round2(prev.stake + p.units);
+    totalStake = round2(totalStake + p.units);
+    sportMap.set(sport, prev);
+  }
+
+  const bySport: SportBucket[] = Array.from(sportMap.values())
+    .map((s) => {
+      const decided = s.wins + s.losses;
+      return {
+        sport: s.sport,
+        picks: s.picks,
+        wins: s.wins,
+        losses: s.losses,
+        pushes: s.pushes,
+        winRate: decided === 0 ? 0 : round2((s.wins / decided) * 100),
+        units: s.units,
+        profitAt100: round2(s.units * 100),
+        stakeShare: totalStake === 0 ? 0 : round2((s.stake / totalStake) * 100),
+      };
+    })
+    .sort((a, b) => b.units - a.units || b.winRate - a.winRate);
+
+  let bestSport: SeasonStats["bestSport"] = null;
+  let worstSport: SeasonStats["worstSport"] = null;
+  for (const s of bySport) {
+    if (s.picks < 1) continue;
+    if (!bestSport || s.units > bestSport.units) {
+      bestSport = { sport: s.sport, units: s.units, winRate: s.winRate };
+    }
+    if (!worstSport || s.units < worstSport.units) {
+      worstSport = { sport: s.sport, units: s.units, winRate: s.winRate };
+    }
+  }
+
   const netUnits = daily.length ? daily[daily.length - 1].cumulative : 0;
   const winningDays = daily.filter((d) => d.result === "WIN").length;
   const losingDays = daily.filter((d) => d.result === "LOSS").length;
@@ -275,10 +338,13 @@ export function computeStats(picks: Pick[]): SeasonStats {
     largestWinningWeek,
     largestLosingWeek,
     longestWinStreak,
+    bestSport,
+    worstSport,
     cumulativeSeries,
     daily,
     weekly,
     monthly,
+    bySport,
     annotations,
   };
 }

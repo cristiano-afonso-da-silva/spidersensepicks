@@ -58,6 +58,19 @@ export interface MonthBucket {
   units: number;
 }
 
+export interface SportBucket {
+  sport: string;
+  picks: number;
+  wins: number;
+  losses: number;
+  pushes: number;
+  winRate: number;
+  units: number;
+  profitAt100: number;
+  /** Share of total units risked (settled stakes). */
+  stakeShare: number;
+}
+
 export interface SeasonStats {
   settledPicks: number;
   pendingPicks: number;
@@ -92,9 +105,12 @@ export interface SeasonStats {
     fromLabel: string;
     toLabel: string;
   } | null;
+  bestSport: { sport: string; units: number; winRate: number } | null;
+  worstSport: { sport: string; units: number; winRate: number } | null;
   cumulativeSeries: { date: string; label: string; cumulative: number }[];
   daily: DayBucket[];
   weekly: WeekBucket[];
   monthly: MonthBucket[];
+  bySport: SportBucket[];
   annotations: { date: string; label: string; cumulative: number; kind?: "peak" | "drawdown" }[];
 }
