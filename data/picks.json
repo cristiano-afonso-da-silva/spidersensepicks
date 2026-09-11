@@ -228,5 +228,105 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-fenerbahce-btts",
+    "date": "2026-09-10",
+    "pick": "Fenerbahce @ Roma BTTS",
+    "sport": "Soccer",
+    "odds": -115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-09-10-psv-over",
+    "date": "2026-09-10",
+    "pick": "PSV @ Shakhtar Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -140,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-09-10-slavia-btts",
+    "date": "2026-09-10",
+    "pick": "Slavia @ Lens Yes BTTS",
+    "sport": "Soccer",
+    "odds": -220,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-bayern-btts",
+    "date": "2026-09-10",
+    "pick": "Bayern @ Bodo Yes BTTS",
+    "sport": "Soccer",
+    "odds": -148,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-famu",
+    "date": "2026-09-10",
+    "pick": "Florida A&M +59.5",
+    "sport": "NCAAF",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-rams-1h",
+    "date": "2026-09-10",
+    "pick": "1st Half LA Rams Over 13.5 Points",
+    "sport": "NFL",
+    "odds": -106,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-niners-rams-over",
+    "date": "2026-09-10",
+    "pick": "49ers @ LA Rams Over 46.5 Points",
+    "sport": "NFL",
+    "odds": -138,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-cmc-rec",
+    "date": "2026-09-10",
+    "pick": "Christian McCaffrey 5+ Receptions",
+    "sport": "NFL",
+    "odds": -136,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-10-stribling",
+    "date": "2026-09-10",
+    "pick": "De'Zhaun Stribling 3+ Receptions",
+    "sport": "NFL",
+    "odds": -138,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Bet Protect · Premium"
+  },
+  {
+    "id": "2026-09-10-cmc-1q",
+    "date": "2026-09-10",
+    "pick": "1st Quarter Christian McCaffrey 1+ Receptions",
+    "sport": "NFL",
+    "odds": 100,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Profit Boost · Premium"
   }
 ]
