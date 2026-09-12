@@ -6,6 +6,7 @@ import {
   WinsLossesDonut,
 } from "@/components/Charts";
 import { HeroStats, HighlightStats } from "@/components/StatBlocks";
+import { PerformanceCalendar } from "@/components/PerformanceCalendar";
 import { SportAnalysis } from "@/components/SportAnalysis";
 import { WeeklyRecord } from "@/components/WeeklyRecord";
 import { readPicks } from "@/lib/picks-store";
@@ -78,6 +79,10 @@ export default async function HomePage() {
 
       <section className="mb-10">
         <WeeklyBars stats={stats} />
+      </section>
+
+      <section className="mb-10">
+        <PerformanceCalendar picks={picks} />
       </section>
 
       <section className="mb-10">
