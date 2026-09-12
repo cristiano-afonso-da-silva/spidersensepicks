@@ -26,7 +26,7 @@ type DayStat = {
 };
 
 type WeekRow = {
-  days: (Date | null)[];
+  days: Date[];
   units: number;
   activeDays: number;
 };
