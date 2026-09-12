@@ -69,6 +69,10 @@ export default async function HomePage() {
       </section>
 
       <section className="mb-10">
+        <PerformanceCalendar picks={picks} />
+      </section>
+
+      <section className="mb-10">
         <CumulativeChart stats={stats} />
       </section>
 
@@ -79,10 +83,6 @@ export default async function HomePage() {
 
       <section className="mb-10">
         <WeeklyBars stats={stats} />
-      </section>
-
-      <section className="mb-10">
-        <PerformanceCalendar picks={picks} />
       </section>
 
       <section className="mb-10">
