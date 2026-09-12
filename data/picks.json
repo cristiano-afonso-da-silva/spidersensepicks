@@ -328,5 +328,65 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Profit Boost · Premium"
+  },
+  {
+    "id": "2026-09-11-sevilla",
+    "date": "2026-09-11",
+    "pick": "Sevilla ML",
+    "sport": "Soccer",
+    "odds": -105,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-11-ncstate",
+    "date": "2026-09-11",
+    "pick": "NC State (-32.5)",
+    "sport": "NCAAF",
+    "odds": -128,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-11-louisville",
+    "date": "2026-09-11",
+    "pick": "Louisville (-36.5)",
+    "sport": "NCAAF",
+    "odds": -130,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-11-lajovic",
+    "date": "2026-09-11",
+    "pick": "Dusan Lajovic ML",
+    "sport": "Tennis",
+    "odds": -107,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-11-kansas",
+    "date": "2026-09-11",
+    "pick": "Kansas (+5.5)",
+    "sport": "NCAAF",
+    "odds": -122,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-11-missouri-kansas-under",
+    "date": "2026-09-11",
+    "pick": "Missouri @ Kansas Under 53.5 Points",
+    "sport": "NCAAF",
+    "odds": -132,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
