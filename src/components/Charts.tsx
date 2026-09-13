@@ -249,7 +249,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
     <div className="panel p-6 sm:p-7">
       <SectionHead
         title="Daily Performance"
-        copy="Net units day by day — green above zero, red below."
+        copy="Net units day by day — yellow above zero, red below."
       />
       {stats.daily.length === 0 ? (
         <EmptyChart />

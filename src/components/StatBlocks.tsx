@@ -80,7 +80,7 @@ function StatIcon({
         <path d="M4 19h16" stroke="currentColor" strokeWidth="1.5" />
         <path
           d="M7 15l3.5-4 3 2.5L18 7"
-          stroke="var(--green)"
+          stroke="var(--win)"
           strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
