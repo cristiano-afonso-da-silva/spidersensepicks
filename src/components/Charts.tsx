@@ -19,11 +19,11 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const GOLD = "#d4af69";
-const GOLD_BRIGHT = "#efd39a";
-const RED = "#d41828";
-const MUTED = "#8f8a84";
-const GRID = "rgba(212, 175, 105, 0.12)";
+const GOLD = "#e8c574";
+const GOLD_BRIGHT = "#ffe4a8";
+const RED = "#ff3344";
+const MUTED = "#b8aea2";
+const GRID = "rgba(232, 197, 116, 0.16)";
 
 function ChartTooltip({
   active,
@@ -39,7 +39,7 @@ function ChartTooltip({
   if (!active || !payload?.length) return null;
   const value = typeof payload[0].value === "number" ? payload[0].value : 0;
   return (
-    <div className="rounded-lg border border-border bg-[#0b0b0b] px-3 py-2 text-xs shadow-xl">
+    <div className="rounded-lg border border-border bg-surface px-3 py-2 text-xs shadow-xl">
       <p className="text-muted">{label}</p>
       <p className="mt-0.5 font-medium text-gold-bright">
         {formatSigned(value)}
@@ -158,8 +158,8 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               stroke={GOLD_BRIGHT}
               strokeWidth={2.6}
               fill="url(#cumFill)"
-              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#070707", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#070707" }}
+              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#1a1416", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#1a1416" }}
             />
             {stats.annotations.map((a) => {
               const point = [...stats.cumulativeSeries]
@@ -173,7 +173,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                   y={a.cumulative}
                   r={3.5}
                   fill={GOLD}
-                  stroke="#070707"
+                  stroke="#1a1416"
                   label={(props) => (
                     <AnnotationLabel
                       viewBox={props.viewBox as { x?: number; y?: number }}
@@ -371,7 +371,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   formatter={(value) => [`${value} days`, ""]}
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
-                    background: "#0b0b0b",
+                    background: "#1a1416",
                     border: "1px solid rgba(212,175,105,0.35)",
                     borderRadius: 8,
                     fontSize: 12,

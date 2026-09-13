@@ -148,7 +148,7 @@ function SummaryCell({
   tone: "gold" | "red";
 }) {
   return (
-    <div className="bg-[#0c0c0c] px-5 py-5 sm:px-7">
+    <div className="bg-surface-2 px-5 py-5 sm:px-7">
       <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted">
         {label}
       </p>

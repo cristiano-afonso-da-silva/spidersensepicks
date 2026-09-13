@@ -14,7 +14,7 @@ import {
   subMonths,
 } from "date-fns";
 import type { Pick } from "@/lib/types";
-import { formatSigned, round2, unitsFromPick } from "@/lib/stats";
+import { formatMoney, formatSigned, round2, unitsFromPick } from "@/lib/stats";
 
 type DayStat = {
   date: string;
@@ -30,6 +30,8 @@ type WeekRow = {
   units: number;
   activeDays: number;
 };
+
+type ViewMode = "month" | "season";
 
 function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   const map = new Map<string, DayStat>();
@@ -54,21 +56,47 @@ function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   return map;
 }
 
-function cellTone(units: number, maxAbs: number): string {
-  if (units === 0) return "bg-white/[0.03] text-foreground";
-  const intensity = maxAbs === 0 ? 0.35 : Math.min(0.72, 0.22 + (Math.abs(units) / maxAbs) * 0.5);
-  if (units > 0) {
-    return intensity > 0.45
-      ? "bg-gold/35 text-gold-bright"
-      : "bg-gold/18 text-gold-bright";
+function cellClasses(units: number, maxAbs: number, mobile = false): string {
+  if (units === 0) {
+    return mobile
+      ? "border-border/60 bg-surface-2 text-muted"
+      : "border-border/50 bg-surface-2/80 text-muted";
   }
-  return intensity > 0.45
-    ? "bg-brand-red/40 text-red-bright"
-    : "bg-brand-red/20 text-red-bright";
+  const big = maxAbs > 0 && Math.abs(units) / maxAbs >= 0.55;
+  if (units > 0) {
+    return big
+      ? "border-gold/50 bg-gold text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]"
+      : "border-gold/35 bg-[var(--win-bg)] text-gold-bright";
+  }
+  return big
+    ? "border-red-bright/40 bg-brand-red text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
+    : "border-brand-red/30 bg-[var(--loss-bg)] text-red-bright";
 }
 
 export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
   const dayMap = useMemo(() => buildDayMap(picks), [picks]);
+
+  const seasonStats = useMemo(() => {
+    let units = 0;
+    let activeDays = 0;
+    let picksCount = 0;
+    let wins = 0;
+    let losses = 0;
+    for (const stat of dayMap.values()) {
+      units = round2(units + stat.units);
+      activeDays += 1;
+      picksCount += stat.picks;
+      wins += stat.wins;
+      losses += stat.losses;
+    }
+    const decided = wins + losses;
+    return {
+      units,
+      activeDays,
+      picksCount,
+      winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
+    };
+  }, [dayMap]);
 
   const latestWithData = useMemo(() => {
     const dates = Array.from(dayMap.keys()).sort();
@@ -76,6 +104,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
   }, [dayMap]);
 
   const [cursor, setCursor] = useState(() => startOfMonth(latestWithData));
+  const [view, setView] = useState<ViewMode>("month");
 
   const monthStart = startOfMonth(cursor);
   const monthEnd = endOfMonth(cursor);
@@ -91,8 +120,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
       let activeDays = 0;
       for (const d of slice) {
         if (!isSameMonth(d, monthStart)) continue;
-        const key = format(d, "yyyy-MM-dd");
-        const stat = dayMap.get(key);
+        const stat = dayMap.get(format(d, "yyyy-MM-dd"));
         if (stat) {
           units = round2(units + stat.units);
           activeDays += 1;
@@ -107,14 +135,23 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
     let units = 0;
     let activeDays = 0;
     let picksCount = 0;
+    let wins = 0;
+    let losses = 0;
     for (const [date, stat] of dayMap) {
-      const d = parseISO(date);
-      if (!isSameMonth(d, monthStart)) continue;
+      if (!isSameMonth(parseISO(date), monthStart)) continue;
       units = round2(units + stat.units);
       activeDays += 1;
       picksCount += stat.picks;
+      wins += stat.wins;
+      losses += stat.losses;
     }
-    return { units, activeDays, picksCount };
+    const decided = wins + losses;
+    return {
+      units,
+      activeDays,
+      picksCount,
+      winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
+    };
   }, [dayMap, monthStart]);
 
   const maxAbs = useMemo(() => {
@@ -128,85 +165,124 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
 
   const isCurrentMonth = isSameMonth(cursor, new Date());
   const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const summary = view === "month" ? monthStats : seasonStats;
+  const pnlLabel = view === "month" ? "Month P&L" : "Season P&L";
 
   return (
     <div className="panel overflow-hidden">
-      <div className="border-b border-border px-5 py-6 sm:px-7">
+      {/* Desktop header */}
+      <div className="hidden border-b border-border px-7 py-6 sm:block">
         <p className="section-label">Month at a glance</p>
         <h2 className="section-title">Performance Calendar</h2>
         <p className="section-copy">
-          Daily units, pick volume, and hit rate — gold for winning days, red for
-          losing days.
+          Daily units at a glance — gold for winning days, red for losing days.
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 border-b border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-7">
-        <div className="flex flex-wrap items-center gap-2">
+      <div className="p-4 sm:p-6">
+        {/* Period toggle — mobile-first, like reference app */}
+        <div className="mb-4 flex rounded-xl bg-surface-2 p-1 sm:mb-5 sm:max-w-xs">
+          {(["month", "season"] as const).map((mode) => (
+            <button
+              key={mode}
+              type="button"
+              onClick={() => setView(mode)}
+              className={`flex-1 rounded-lg py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition sm:text-xs ${
+                view === mode
+                  ? "bg-gold text-black shadow-sm"
+                  : "text-muted hover:text-foreground"
+              }`}
+            >
+              {mode === "month" ? "Month" : "Season"}
+            </button>
+          ))}
+        </div>
+
+        {/* Month navigation */}
+        <div className="mb-4 flex items-center justify-between gap-2">
           <button
             type="button"
             onClick={() => setCursor((c) => startOfMonth(subMonths(c, 1)))}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-gold transition hover:bg-gold/10"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-gold transition hover:border-gold/50 hover:bg-surface-3"
             aria-label="Previous month"
           >
             ‹
           </button>
-          <p className="min-w-[9.5rem] text-center font-[family-name:var(--font-display)] text-xl text-gold-bright">
-            {format(cursor, "MMMM yyyy")}
-          </p>
+          <div className="min-w-0 flex-1 text-center">
+            <p className="font-[family-name:var(--font-display)] text-[1.35rem] leading-tight text-foreground sm:text-xl">
+              {format(cursor, "MMMM yyyy")}
+            </p>
+            {!isCurrentMonth ? (
+              <button
+                type="button"
+                onClick={() => setCursor(startOfMonth(new Date()))}
+                className="mt-1 text-[11px] uppercase tracking-[0.12em] text-gold hover:text-gold-bright"
+              >
+                Jump to this month
+              </button>
+            ) : null}
+          </div>
           <button
             type="button"
             onClick={() => setCursor((c) => startOfMonth(addMonths(c, 1)))}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-gold transition hover:bg-gold/10"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-gold transition hover:border-gold/50 hover:bg-surface-3"
             aria-label="Next month"
           >
             ›
           </button>
-          {!isCurrentMonth ? (
-            <button
-              type="button"
-              onClick={() => setCursor(startOfMonth(new Date()))}
-              className="ml-1 rounded-lg border border-border px-3 py-1.5 text-[11px] uppercase tracking-[0.14em] text-muted transition hover:border-gold/40 hover:text-gold-bright"
+        </div>
+
+        {/* P&L summary cards */}
+        <div className="mb-5 grid grid-cols-2 gap-3">
+          <div className="rounded-2xl border border-border bg-surface-2 px-4 py-4">
+            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+              {pnlLabel}
+            </p>
+            <p
+              className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(1.75rem,7vw,2.25rem)] leading-none tracking-tight ${
+                summary.units >= 0 ? "text-gold-bright" : "text-red-bright"
+              }`}
             >
-              This month
-            </button>
-          ) : null}
+              {formatSigned(summary.units)}u
+            </p>
+            <p className="mt-1.5 font-[family-name:var(--font-mono)] text-xs text-muted">
+              {formatMoney(summary.units * 100)}
+            </p>
+          </div>
+          <div className="rounded-2xl border border-border bg-surface-2 px-4 py-4">
+            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+              {view === "month" ? "Month Stats" : "Season Stats"}
+            </p>
+            <p className="mt-2 font-[family-name:var(--font-display)] text-[clamp(1.75rem,7vw,2.25rem)] leading-none tracking-tight text-foreground">
+              {summary.winRate.toFixed(0)}%
+            </p>
+            <p className="mt-1.5 text-xs text-muted">
+              {summary.activeDays} day{summary.activeDays === 1 ? "" : "s"} ·{" "}
+              {summary.picksCount} pick{summary.picksCount === 1 ? "" : "s"}
+            </p>
+          </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-4 font-[family-name:var(--font-mono)] text-sm">
-          <span
-            className={
-              monthStats.units >= 0 ? "text-gold-bright" : "text-red-bright"
-            }
-          >
-            {formatSigned(monthStats.units)}u
-          </span>
-          <span className="text-muted">
-            {monthStats.activeDays} day{monthStats.activeDays === 1 ? "" : "s"}
-          </span>
-          <span className="text-muted">
-            {monthStats.picksCount} pick{monthStats.picksCount === 1 ? "" : "s"}
-          </span>
-        </div>
-      </div>
-
-      <div className="p-4 sm:p-6">
-        <div className="mb-2 hidden grid-cols-[repeat(7,minmax(0,1fr))_5.5rem] gap-2 sm:grid">
+        {/* Weekday labels */}
+        <div className="mb-2 grid grid-cols-7 gap-1.5 sm:grid-cols-[repeat(7,minmax(0,1fr))_5.5rem] sm:gap-2">
           {weekdayLabels.map((d) => (
             <div
               key={d}
-              className="px-1 text-center text-[10px] font-medium uppercase tracking-[0.16em] text-muted"
+              className="py-1 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-muted"
             >
-              {d}
+              {d.slice(0, 1)}
+              <span className="hidden sm:inline">{d.slice(1)}</span>
             </div>
           ))}
-          <div className="px-1 text-center text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+          <div className="hidden px-1 text-center text-[10px] font-medium uppercase tracking-[0.16em] text-muted sm:block">
             Week
           </div>
         </div>
 
-        <div className="space-y-2">
+        {/* Calendar grid */}
+        <div className="space-y-1.5 sm:space-y-2">
           {weeks.map((week, wi) => (
-            <div key={wi} className="space-y-2 sm:space-y-0">
+            <div key={wi}>
               <div className="grid grid-cols-7 gap-1.5 sm:grid-cols-[repeat(7,minmax(0,1fr))_5.5rem] sm:gap-2">
                 {week.days.map((day) => {
                   const inMonth = isSameMonth(day, monthStart);
@@ -217,7 +293,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
                     return (
                       <div
                         key={key}
-                        className="min-h-[4.5rem] rounded-xl border border-transparent bg-transparent sm:min-h-[6.25rem]"
+                        className="aspect-square min-h-[3.4rem] rounded-xl sm:min-h-[5.5rem]"
                       />
                     );
                   }
@@ -226,42 +302,49 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
                     return (
                       <div
                         key={key}
-                        className="relative min-h-[4.5rem] rounded-xl border border-border/50 bg-black/20 sm:min-h-[6.25rem]"
+                        className="relative flex aspect-square min-h-[3.4rem] flex-col rounded-xl border border-border/40 bg-surface-2/60 sm:min-h-[5.5rem]"
                       >
-                        <span className="absolute right-2 top-1.5 text-[11px] text-muted/70">
+                        <span className="absolute left-1.5 top-1 text-[10px] font-medium text-muted/80 sm:left-2 sm:top-1.5 sm:text-[11px]">
                           {format(day, "d")}
                         </span>
                       </div>
                     );
                   }
 
+                  const tone = cellClasses(stat.units, maxAbs, true);
                   return (
                     <div
                       key={key}
-                      className={`relative flex min-h-[4.5rem] flex-col justify-end rounded-xl border border-border/40 p-2 sm:min-h-[6.25rem] sm:p-2.5 ${cellTone(stat.units, maxAbs)}`}
+                      className={`relative flex aspect-square min-h-[3.4rem] flex-col items-center justify-center rounded-xl border p-1 sm:min-h-[5.5rem] sm:p-2 ${tone}`}
                     >
-                      <span className="absolute right-2 top-1.5 text-[11px] text-foreground/80">
+                      <span
+                        className={`absolute left-1.5 top-1 text-[10px] font-semibold sm:left-2 sm:top-1.5 sm:text-[11px] ${
+                          stat.units > 0 && Math.abs(stat.units) / maxAbs >= 0.55
+                            ? "text-black/70"
+                            : stat.units < 0 &&
+                                Math.abs(stat.units) / maxAbs >= 0.55
+                              ? "text-white/80"
+                              : "text-foreground/70"
+                        }`}
+                      >
                         {format(day, "d")}
                       </span>
-                      <p className="font-[family-name:var(--font-mono)] text-[0.95rem] font-medium leading-none sm:text-[1.05rem]">
-                        {formatSigned(stat.units)}u
+                      <p className="font-[family-name:var(--font-mono)] text-[0.72rem] font-bold leading-none sm:text-[0.95rem]">
+                        {formatSigned(stat.units)}
                       </p>
-                      <p className="mt-1 text-[10px] leading-tight text-foreground/70 sm:text-[11px]">
-                        {stat.picks} pick{stat.picks === 1 ? "" : "s"}
-                      </p>
-                      <p className="text-[10px] leading-tight text-foreground/70 sm:text-[11px]">
-                        {stat.winRate.toFixed(0)}%
+                      <p className="mt-0.5 hidden text-[10px] opacity-80 sm:block">
+                        {stat.picks}p · {stat.winRate.toFixed(0)}%
                       </p>
                     </div>
                   );
                 })}
 
-                <div className="hidden min-h-[6.25rem] flex-col justify-center rounded-xl border border-border/60 bg-black/30 px-2 py-2 sm:flex">
+                <div className="hidden min-h-[5.5rem] flex-col justify-center rounded-xl border border-border bg-surface-2 px-2 py-2 sm:flex">
                   <p className="text-[10px] uppercase tracking-[0.14em] text-muted">
                     W{wi + 1}
                   </p>
                   <p
-                    className={`mt-1 font-[family-name:var(--font-mono)] text-sm ${
+                    className={`mt-1 font-[family-name:var(--font-mono)] text-sm font-medium ${
                       week.units >= 0 ? "text-gold-bright" : "text-red-bright"
                     }`}
                   >
@@ -269,31 +352,11 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
                   </p>
                   <p className="mt-0.5 text-[10px] text-muted">
                     {week.activeDays
-                      ? `${week.activeDays} day${week.activeDays === 1 ? "" : "s"}`
-                      : "idle"}
+                      ? `${week.activeDays}d`
+                      : "—"}
                   </p>
                 </div>
               </div>
-
-              {week.activeDays > 0 ? (
-                <div className="flex items-center justify-between rounded-lg border border-border/50 bg-black/25 px-3 py-2 sm:hidden">
-                  <span className="text-[10px] uppercase tracking-[0.14em] text-muted">
-                    Week {wi + 1}
-                  </span>
-                  <span className="font-[family-name:var(--font-mono)] text-sm">
-                    <span
-                      className={
-                        week.units >= 0 ? "text-gold-bright" : "text-red-bright"
-                      }
-                    >
-                      {formatSigned(week.units)}u
-                    </span>
-                    <span className="ml-2 text-muted">
-                      · {week.activeDays}d
-                    </span>
-                  </span>
-                </div>
-              ) : null}
             </div>
           ))}
         </div>

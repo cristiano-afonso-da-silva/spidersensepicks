@@ -91,7 +91,7 @@ export function WeeklyRecord({
         ) : (
           <>
             <div
-              className="sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-[#0c0c0c]/95 px-5 py-2.5 backdrop-blur-sm sm:px-7"
+              className="sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-surface/95 px-5 py-2.5 backdrop-blur-sm sm:px-7"
               role="row"
             >
               <span className="w-4 shrink-0" aria-hidden />
@@ -164,7 +164,7 @@ export function WeeklyRecord({
                   </button>
 
                   {open ? (
-                    <div className="border-t border-border/60 bg-black/30 px-5 py-4 sm:px-7">
+                    <div className="border-t border-border/60 bg-surface-2/50 px-5 py-4 sm:px-7">
                       <ul className="space-y-2">
                         {d.picks.map((p) => {
                           const pl =
