@@ -5,6 +5,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
   const cards = [
     {
       label: "Final Net Units",
+      shortLabel: "Net Units",
       value: formatSigned(stats.netUnits),
       icon: "units" as const,
       iconTone: "muted" as const,
@@ -12,6 +13,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
     },
     {
       label: "Winning Days",
+      shortLabel: "Win Days",
       value: `${stats.winningDays} / ${stats.daysTracked}`,
       icon: "trophy" as const,
       iconTone: "win" as const,
@@ -19,6 +21,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
     },
     {
       label: "Win Rate",
+      shortLabel: "Win Rate",
       value: `${stats.dayWinRate.toFixed(1)}%`,
       icon: "target" as const,
       iconTone: "muted" as const,
@@ -26,6 +29,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
     },
     {
       label: "Profit at $10,000/Unit",
+      shortLabel: "Profit",
       value: formatMoney(stats.profitAt100),
       icon: "cash" as const,
       iconTone: "win" as const,
@@ -34,21 +38,24 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
+    <div className="grid grid-cols-4 gap-1.5 sm:gap-4">
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className="panel animate-rise px-4 py-4 sm:px-5 sm:py-5"
+          className="panel animate-rise px-1.5 py-2.5 sm:px-5 sm:py-5"
           style={{ animationDelay: `${i * 90}ms` }}
         >
-          <div className="flex items-start justify-between gap-2">
-            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
-              {c.label}
+          <div className="flex items-start justify-between gap-1">
+            <p className="text-[8px] font-medium uppercase leading-tight tracking-[0.06em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
+              <span className="sm:hidden">{c.shortLabel}</span>
+              <span className="hidden sm:inline">{c.label}</span>
             </p>
-            <StatIcon kind={c.icon} tone={c.iconTone} />
+            <span className="hidden sm:inline">
+              <StatIcon kind={c.icon} tone={c.iconTone} />
+            </span>
           </div>
           <p
-            className={`mt-3 font-[family-name:var(--font-display)] text-[1.85rem] leading-none tracking-tight sm:mt-4 sm:text-[2.35rem] ${
+            className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(0.85rem,3.6vw,1.2rem)] leading-none tracking-tight sm:mt-4 sm:text-[2.35rem] ${
               c.tone === "win"
                 ? "text-win-bright"
                 : c.tone === "red"
