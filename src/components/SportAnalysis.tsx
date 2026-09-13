@@ -63,7 +63,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                 <th className="px-3 py-3 font-medium">Win Rate</th>
                 <th className="px-3 py-3 text-right font-medium">Profit</th>
                 <th className="px-5 py-3 text-right font-medium sm:px-7">
-                  At $10k/u
+                  At $1k/u
                 </th>
               </tr>
             </thead>
