@@ -112,7 +112,6 @@ export function PerformanceCalendar({
     <>
       {(variant === "mobile" || variant === "both") && (
         <div className="sm:hidden">
-          <h2 className="section-title mb-4">Performance Calendar</h2>
           <div className="bg-black">
           <div className="mb-5 flex items-center justify-between">
             <button
@@ -210,9 +209,6 @@ export function PerformanceCalendar({
 
       {(variant === "desktop" || variant === "both") && (
         <div className="panel hidden overflow-hidden sm:block">
-          <div className="border-b border-border px-7 py-5">
-            <h2 className="section-title">Performance Calendar</h2>
-          </div>
           <div className="p-6">
             <div className="mb-5 flex items-center justify-between">
               <button
