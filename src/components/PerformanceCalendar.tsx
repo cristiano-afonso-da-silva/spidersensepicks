@@ -14,7 +14,7 @@ import {
   subMonths,
 } from "date-fns";
 import type { Pick } from "@/lib/types";
-import { formatMoney, formatSigned, round2, unitsFromPick } from "@/lib/stats";
+import { formatSigned, round2, unitsFromPick } from "@/lib/stats";
 
 type DayStat = {
   date: string;
@@ -78,32 +78,6 @@ function CalendarIcon({ className }: { className?: string }) {
   );
 }
 
-function monthAggregate(
-  dayMap: Map<string, DayStat>,
-  monthStart: Date,
-) {
-  let units = 0;
-  let activeDays = 0;
-  let picksCount = 0;
-  let wins = 0;
-  let losses = 0;
-  for (const [date, stat] of dayMap) {
-    if (!isSameMonth(parseISO(date), monthStart)) continue;
-    units = round2(units + stat.units);
-    activeDays += 1;
-    picksCount += stat.picks;
-    wins += stat.wins;
-    losses += stat.losses;
-  }
-  const decided = wins + losses;
-  return {
-    units,
-    activeDays,
-    picksCount,
-    winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
-  };
-}
-
 export function PerformanceCalendar({
   picks,
   variant = "both",
@@ -125,11 +99,6 @@ export function PerformanceCalendar({
   const gridStart = startOfWeek(monthStart, { weekStartsOn: 0 });
   const gridEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
 
-  const summary = useMemo(
-    () => monthAggregate(dayMap, monthStart),
-    [dayMap, monthStart],
-  );
-
   const weeks = useMemo(() => {
     const allDays = eachDayOfInterval({ start: gridStart, end: gridEnd });
     const rows: Date[][] = [];
@@ -142,7 +111,7 @@ export function PerformanceCalendar({
   return (
     <>
       {(variant === "mobile" || variant === "both") && (
-        <div className="min-h-[100dvh] bg-black px-4 pb-8 pt-6 sm:hidden">
+        <div className="bg-black px-4 pb-6 pt-6 sm:hidden">
           <div className="mb-5 flex items-center justify-between">
             <button
               type="button"
@@ -164,41 +133,6 @@ export function PerformanceCalendar({
               ›
             </button>
           </div>
-
-          <div className="mb-5 grid grid-cols-2 gap-3">
-            <div className="rounded-2xl bg-surface px-4 py-4">
-              <p className="text-xs text-muted">Total P&L</p>
-              <p
-                className={`mt-2 font-[family-name:var(--font-mono)] text-[1.65rem] font-semibold leading-none ${
-                  summary.units >= 0 ? "text-win-bright" : "text-red-bright"
-                }`}
-              >
-                {formatMoney(summary.units * 100)}
-              </p>
-              <p className="mt-1 text-[11px] text-muted">
-                {formatSigned(summary.units)}u
-              </p>
-            </div>
-            <div className="rounded-2xl bg-surface px-4 py-4">
-              <p className="text-xs text-muted">Win rate</p>
-              <p className="mt-2 font-[family-name:var(--font-mono)] text-[1.65rem] font-semibold leading-none text-white">
-                {summary.winRate.toFixed(0)}%
-              </p>
-              <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-surface-3">
-                <div
-                  className="h-full rounded-full bg-win"
-                  style={{ width: `${Math.min(100, summary.winRate)}%` }}
-                />
-              </div>
-              <p className="mt-1.5 text-[11px] text-muted">
-                {summary.activeDays} days · {summary.picksCount} picks
-              </p>
-            </div>
-          </div>
-
-          <p className="mb-4 text-center text-sm text-white">
-            Spider Sense Picks
-          </p>
 
           <div className="mb-2 grid grid-cols-5 gap-2">
             {WEEKDAYS_MOBILE.map((d) => (
@@ -249,7 +183,7 @@ export function PerformanceCalendar({
                       key={key}
                       className={`relative flex aspect-square flex-col items-center justify-center rounded-2xl ${
                         positive
-                          ? "bg-win text-white"
+                          ? "bg-win text-black"
                           : negative
                             ? "bg-brand-red text-white"
                             : "bg-surface text-muted"
@@ -273,14 +207,6 @@ export function PerformanceCalendar({
 
       {(variant === "desktop" || variant === "both") && (
         <div className="panel hidden overflow-hidden sm:block">
-          <div className="border-b border-border px-7 py-6">
-            <p className="section-label">Month at a glance</p>
-            <h2 className="section-title">Performance Calendar</h2>
-            <p className="section-copy">
-              Green for winning days, red for losing days.
-            </p>
-          </div>
-
           <div className="p-6">
             <div className="mb-5 flex items-center justify-between">
               <button
@@ -302,35 +228,6 @@ export function PerformanceCalendar({
               >
                 ›
               </button>
-            </div>
-
-            <div className="mb-6 grid max-w-lg grid-cols-2 gap-4">
-              <div className="rounded-2xl border border-border bg-surface-2 px-5 py-4">
-                <p className="text-[10px] uppercase tracking-wider text-muted">
-                  Total P&L
-                </p>
-                <p
-                  className={`mt-2 font-[family-name:var(--font-mono)] text-3xl font-semibold ${
-                    summary.units >= 0 ? "text-win-bright" : "text-red-bright"
-                  }`}
-                >
-                  {formatSigned(summary.units)}u
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  {formatMoney(summary.units * 100)}
-                </p>
-              </div>
-              <div className="rounded-2xl border border-border bg-surface-2 px-5 py-4">
-                <p className="text-[10px] uppercase tracking-wider text-muted">
-                  Win rate
-                </p>
-                <p className="mt-2 font-[family-name:var(--font-mono)] text-3xl font-semibold text-white">
-                  {summary.winRate.toFixed(0)}%
-                </p>
-                <p className="mt-1 text-xs text-muted">
-                  {summary.activeDays} days · {summary.picksCount} picks
-                </p>
-              </div>
             </div>
 
             <div className="mb-2 grid grid-cols-7 gap-2">

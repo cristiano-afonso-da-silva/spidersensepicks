@@ -19,8 +19,8 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const GREEN = "#22c55e";
-const GREEN_BRIGHT = "#4ade80";
+const GOLD = "#e8c574";
+const GOLD_BRIGHT = "#ffe4a8";
 const RED = "#ef4444";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
@@ -120,8 +120,8 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           >
             <defs>
               <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={GREEN} stopOpacity={0.35} />
-                <stop offset="100%" stopColor={GREEN} stopOpacity={0} />
+                <stop offset="0%" stopColor={GOLD} stopOpacity={0.35} />
+                <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke={GRID} vertical={false} />
@@ -155,11 +155,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
             <Area
               type="monotone"
               dataKey="cumulative"
-              stroke={GREEN_BRIGHT}
+              stroke={GOLD_BRIGHT}
               strokeWidth={2.6}
               fill="url(#cumFill)"
-              dot={{ r: 4, fill: GREEN_BRIGHT, stroke: "#000", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: GREEN_BRIGHT, stroke: "#000" }}
+              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#000", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#000" }}
             />
             {stats.annotations.map((a) => {
               const point = [...stats.cumulativeSeries]
@@ -172,7 +172,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                   x={point.label}
                   y={a.cumulative}
                   r={3.5}
-                  fill={GREEN}
+                  fill={GOLD}
                   stroke="#000"
                   label={(props) => (
                     <AnnotationLabel
@@ -224,7 +224,7 @@ function AnnotationLabel({
       x={x}
       y={y - 14}
       textAnchor="middle"
-      fill={GREEN}
+      fill={GOLD}
       fontSize={10}
       fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
     >
@@ -283,7 +283,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
             />
             <Bar dataKey="units" radius={[3, 3, 0, 0]}>
               {stats.daily.map((d) => (
-                <Cell key={d.date} fill={d.units >= 0 ? GREEN : RED} />
+                <Cell key={d.date} fill={d.units >= 0 ? GOLD : RED} />
               ))}
             </Bar>
           </BarChart>
@@ -328,7 +328,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
             />
             <Bar dataKey="units" radius={[3, 3, 0, 0]}>
               {stats.monthly.map((m) => (
-                <Cell key={m.key} fill={m.units >= 0 ? GREEN : RED} />
+                <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
               ))}
             </Bar>
           </BarChart>
@@ -340,7 +340,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
 
 export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   const data = [
-    { name: "Wins", value: stats.winningDays, color: GREEN },
+    { name: "Wins", value: stats.winningDays, color: GOLD },
     { name: "Losses", value: stats.losingDays, color: RED },
   ].filter((d) => d.value > 0);
 
@@ -377,7 +377,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                     fontSize: 12,
                     color: "#f4f0ea",
                   }}
-                  itemStyle={{ color: GREEN_BRIGHT }}
+                  itemStyle={{ color: GOLD_BRIGHT }}
                   labelStyle={{ color: MUTED }}
                 />
               </PieChart>

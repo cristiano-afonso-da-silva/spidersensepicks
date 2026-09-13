@@ -193,7 +193,7 @@ export function computeStats(picks: Pick[]): SeasonStats {
         pushes: s.pushes,
         winRate: decided === 0 ? 0 : round2((s.wins / decided) * 100),
         units: s.units,
-        profitAt100: round2(s.units * 100),
+        profitAt100: round2(s.units * 10000),
         stakeShare: totalStake === 0 ? 0 : round2((s.stake / totalStake) * 100),
       };
     })
@@ -320,7 +320,7 @@ export function computeStats(picks: Pick[]): SeasonStats {
     pushes,
     netUnits,
     winRate,
-    profitAt100: round2(netUnits * 100),
+    profitAt100: round2(netUnits * 10000),
     daysTracked: daily.length,
     weeksTracked: weekly.length,
     winningDays,

@@ -27,7 +27,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       tone: "win" as const,
     },
     {
-      label: "Profit at $100/Unit",
+      label: "Profit at $10,000/Unit",
       value: formatMoney(stats.profitAt100),
       foot: "Scales linearly by stake.",
       icon: "cash" as const,
