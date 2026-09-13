@@ -195,7 +195,7 @@ export function PerformanceCalendar({
                         {format(day, "d")}
                       </span>
                       <p className="font-[family-name:var(--font-mono)] text-[0.8rem] font-semibold leading-none">
-                        {formatSigned(stat.units)}
+                        {formatSigned(stat.units)}u
                       </p>
                     </div>
                   );
