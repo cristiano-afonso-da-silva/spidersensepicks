@@ -27,11 +27,10 @@ export default async function HomePage() {
 
   return (
     <main className="bg-black sm:py-16">
-      <PerformanceCalendar picks={picks} variant="mobile" />
-
-      {/* Mobile: scroll below calendar hero */}
-      <div className="space-y-8 px-4 pb-12 sm:hidden">
+      {/* Mobile */}
+      <div className="space-y-8 px-4 pb-12 pt-6 sm:hidden">
         <HeroStats stats={stats} />
+        <PerformanceCalendar picks={picks} variant="mobile" />
         <CumulativeChart stats={stats} />
         <WeeklyBars stats={stats} />
         <SportAnalysis stats={stats} />

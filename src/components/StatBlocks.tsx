@@ -6,51 +6,49 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
     {
       label: "Final Net Units",
       value: formatSigned(stats.netUnits),
-      foot: stats.daysTracked
-        ? `Cumulative, day ${stats.daysTracked}.`
-        : "No settled days yet.",
       icon: "units" as const,
+      iconTone: "muted" as const,
       tone: stats.netUnits >= 0 ? ("win" as const) : ("red" as const),
     },
     {
       label: "Winning Days",
       value: `${stats.winningDays} / ${stats.daysTracked}`,
-      foot: `${stats.losingDays} losing day${stats.losingDays === 1 ? "" : "s"}.`,
       icon: "trophy" as const,
-      tone: "neutral" as const,
+      iconTone: "win" as const,
+      tone: "win" as const,
     },
     {
       label: "Win Rate",
       value: `${stats.dayWinRate.toFixed(1)}%`,
-      foot: "Days closed positive.",
       icon: "target" as const,
+      iconTone: "muted" as const,
       tone: "win" as const,
     },
     {
       label: "Profit at $10,000/Unit",
       value: formatMoney(stats.profitAt100),
-      foot: "Scales linearly by stake.",
       icon: "cash" as const,
+      iconTone: "win" as const,
       tone: stats.profitAt100 >= 0 ? ("win" as const) : ("red" as const),
     },
   ];
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className="panel animate-rise px-5 py-5"
+          className="panel animate-rise px-4 py-4 sm:px-5 sm:py-5"
           style={{ animationDelay: `${i * 90}ms` }}
         >
           <div className="flex items-start justify-between gap-2">
-            <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
               {c.label}
             </p>
-            <StatIcon kind={c.icon} />
+            <StatIcon kind={c.icon} tone={c.iconTone} />
           </div>
           <p
-            className={`mt-4 font-[family-name:var(--font-display)] text-[2.35rem] leading-none tracking-tight ${
+            className={`mt-3 font-[family-name:var(--font-display)] text-[1.85rem] leading-none tracking-tight sm:mt-4 sm:text-[2.35rem] ${
               c.tone === "win"
                 ? "text-win-bright"
                 : c.tone === "red"
@@ -60,7 +58,6 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
           >
             {c.value}
           </p>
-          <p className="mt-3 text-xs leading-relaxed text-muted">{c.foot}</p>
         </div>
       ))}
     </div>
@@ -69,10 +66,12 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
 
 function StatIcon({
   kind,
+  tone = "muted",
 }: {
   kind: "units" | "trophy" | "target" | "cash";
+  tone?: "muted" | "win";
 }) {
-  const common = "h-5 w-5 text-muted";
+  const common = `h-5 w-5 ${tone === "win" ? "text-win" : "text-muted"}`;
   if (kind === "units") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden>
