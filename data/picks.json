@@ -388,5 +388,115 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-texas-ml",
+    "date": "2026-09-12",
+    "pick": "Texas ML",
+    "sport": "NCAAF",
+    "odds": -120,
+    "units": 3,
+    "result": "win",
+    "notes": "3 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-arsenal",
+    "date": "2026-09-12",
+    "pick": "Arsenal ML",
+    "sport": "Soccer",
+    "odds": -170,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-parlay",
+    "date": "2026-09-12",
+    "pick": "2 Leg Parlay: Kansas State -9.5 / South Florida +10.5",
+    "sport": "NCAAF",
+    "odds": -130,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-california",
+    "date": "2026-09-12",
+    "pick": "California (+3.5)",
+    "sport": "NCAAF",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-texas-under",
+    "date": "2026-09-12",
+    "pick": "Texas Under 25.5",
+    "sport": "NCAAF",
+    "odds": -111,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-alabama",
+    "date": "2026-09-12",
+    "pick": "Alabama (-9.5)",
+    "sport": "NCAAF",
+    "odds": -105,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-arizona",
+    "date": "2026-09-12",
+    "pick": "Arizona (+7.5)",
+    "sport": "NCAAF",
+    "odds": -132,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-vanderbilt",
+    "date": "2026-09-12",
+    "pick": "Vanderbilt (-20.5)",
+    "sport": "NCAAF",
+    "odds": -118,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-morales",
+    "date": "2026-09-12",
+    "pick": "Joseph Morales ML",
+    "sport": "MMA",
+    "odds": -112,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-wingo",
+    "date": "2026-09-12",
+    "pick": "Ryan Wingo Anytime Touchdown Scorer",
+    "sport": "NCAAF",
+    "odds": 160,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-12-blaydes-under",
+    "date": "2026-09-12",
+    "pick": "Cortes-Acosta @ Blaydes Under 2.5 Rounds",
+    "sport": "MMA",
+    "odds": 140,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
