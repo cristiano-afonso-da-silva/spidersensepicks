@@ -1,24 +1,27 @@
 @import "tailwindcss";
 
 :root {
-  --background: #121010;
-  --foreground: #faf6ef;
-  --surface: #1c1819;
-  --surface-2: #252022;
-  --surface-3: #2e282a;
-  --line: rgba(232, 197, 116, 0.28);
-  --line-strong: rgba(232, 197, 116, 0.45);
-  --red: #ff3344;
-  --red-soft: #ff6b78;
-  --red-deep: #c41e2e;
-  --gold: #e8c574;
-  --gold-bright: #ffe4a8;
-  --gold-deep: #c9a045;
-  --muted: #b8aea2;
-  --win: #e8c574;
-  --loss: #ff3344;
-  --win-bg: #3d3420;
-  --loss-bg: #3a1519;
+  --background: #000000;
+  --foreground: #f5f5f5;
+  --surface: #0d0d0d;
+  --surface-2: #141414;
+  --surface-3: #1a1a1a;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.16);
+  --red: #ef4444;
+  --red-soft: #f87171;
+  --red-deep: #dc2626;
+  --green: #22c55e;
+  --green-bright: #4ade80;
+  --green-deep: #16a34a;
+  --gold: #d4af69;
+  --gold-bright: #e8c574;
+  --muted: #9ca3af;
+  --win: #22c55e;
+  --win-bright: #4ade80;
+  --win-bg: #0f2918;
+  --loss: #ef4444;
+  --loss-bg: #2a1215;
 }
 
 @theme inline {
@@ -32,6 +35,8 @@
   --color-gold-bright: var(--gold-bright);
   --color-brand-red: var(--red);
   --color-red-bright: var(--red-soft);
+  --color-win: var(--win);
+  --color-win-bright: var(--win-bright);
   --color-muted: var(--muted);
   --font-sans: var(--font-body);
   --font-serif: var(--font-display);
@@ -50,20 +55,12 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--foreground);
-  background-color: #141012;
-  background-image: linear-gradient(
-    180deg,
-    #2a1218 0%,
-    #1a1012 28%,
-    #141012 60%,
-    #100e10 100%
-  );
-  background-attachment: fixed;
+  background-color: #000000;
   font-family: var(--font-body), "EB Garamond", Georgia, serif;
 }
 
 ::selection {
-  background: rgba(232, 197, 116, 0.4);
+  background: rgba(34, 197, 94, 0.35);
   color: #fff;
 }
 
@@ -80,37 +77,29 @@ body {
 
 .panel {
   position: relative;
-  background: linear-gradient(
-    165deg,
-    rgba(46, 38, 40, 0.92),
-    rgba(22, 18, 19, 0.98)
-  );
+  background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 1.15rem;
   box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 228, 168, 0.12);
+    0 12px 32px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .panel-soft {
   position: relative;
-  background: linear-gradient(
-    180deg,
-    rgba(42, 34, 36, 0.95),
-    rgba(18, 14, 16, 0.98)
-  );
+  background: var(--surface-2);
   border: 1px solid var(--line-strong);
   border-radius: 1.25rem;
   box-shadow:
-    0 20px 48px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 228, 168, 0.14);
+    0 16px 40px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .section-label {
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--red-soft);
+  color: var(--gold);
   font-weight: 600;
 }
 
@@ -135,9 +124,9 @@ body {
   border-radius: 999px;
   object-fit: cover;
   box-shadow:
-    0 0 0 1px rgba(232, 197, 116, 0.55),
-    0 0 0 6px rgba(255, 51, 68, 0.14),
-    0 20px 50px rgba(0, 0, 0, 0.4);
+    0 0 0 1px rgba(212, 175, 105, 0.5),
+    0 0 0 5px rgba(255, 255, 255, 0.04),
+    0 16px 40px rgba(0, 0, 0, 0.6);
 }
 
 .divider {
@@ -147,7 +136,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(232, 197, 116, 0.65),
+    rgba(212, 175, 105, 0.5),
     transparent
   );
 }
@@ -155,7 +144,7 @@ body {
 .page-footer {
   margin-top: 2.5rem;
   padding-top: 1.25rem;
-  border-top: 1px solid rgba(232, 197, 116, 0.18);
+  border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -171,7 +160,7 @@ body {
 }
 
 .ledger-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--gold), rgba(255, 51, 68, 0.75));
+  background: linear-gradient(180deg, var(--green), var(--red));
   border-radius: 999px;
 }
 
@@ -194,15 +183,15 @@ body {
   0%,
   100% {
     box-shadow:
-      0 0 0 1px rgba(232, 197, 116, 0.55),
-      0 0 0 6px rgba(255, 51, 68, 0.12),
-      0 20px 50px rgba(0, 0, 0, 0.4);
+      0 0 0 1px rgba(212, 175, 105, 0.5),
+      0 0 0 5px rgba(255, 255, 255, 0.04),
+      0 16px 40px rgba(0, 0, 0, 0.6);
   }
   50% {
     box-shadow:
-      0 0 0 1px rgba(255, 228, 168, 0.75),
-      0 0 0 7px rgba(255, 51, 68, 0.18),
-      0 22px 55px rgba(0, 0, 0, 0.45);
+      0 0 0 1px rgba(232, 197, 116, 0.65),
+      0 0 0 6px rgba(255, 255, 255, 0.06),
+      0 18px 44px rgba(0, 0, 0, 0.65);
   }
 }
 
@@ -215,11 +204,11 @@ body {
 }
 
 .recharts-default-tooltip {
-  background: #1a1416 !important;
-  border: 1px solid rgba(232, 197, 116, 0.45) !important;
+  background: #0d0d0d !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 10px !important;
-  color: #faf6ef !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45) !important;
+  color: #f5f5f5 !important;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6) !important;
 }
 
 .recharts-tooltip-wrapper {
@@ -227,5 +216,5 @@ body {
 }
 
 .recharts-rectangle.recharts-tooltip-cursor {
-  fill: rgba(232, 197, 116, 0.1) !important;
+  fill: rgba(255, 255, 255, 0.04) !important;
 }

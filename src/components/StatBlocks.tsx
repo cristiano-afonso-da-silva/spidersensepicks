@@ -10,24 +10,28 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
         ? `Cumulative, day ${stats.daysTracked}.`
         : "No settled days yet.",
       icon: "units" as const,
+      tone: stats.netUnits >= 0 ? ("win" as const) : ("red" as const),
     },
     {
       label: "Winning Days",
       value: `${stats.winningDays} / ${stats.daysTracked}`,
       foot: `${stats.losingDays} losing day${stats.losingDays === 1 ? "" : "s"}.`,
       icon: "trophy" as const,
+      tone: "neutral" as const,
     },
     {
       label: "Win Rate",
       value: `${stats.dayWinRate.toFixed(1)}%`,
       foot: "Days closed positive.",
       icon: "target" as const,
+      tone: "win" as const,
     },
     {
       label: "Profit at $100/Unit",
       value: formatMoney(stats.profitAt100),
       foot: "Scales linearly by stake.",
       icon: "cash" as const,
+      tone: stats.profitAt100 >= 0 ? ("win" as const) : ("red" as const),
     },
   ];
 
@@ -45,7 +49,15 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
             </p>
             <StatIcon kind={c.icon} />
           </div>
-          <p className="mt-4 font-[family-name:var(--font-display)] text-[2.35rem] leading-none tracking-tight text-gold-bright">
+          <p
+            className={`mt-4 font-[family-name:var(--font-display)] text-[2.35rem] leading-none tracking-tight ${
+              c.tone === "win"
+                ? "text-win-bright"
+                : c.tone === "red"
+                  ? "text-red-bright"
+                  : "text-foreground"
+            }`}
+          >
             {c.value}
           </p>
           <p className="mt-3 text-xs leading-relaxed text-muted">{c.foot}</p>
@@ -68,7 +80,7 @@ function StatIcon({
         <path d="M4 19h16" stroke="currentColor" strokeWidth="1.5" />
         <path
           d="M7 15l3.5-4 3 2.5L18 7"
-          stroke="var(--red)"
+          stroke="var(--green)"
           strokeWidth="1.6"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -117,7 +129,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
       label: "Best Month",
       value: stats.bestMonth?.label ?? "—",
       sub: stats.bestMonth ? `${formatSigned(stats.bestMonth.units)}u` : "",
-      tone: "gold" as const,
+      tone: "win" as const,
     },
     {
       label: "Best Day",
@@ -125,7 +137,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
         ? `${formatSigned(stats.largestWinningWeek.units)}u`
         : "—",
       sub: stats.largestWinningWeek?.label ?? "",
-      tone: "gold" as const,
+      tone: "win" as const,
     },
     {
       label: "Worst Day",
@@ -143,7 +155,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
       sub: stats.longestWinStreak
         ? `${stats.longestWinStreak.fromLabel} – ${stats.longestWinStreak.toLabel}`
         : "",
-      tone: "gold" as const,
+      tone: "win" as const,
     },
   ];
 
@@ -160,7 +172,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
           </p>
           <p
             className={`mt-3 font-[family-name:var(--font-display)] text-[1.95rem] leading-none ${
-              item.tone === "red" ? "text-red-bright" : "text-gold-bright"
+              item.tone === "red" ? "text-red-bright" : "text-win-bright"
             }`}
           >
             {item.value}

@@ -19,11 +19,13 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
+const GREEN = "#22c55e";
+const GREEN_BRIGHT = "#4ade80";
 const GOLD = "#e8c574";
 const GOLD_BRIGHT = "#ffe4a8";
-const RED = "#ff3344";
-const MUTED = "#b8aea2";
-const GRID = "rgba(232, 197, 116, 0.16)";
+const RED = "#ef4444";
+const MUTED = "#9ca3af";
+const GRID = "rgba(255, 255, 255, 0.08)";
 
 function ChartTooltip({
   active,
@@ -41,7 +43,7 @@ function ChartTooltip({
   return (
     <div className="rounded-lg border border-border bg-surface px-3 py-2 text-xs shadow-xl">
       <p className="text-muted">{label}</p>
-      <p className="mt-0.5 font-medium text-gold-bright">
+      <p className="mt-0.5 font-medium text-win-bright">
         {formatSigned(value)}
         {suffix}
       </p>
@@ -120,8 +122,8 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           >
             <defs>
               <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={GOLD} stopOpacity={0.4} />
-                <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
+                <stop offset="0%" stopColor={GREEN} stopOpacity={0.35} />
+                <stop offset="100%" stopColor={GREEN} stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke={GRID} vertical={false} />
@@ -155,11 +157,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
             <Area
               type="monotone"
               dataKey="cumulative"
-              stroke={GOLD_BRIGHT}
+              stroke={GREEN_BRIGHT}
               strokeWidth={2.6}
               fill="url(#cumFill)"
-              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#1a1416", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#1a1416" }}
+              dot={{ r: 4, fill: GREEN_BRIGHT, stroke: "#000", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: GREEN_BRIGHT, stroke: "#000" }}
             />
             {stats.annotations.map((a) => {
               const point = [...stats.cumulativeSeries]
@@ -249,7 +251,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
     <div className="panel p-6 sm:p-7">
       <SectionHead
         title="Daily Performance"
-        copy="Net units day by day — gold above zero, red below."
+        copy="Net units day by day — green above zero, red below."
       />
       {stats.daily.length === 0 ? (
         <EmptyChart />
@@ -283,7 +285,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
             />
             <Bar dataKey="units" radius={[3, 3, 0, 0]}>
               {stats.daily.map((d) => (
-                <Cell key={d.date} fill={d.units >= 0 ? GOLD : RED} />
+                <Cell key={d.date} fill={d.units >= 0 ? GREEN : RED} />
               ))}
             </Bar>
           </BarChart>
@@ -328,7 +330,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
             />
             <Bar dataKey="units" radius={[3, 3, 0, 0]}>
               {stats.monthly.map((m) => (
-                <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
+                <Cell key={m.key} fill={m.units >= 0 ? GREEN : RED} />
               ))}
             </Bar>
           </BarChart>
@@ -340,7 +342,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
 
 export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   const data = [
-    { name: "Wins", value: stats.winningDays, color: GOLD },
+    { name: "Wins", value: stats.winningDays, color: GREEN },
     { name: "Losses", value: stats.losingDays, color: RED },
   ].filter((d) => d.value > 0);
 
@@ -383,7 +385,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
               </PieChart>
             </ChartFrame>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <p className="font-[family-name:var(--font-display)] text-3xl text-gold-bright">
+              <p className="font-[family-name:var(--font-display)] text-3xl text-win-bright">
                 {stats.dayWinRate.toFixed(1)}%
               </p>
               <p className="text-[10px] uppercase tracking-[0.16em] text-muted">
@@ -395,7 +397,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
       </div>
       <div className="mt-1 flex justify-center gap-5 text-xs text-muted">
         <span className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-gold" /> Wins {stats.winningDays}
+          <span className="h-2 w-2 rounded-full bg-win" /> Wins {stats.winningDays}
         </span>
         <span className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-brand-red" /> Losses {stats.losingDays}

@@ -120,11 +120,11 @@ export function WeeklyRecord({
                     onClick={() =>
                       setOpenDate((prev) => (prev === d.date ? null : d.date))
                     }
-                    className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-gold/[0.04] sm:px-7"
+                    className="flex w-full items-center gap-3 px-5 py-4 text-left transition hover:bg-white/[0.03] sm:px-7"
                     aria-expanded={open}
                   >
                     <span
-                      className={`w-4 shrink-0 text-gold transition duration-200 ${open ? "rotate-90" : ""}`}
+                      className={`w-4 shrink-0 text-muted transition duration-200 ${open ? "rotate-90" : ""}`}
                       aria-hidden
                     >
                       ▸
@@ -135,7 +135,7 @@ export function WeeklyRecord({
                     <span
                       className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${
                         d.result === "WIN"
-                          ? "bg-gold text-black"
+                          ? "bg-win text-black"
                           : d.result === "LOSS"
                             ? "bg-brand-red text-white"
                             : "bg-white/10 text-muted"
@@ -146,7 +146,7 @@ export function WeeklyRecord({
                     <span className="ml-auto flex items-center gap-4 font-[family-name:var(--font-mono)] text-sm sm:gap-8">
                       <span
                         className={`min-w-[4.25rem] text-right ${
-                          d.units >= 0 ? "text-gold-bright" : "text-red-bright"
+                          d.units >= 0 ? "text-win-bright" : "text-red-bright"
                         }`}
                       >
                         {formatSigned(d.units)}u
@@ -154,7 +154,7 @@ export function WeeklyRecord({
                       <span
                         className={`min-w-[4.5rem] text-right ${
                           d.cumulative >= 0
-                            ? "text-gold-bright"
+                            ? "text-win-bright"
                             : "text-red-bright"
                         }`}
                       >
@@ -190,7 +190,7 @@ export function WeeklyRecord({
                               <span
                                 className={`justify-self-end rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
                                   p.result === "win"
-                                    ? "bg-gold text-black"
+                                    ? "bg-win text-black"
                                     : p.result === "loss"
                                       ? "bg-brand-red text-white"
                                       : "bg-white/10 text-muted"
@@ -203,7 +203,7 @@ export function WeeklyRecord({
                                   pl === null
                                     ? "text-muted"
                                     : pl >= 0
-                                      ? "text-gold-bright"
+                                      ? "text-win-bright"
                                       : "text-red-bright"
                                 }`}
                               >

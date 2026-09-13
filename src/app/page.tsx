@@ -58,7 +58,11 @@ export default async function HomePage() {
             </>
           ) : null}{" "}
           · Net{" "}
-          <span className="text-gold-bright">
+          <span
+            className={
+              stats.netUnits >= 0 ? "text-win-bright" : "text-red-bright"
+            }
+          >
             {formatSigned(stats.netUnits)}u
           </span>
         </p>

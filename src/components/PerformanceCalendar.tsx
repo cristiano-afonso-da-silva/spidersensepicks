@@ -56,17 +56,15 @@ function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   return map;
 }
 
-function cellClasses(units: number, maxAbs: number, mobile = false): string {
+function cellClasses(units: number, maxAbs: number): string {
   if (units === 0) {
-    return mobile
-      ? "border-border/60 bg-surface-2 text-muted"
-      : "border-border/50 bg-surface-2/80 text-muted";
+    return "border-border/60 bg-surface-2 text-muted";
   }
   const big = maxAbs > 0 && Math.abs(units) / maxAbs >= 0.55;
   if (units > 0) {
     return big
-      ? "border-gold/50 bg-gold text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]"
-      : "border-gold/35 bg-[var(--win-bg)] text-gold-bright";
+      ? "border-win-bright/40 bg-win text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
+      : "border-win/30 bg-[var(--win-bg)] text-win-bright";
   }
   return big
     ? "border-red-bright/40 bg-brand-red text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
@@ -175,7 +173,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
         <p className="section-label">Month at a glance</p>
         <h2 className="section-title">Performance Calendar</h2>
         <p className="section-copy">
-          Daily units at a glance — gold for winning days, red for losing days.
+          Daily units at a glance — green for winning days, red for losing days.
         </p>
       </div>
 
@@ -189,7 +187,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
               onClick={() => setView(mode)}
               className={`flex-1 rounded-lg py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition sm:text-xs ${
                 view === mode
-                  ? "bg-gold text-black shadow-sm"
+                  ? "bg-win text-black shadow-sm"
                   : "text-muted hover:text-foreground"
               }`}
             >
@@ -203,7 +201,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
           <button
             type="button"
             onClick={() => setCursor((c) => startOfMonth(subMonths(c, 1)))}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-gold transition hover:border-gold/50 hover:bg-surface-3"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-muted transition hover:border-white/20 hover:text-foreground"
             aria-label="Previous month"
           >
             ‹
@@ -216,7 +214,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
               <button
                 type="button"
                 onClick={() => setCursor(startOfMonth(new Date()))}
-                className="mt-1 text-[11px] uppercase tracking-[0.12em] text-gold hover:text-gold-bright"
+                className="mt-1 text-[11px] uppercase tracking-[0.12em] text-muted hover:text-foreground"
               >
                 Jump to this month
               </button>
@@ -225,7 +223,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
           <button
             type="button"
             onClick={() => setCursor((c) => startOfMonth(addMonths(c, 1)))}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-gold transition hover:border-gold/50 hover:bg-surface-3"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-muted transition hover:border-white/20 hover:text-foreground"
             aria-label="Next month"
           >
             ›
@@ -240,7 +238,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
             </p>
             <p
               className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(1.75rem,7vw,2.25rem)] leading-none tracking-tight ${
-                summary.units >= 0 ? "text-gold-bright" : "text-red-bright"
+                summary.units >= 0 ? "text-win-bright" : "text-red-bright"
               }`}
             >
               {formatSigned(summary.units)}u
@@ -311,7 +309,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
                     );
                   }
 
-                  const tone = cellClasses(stat.units, maxAbs, true);
+                  const tone = cellClasses(stat.units, maxAbs);
                   return (
                     <div
                       key={key}
@@ -345,7 +343,7 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
                   </p>
                   <p
                     className={`mt-1 font-[family-name:var(--font-mono)] text-sm font-medium ${
-                      week.units >= 0 ? "text-gold-bright" : "text-red-bright"
+                      week.units >= 0 ? "text-win-bright" : "text-red-bright"
                     }`}
                   >
                     {week.activeDays ? formatSigned(week.units) + "u" : "—"}

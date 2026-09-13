@@ -24,7 +24,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
           label="Pick Win Rate"
           value={`${stats.winRate.toFixed(1)}%`}
           foot={`${record} on ${stats.settledPicks} settled picks`}
-          tone="gold"
+          tone="win"
         />
         <SummaryCell
           label="Best Sport"
@@ -34,7 +34,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
               ? `${formatSigned(stats.bestSport.units)}u · ${stats.bestSport.winRate.toFixed(1)}% hit`
               : "No settled sports yet"
           }
-          tone="gold"
+          tone="win"
         />
         <SummaryCell
           label="Worst Sport"
@@ -75,7 +75,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                 return (
                   <tr
                     key={s.sport}
-                    className="border-t border-border/80 transition hover:bg-gold/[0.03]"
+                    className="border-t border-border/80 transition hover:bg-white/[0.02]"
                   >
                     <td className="px-5 py-3.5 sm:px-7">
                       <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
@@ -93,7 +93,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                         <div className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10 sm:w-24">
                           <div
                             className={`h-full rounded-full ${
-                              s.winRate >= 50 ? "bg-gold" : "bg-brand-red"
+                              s.winRate >= 50 ? "bg-win" : "bg-brand-red"
                             }`}
                             style={{ width: `${Math.min(100, s.winRate)}%` }}
                           />
@@ -101,7 +101,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                         <span
                           className={`font-[family-name:var(--font-mono)] text-sm ${
                             s.winRate >= 50
-                              ? "text-gold-bright"
+                              ? "text-win-bright"
                               : "text-red-bright"
                           }`}
                         >
@@ -111,7 +111,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                     </td>
                     <td
                       className={`px-3 py-3.5 text-right font-[family-name:var(--font-mono)] text-sm ${
-                        s.units >= 0 ? "text-gold-bright" : "text-red-bright"
+                        s.units >= 0 ? "text-win-bright" : "text-red-bright"
                       }`}
                     >
                       {formatSigned(s.units)}u
@@ -119,7 +119,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                     <td
                       className={`px-5 py-3.5 text-right font-[family-name:var(--font-mono)] text-sm sm:px-7 ${
                         s.profitAt100 >= 0
-                          ? "text-gold-bright"
+                          ? "text-win-bright"
                           : "text-red-bright"
                       }`}
                     >
@@ -145,7 +145,7 @@ function SummaryCell({
   label: string;
   value: string;
   foot: string;
-  tone: "gold" | "red";
+  tone: "win" | "red";
 }) {
   return (
     <div className="bg-surface-2 px-5 py-5 sm:px-7">
@@ -154,7 +154,7 @@ function SummaryCell({
       </p>
       <p
         className={`mt-2 font-[family-name:var(--font-display)] text-[1.85rem] leading-none tracking-tight ${
-          tone === "red" ? "text-red-bright" : "text-gold-bright"
+          tone === "red" ? "text-red-bright" : "text-win-bright"
         }`}
       >
         {value}
