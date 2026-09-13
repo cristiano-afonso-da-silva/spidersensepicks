@@ -28,7 +28,48 @@ export default async function HomePage() {
   return (
     <main className="bg-black sm:py-16">
       {/* Mobile */}
-      <div className="space-y-8 px-4 pb-12 pt-6 sm:hidden">
+      <div className="space-y-8 px-4 pb-12 pt-8 sm:hidden">
+        <section className="animate-rise text-center">
+          <img
+            src={`${basePath}/logo.jpg`}
+            alt="Spider Sense Picks logo"
+            width={140}
+            height={140}
+            className="hero-logo mx-auto mb-5 h-[7rem] w-[7rem]"
+          />
+          <p className="text-[10px] font-medium uppercase tracking-[0.28em] text-muted">
+            Private Performance Report
+          </p>
+          <h1 className="mt-2 font-[family-name:var(--font-display)] text-[clamp(2.2rem,10vw,3rem)] leading-[0.95] tracking-tight text-white">
+            Spider Sense Picks
+          </h1>
+          <div className="divider" />
+          <p className="mx-auto mt-4 max-w-md text-[0.95rem] leading-relaxed text-muted">
+            Season-to-date results · Through {ending}
+            {stats.daysTracked
+              ? ` · ${stats.daysTracked} days tracked since ${since}`
+              : ""}
+          </p>
+          <p className="mt-3 font-[family-name:var(--font-mono)] text-sm tracking-wide text-muted">
+            <span className="text-white">{stats.settledPicks}</span> settled
+            {stats.pendingPicks > 0 ? (
+              <>
+                {" "}
+                · <span className="text-white">{stats.pendingPicks}</span>{" "}
+                pending
+              </>
+            ) : null}{" "}
+            · Net{" "}
+            <span
+              className={
+                stats.netUnits >= 0 ? "text-win-bright" : "text-red-bright"
+              }
+            >
+              {formatSigned(stats.netUnits)}u
+            </span>
+          </p>
+        </section>
+
         <HeroStats stats={stats} />
         <PerformanceCalendar picks={picks} variant="mobile" />
         <CumulativeChart stats={stats} />
