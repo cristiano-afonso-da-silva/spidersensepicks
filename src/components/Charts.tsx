@@ -21,8 +21,6 @@ import { formatSigned } from "@/lib/stats";
 
 const GREEN = "#22c55e";
 const GREEN_BRIGHT = "#4ade80";
-const GOLD = "#e8c574";
-const GOLD_BRIGHT = "#ffe4a8";
 const RED = "#ef4444";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
@@ -174,8 +172,8 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                   x={point.label}
                   y={a.cumulative}
                   r={3.5}
-                  fill={GOLD}
-                  stroke="#1a1416"
+                  fill={GREEN}
+                  stroke="#000"
                   label={(props) => (
                     <AnnotationLabel
                       viewBox={props.viewBox as { x?: number; y?: number }}
@@ -226,7 +224,7 @@ function AnnotationLabel({
       x={x}
       y={y - 14}
       textAnchor="middle"
-      fill={GOLD}
+      fill={GREEN}
       fontSize={10}
       fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
     >
@@ -239,7 +237,7 @@ function MetricLine({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="text-[10px] uppercase tracking-[0.18em] text-muted">{label}</p>
-      <p className="mt-1 font-[family-name:var(--font-mono)] text-sm text-gold-bright">
+      <p className="mt-1 font-[family-name:var(--font-mono)] text-sm text-white">
         {value}
       </p>
     </div>
@@ -379,7 +377,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                     fontSize: 12,
                     color: "#f4f0ea",
                   }}
-                  itemStyle={{ color: GOLD_BRIGHT }}
+                  itemStyle={{ color: GREEN_BRIGHT }}
                   labelStyle={{ color: MUTED }}
                 />
               </PieChart>

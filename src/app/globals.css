@@ -2,26 +2,19 @@
 
 :root {
   --background: #000000;
-  --foreground: #f5f5f5;
-  --surface: #0d0d0d;
-  --surface-2: #141414;
-  --surface-3: #1a1a1a;
+  --foreground: #ffffff;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --surface-3: #242424;
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.16);
   --red: #ef4444;
   --red-soft: #f87171;
-  --red-deep: #dc2626;
   --green: #22c55e;
   --green-bright: #4ade80;
-  --green-deep: #16a34a;
-  --gold: #d4af69;
-  --gold-bright: #e8c574;
   --muted: #9ca3af;
   --win: #22c55e;
   --win-bright: #4ade80;
-  --win-bg: #0f2918;
-  --loss: #ef4444;
-  --loss-bg: #2a1215;
 }
 
 @theme inline {
@@ -31,8 +24,6 @@
   --color-surface-2: var(--surface-2);
   --color-surface-3: var(--surface-3);
   --color-border: var(--line);
-  --color-gold: var(--gold);
-  --color-gold-bright: var(--gold-bright);
   --color-brand-red: var(--red);
   --color-red-bright: var(--red-soft);
   --color-win: var(--win);
@@ -65,14 +56,8 @@ body {
 }
 
 .shell {
-  width: min(1140px, calc(100% - 1.25rem));
+  width: min(1140px, calc(100% - 2rem));
   margin-inline: auto;
-}
-
-@media (min-width: 640px) {
-  .shell {
-    width: min(1140px, calc(100% - 2rem));
-  }
 }
 
 .panel {
@@ -80,9 +65,6 @@ body {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: 1.15rem;
-  box-shadow:
-    0 12px 32px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .panel-soft {
@@ -90,16 +72,13 @@ body {
   background: var(--surface-2);
   border: 1px solid var(--line-strong);
   border-radius: 1.25rem;
-  box-shadow:
-    0 16px 40px rgba(0, 0, 0, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .section-label {
   font-size: 0.68rem;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--muted);
   font-weight: 600;
 }
 
@@ -108,7 +87,7 @@ body {
   font-family: var(--font-display), "EB Garamond", Georgia, serif;
   font-size: clamp(1.75rem, 3.2vw, 2.25rem);
   font-weight: 600;
-  color: var(--gold-bright);
+  color: var(--foreground);
   letter-spacing: 0.015em;
 }
 
@@ -124,8 +103,7 @@ body {
   border-radius: 999px;
   object-fit: cover;
   box-shadow:
-    0 0 0 1px rgba(212, 175, 105, 0.5),
-    0 0 0 5px rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.12),
     0 16px 40px rgba(0, 0, 0, 0.6);
 }
 
@@ -136,7 +114,7 @@ body {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(212, 175, 105, 0.5),
+    rgba(255, 255, 255, 0.2),
     transparent
   );
 }
@@ -179,36 +157,15 @@ body {
   }
 }
 
-@keyframes soft-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 1px rgba(212, 175, 105, 0.5),
-      0 0 0 5px rgba(255, 255, 255, 0.04),
-      0 16px 40px rgba(0, 0, 0, 0.6);
-  }
-  50% {
-    box-shadow:
-      0 0 0 1px rgba(232, 197, 116, 0.65),
-      0 0 0 6px rgba(255, 255, 255, 0.06),
-      0 18px 44px rgba(0, 0, 0, 0.65);
-  }
-}
-
 .animate-rise {
   animation: fade-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.hero-logo {
-  animation: soft-glow 5s ease-in-out infinite;
-}
-
 .recharts-default-tooltip {
-  background: #0d0d0d !important;
+  background: #111 !important;
   border: 1px solid rgba(255, 255, 255, 0.12) !important;
   border-radius: 10px !important;
-  color: #f5f5f5 !important;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6) !important;
+  color: #fff !important;
 }
 
 .recharts-tooltip-wrapper {

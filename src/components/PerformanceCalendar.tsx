@@ -3,15 +3,18 @@
 import { useMemo, useState } from "react";
 import {
   addMonths,
+  addWeeks,
   eachDayOfInterval,
   endOfMonth,
   endOfWeek,
   format,
   isSameMonth,
+  isSameWeek,
   parseISO,
   startOfMonth,
   startOfWeek,
   subMonths,
+  subWeeks,
 } from "date-fns";
 import type { Pick } from "@/lib/types";
 import { formatMoney, formatSigned, round2, unitsFromPick } from "@/lib/stats";
@@ -25,13 +28,9 @@ type DayStat = {
   winRate: number;
 };
 
-type WeekRow = {
-  days: Date[];
-  units: number;
-  activeDays: number;
-};
+type Period = "week" | "month" | "all";
 
-type ViewMode = "month" | "season";
+const WEEKDAYS_MOBILE = ["MON", "TUE", "WED", "THU", "FRI"] as const;
 
 function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   const map = new Map<string, DayStat>();
@@ -56,45 +55,60 @@ function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   return map;
 }
 
-function cellClasses(units: number, maxAbs: number): string {
-  if (units === 0) {
-    return "border-border/60 bg-surface-2 text-muted";
-  }
-  const big = maxAbs > 0 && Math.abs(units) / maxAbs >= 0.55;
-  if (units > 0) {
-    return big
-      ? "border-win-bright/40 bg-win text-black shadow-[inset_0_1px_0_rgba(255,255,255,0.2)]"
-      : "border-win/30 bg-[var(--win-bg)] text-win-bright";
-  }
-  return big
-    ? "border-red-bright/40 bg-brand-red text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
-    : "border-brand-red/30 bg-[var(--loss-bg)] text-red-bright";
+function isWeekday(d: Date) {
+  const day = d.getDay();
+  return day >= 1 && day <= 5;
 }
 
-export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
-  const dayMap = useMemo(() => buildDayMap(picks), [picks]);
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden
+    >
+      <rect x="1.5" y="2.5" width="9" height="8" rx="1" stroke="currentColor" strokeWidth="1" />
+      <path d="M1.5 5h9" stroke="currentColor" strokeWidth="1" />
+      <path d="M4 1.5v2M8 1.5v2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+    </svg>
+  );
+}
 
-  const seasonStats = useMemo(() => {
-    let units = 0;
-    let activeDays = 0;
-    let picksCount = 0;
-    let wins = 0;
-    let losses = 0;
-    for (const stat of dayMap.values()) {
-      units = round2(units + stat.units);
-      activeDays += 1;
-      picksCount += stat.picks;
-      wins += stat.wins;
-      losses += stat.losses;
-    }
-    const decided = wins + losses;
-    return {
-      units,
-      activeDays,
-      picksCount,
-      winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
-    };
-  }, [dayMap]);
+function aggregateStats(
+  dayMap: Map<string, DayStat>,
+  filter: (date: string) => boolean,
+) {
+  let units = 0;
+  let activeDays = 0;
+  let picksCount = 0;
+  let wins = 0;
+  let losses = 0;
+  for (const [date, stat] of dayMap) {
+    if (!filter(date)) continue;
+    units = round2(units + stat.units);
+    activeDays += 1;
+    picksCount += stat.picks;
+    wins += stat.wins;
+    losses += stat.losses;
+  }
+  const decided = wins + losses;
+  return {
+    units,
+    activeDays,
+    picksCount,
+    winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
+  };
+}
+
+export function PerformanceCalendar({
+  picks,
+  variant = "both",
+}: {
+  picks: Pick[];
+  variant?: "mobile" | "desktop" | "both";
+}) {
+  const dayMap = useMemo(() => buildDayMap(picks), [picks]);
 
   const latestWithData = useMemo(() => {
     const dates = Array.from(dayMap.keys()).sort();
@@ -102,263 +116,408 @@ export function PerformanceCalendar({ picks }: { picks: Pick[] }) {
   }, [dayMap]);
 
   const [cursor, setCursor] = useState(() => startOfMonth(latestWithData));
-  const [view, setView] = useState<ViewMode>("month");
+  const [period, setPeriod] = useState<Period>("month");
 
   const monthStart = startOfMonth(cursor);
   const monthEnd = endOfMonth(cursor);
-  const gridStart = startOfWeek(monthStart, { weekStartsOn: 0 });
-  const gridEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+  const weekStart = startOfWeek(cursor, { weekStartsOn: 1 });
+  const weekEnd = endOfWeek(cursor, { weekStartsOn: 1 });
+
+  const gridStart =
+    period === "week"
+      ? startOfWeek(weekStart, { weekStartsOn: 1 })
+      : startOfWeek(monthStart, { weekStartsOn: 0 });
+  const gridEnd =
+    period === "week"
+      ? endOfWeek(weekEnd, { weekStartsOn: 1 })
+      : endOfWeek(monthEnd, { weekStartsOn: 0 });
+
+  const allSeason = useMemo(
+    () => aggregateStats(dayMap, () => true),
+    [dayMap],
+  );
+
+  const monthStats = useMemo(
+    () =>
+      aggregateStats(dayMap, (date) =>
+        isSameMonth(parseISO(date), monthStart),
+      ),
+    [dayMap, monthStart],
+  );
+
+  const weekStats = useMemo(
+    () =>
+      aggregateStats(dayMap, (date) =>
+        isSameWeek(parseISO(date), weekStart, { weekStartsOn: 1 }),
+      ),
+    [dayMap, weekStart],
+  );
+
+  const summary =
+    period === "all"
+      ? allSeason
+      : period === "week"
+        ? weekStats
+        : monthStats;
 
   const weeks = useMemo(() => {
     const allDays = eachDayOfInterval({ start: gridStart, end: gridEnd });
-    const rows: WeekRow[] = [];
+    const rows: Date[][] = [];
     for (let i = 0; i < allDays.length; i += 7) {
-      const slice = allDays.slice(i, i + 7);
-      let units = 0;
-      let activeDays = 0;
-      for (const d of slice) {
-        if (!isSameMonth(d, monthStart)) continue;
-        const stat = dayMap.get(format(d, "yyyy-MM-dd"));
-        if (stat) {
-          units = round2(units + stat.units);
-          activeDays += 1;
-        }
-      }
-      rows.push({ days: slice, units, activeDays });
+      rows.push(allDays.slice(i, i + 7));
     }
+    if (period === "week") return [rows.find((r) => r.some((d) => isSameWeek(d, weekStart, { weekStartsOn: 1 }))) ?? rows[0]];
     return rows;
-  }, [dayMap, gridStart, gridEnd, monthStart]);
+  }, [gridStart, gridEnd, period, weekStart]);
 
-  const monthStats = useMemo(() => {
-    let units = 0;
-    let activeDays = 0;
-    let picksCount = 0;
-    let wins = 0;
-    let losses = 0;
-    for (const [date, stat] of dayMap) {
-      if (!isSameMonth(parseISO(date), monthStart)) continue;
-      units = round2(units + stat.units);
-      activeDays += 1;
-      picksCount += stat.picks;
-      wins += stat.wins;
-      losses += stat.losses;
-    }
-    const decided = wins + losses;
-    return {
-      units,
-      activeDays,
-      picksCount,
-      winRate: decided === 0 ? 0 : round2((wins / decided) * 100),
-    };
-  }, [dayMap, monthStart]);
+  const pnlLabel =
+    period === "all" ? "Total P&L" : period === "week" ? "Week P&L" : "Total P&L";
 
-  const maxAbs = useMemo(() => {
-    let max = 0;
-    for (const [date, stat] of dayMap) {
-      if (!isSameMonth(parseISO(date), monthStart)) continue;
-      max = Math.max(max, Math.abs(stat.units));
-    }
-    return max || 1;
-  }, [dayMap, monthStart]);
+  const navLabel =
+    period === "week"
+      ? `${format(weekStart, "MMM d")} – ${format(weekEnd, "MMM d, yyyy")}`
+      : format(cursor, "MMMM yyyy");
 
-  const isCurrentMonth = isSameMonth(cursor, new Date());
-  const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const summary = view === "month" ? monthStats : seasonStats;
-  const pnlLabel = view === "month" ? "Month P&L" : "Season P&L";
+  function prev() {
+    if (period === "week") setCursor((c) => subWeeks(c, 1));
+    else setCursor((c) => startOfMonth(subMonths(c, 1)));
+  }
+
+  function next() {
+    if (period === "week") setCursor((c) => addWeeks(c, 1));
+    else setCursor((c) => startOfMonth(addMonths(c, 1)));
+  }
 
   return (
-    <div className="panel overflow-hidden">
-      {/* Desktop header */}
-      <div className="hidden border-b border-border px-7 py-6 sm:block">
-        <p className="section-label">Month at a glance</p>
-        <h2 className="section-title">Performance Calendar</h2>
-        <p className="section-copy">
-          Daily units at a glance — green for winning days, red for losing days.
-        </p>
-      </div>
-
-      <div className="p-4 sm:p-6">
-        {/* Period toggle — mobile-first, like reference app */}
-        <div className="mb-4 flex rounded-xl bg-surface-2 p-1 sm:mb-5 sm:max-w-xs">
-          {(["month", "season"] as const).map((mode) => (
+    <>
+      {(variant === "mobile" || variant === "both") && (
+      <div className="min-h-[100dvh] bg-black px-4 pb-8 pt-6 sm:hidden">
+        {/* Period tabs */}
+        <div className="mb-5 flex rounded-2xl bg-surface p-1">
+          {(
+            [
+              ["week", "Week"],
+              ["month", "Month"],
+              ["all", "All time"],
+            ] as const
+          ).map(([key, label]) => (
             <button
-              key={mode}
+              key={key}
               type="button"
-              onClick={() => setView(mode)}
-              className={`flex-1 rounded-lg py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] transition sm:text-xs ${
-                view === mode
-                  ? "bg-win text-black shadow-sm"
-                  : "text-muted hover:text-foreground"
+              onClick={() => setPeriod(key)}
+              className={`flex-1 rounded-xl py-2.5 text-xs font-semibold transition ${
+                period === key
+                  ? "bg-win text-black"
+                  : "text-muted"
               }`}
             >
-              {mode === "month" ? "Month" : "Season"}
+              {label}
             </button>
           ))}
         </div>
 
-        {/* Month navigation */}
-        <div className="mb-4 flex items-center justify-between gap-2">
-          <button
-            type="button"
-            onClick={() => setCursor((c) => startOfMonth(subMonths(c, 1)))}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-muted transition hover:border-white/20 hover:text-foreground"
-            aria-label="Previous month"
-          >
-            ‹
-          </button>
-          <div className="min-w-0 flex-1 text-center">
-            <p className="font-[family-name:var(--font-display)] text-[1.35rem] leading-tight text-foreground sm:text-xl">
-              {format(cursor, "MMMM yyyy")}
+        {/* Date nav */}
+        {period !== "all" ? (
+          <div className="mb-5 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={prev}
+              className="flex h-9 w-9 items-center justify-center text-xl text-muted"
+              aria-label="Previous"
+            >
+              ‹
+            </button>
+            <p className="font-[family-name:var(--font-display)] text-lg text-white">
+              {navLabel}
             </p>
-            {!isCurrentMonth ? (
-              <button
-                type="button"
-                onClick={() => setCursor(startOfMonth(new Date()))}
-                className="mt-1 text-[11px] uppercase tracking-[0.12em] text-muted hover:text-foreground"
-              >
-                Jump to this month
-              </button>
-            ) : null}
+            <button
+              type="button"
+              onClick={next}
+              className="flex h-9 w-9 items-center justify-center text-xl text-muted"
+              aria-label="Next"
+            >
+              ›
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => setCursor((c) => startOfMonth(addMonths(c, 1)))}
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border bg-surface-2 text-xl text-muted transition hover:border-white/20 hover:text-foreground"
-            aria-label="Next month"
-          >
-            ›
-          </button>
-        </div>
+        ) : (
+          <p className="mb-5 text-center font-[family-name:var(--font-display)] text-lg text-white">
+            All Time
+          </p>
+        )}
 
-        {/* P&L summary cards */}
+        {/* P&L cards */}
         <div className="mb-5 grid grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-border bg-surface-2 px-4 py-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
-              {pnlLabel}
-            </p>
+          <div className="rounded-2xl bg-surface px-4 py-4">
+            <p className="text-xs text-muted">{pnlLabel}</p>
             <p
-              className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(1.75rem,7vw,2.25rem)] leading-none tracking-tight ${
+              className={`mt-2 font-[family-name:var(--font-mono)] text-[1.65rem] font-semibold leading-none ${
                 summary.units >= 0 ? "text-win-bright" : "text-red-bright"
               }`}
             >
-              {formatSigned(summary.units)}u
-            </p>
-            <p className="mt-1.5 font-[family-name:var(--font-mono)] text-xs text-muted">
               {formatMoney(summary.units * 100)}
             </p>
-          </div>
-          <div className="rounded-2xl border border-border bg-surface-2 px-4 py-4">
-            <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
-              {view === "month" ? "Month Stats" : "Season Stats"}
+            <p className="mt-1 text-[11px] text-muted">
+              {formatSigned(summary.units)}u
             </p>
-            <p className="mt-2 font-[family-name:var(--font-display)] text-[clamp(1.75rem,7vw,2.25rem)] leading-none tracking-tight text-foreground">
+          </div>
+          <div className="rounded-2xl bg-surface px-4 py-4">
+            <p className="text-xs text-muted">Win rate</p>
+            <p className="mt-2 font-[family-name:var(--font-mono)] text-[1.65rem] font-semibold leading-none text-white">
               {summary.winRate.toFixed(0)}%
             </p>
-            <p className="mt-1.5 text-xs text-muted">
-              {summary.activeDays} day{summary.activeDays === 1 ? "" : "s"} ·{" "}
-              {summary.picksCount} pick{summary.picksCount === 1 ? "" : "s"}
+            <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-surface-3">
+              <div
+                className="h-full rounded-full bg-win"
+                style={{ width: `${Math.min(100, summary.winRate)}%` }}
+              />
+            </div>
+            <p className="mt-1.5 text-[11px] text-muted">
+              {summary.activeDays} days · {summary.picksCount} picks
             </p>
           </div>
         </div>
 
-        {/* Weekday labels */}
-        <div className="mb-2 grid grid-cols-7 gap-1.5 sm:grid-cols-[repeat(7,minmax(0,1fr))_5.5rem] sm:gap-2">
-          {weekdayLabels.map((d) => (
-            <div
-              key={d}
-              className="py-1 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-muted"
-            >
-              {d.slice(0, 1)}
-              <span className="hidden sm:inline">{d.slice(1)}</span>
+        <p className="mb-4 text-center text-sm text-white">
+          Spider Sense Picks
+        </p>
+
+        {/* Calendar — weekdays only */}
+        {period !== "all" ? (
+          <>
+            <div className="mb-2 grid grid-cols-5 gap-2">
+              {WEEKDAYS_MOBILE.map((d) => (
+                <div
+                  key={d}
+                  className="text-center text-[10px] font-medium tracking-wide text-muted"
+                >
+                  {d}
+                </div>
+              ))}
             </div>
-          ))}
-          <div className="hidden px-1 text-center text-[10px] font-medium uppercase tracking-[0.16em] text-muted sm:block">
-            Week
-          </div>
+            <div className="space-y-2">
+              {weeks.map((week, wi) => (
+                <div key={wi} className="grid grid-cols-5 gap-2">
+                  {week
+                    .filter(isWeekday)
+                    .map((day) => {
+                      const inScope =
+                        period === "week"
+                          ? isSameWeek(day, weekStart, { weekStartsOn: 1 })
+                          : isSameMonth(day, monthStart);
+                      const key = format(day, "yyyy-MM-dd");
+                      const stat = inScope ? dayMap.get(key) : undefined;
+
+                      if (!inScope) {
+                        return (
+                          <div
+                            key={key}
+                            className="flex aspect-square items-center justify-center rounded-2xl bg-surface"
+                          />
+                        );
+                      }
+
+                      if (!stat) {
+                        return (
+                          <div
+                            key={key}
+                            className="relative flex aspect-square flex-col items-center justify-center rounded-2xl bg-surface"
+                          >
+                            <span className="absolute left-2 top-2 flex items-center gap-0.5 text-[10px] text-muted">
+                              <CalendarIcon className="h-2.5 w-2.5" />
+                              {format(day, "d")}
+                            </span>
+                            <span className="text-sm text-muted">—</span>
+                          </div>
+                        );
+                      }
+
+                      const positive = stat.units > 0;
+                      const negative = stat.units < 0;
+                      return (
+                        <div
+                          key={key}
+                          className={`relative flex aspect-square flex-col items-center justify-center rounded-2xl ${
+                            positive
+                              ? "bg-win text-white"
+                              : negative
+                                ? "bg-brand-red text-white"
+                                : "bg-surface text-muted"
+                          }`}
+                        >
+                          <span className="absolute left-2 top-2 flex items-center gap-0.5 text-[10px] opacity-80">
+                            <CalendarIcon className="h-2.5 w-2.5" />
+                            {format(day, "d")}
+                          </span>
+                          <p className="font-[family-name:var(--font-mono)] text-[0.8rem] font-semibold leading-none">
+                            {formatSigned(stat.units)}
+                          </p>
+                        </div>
+                      );
+                    })}
+                </div>
+              ))}
+            </div>
+          </>
+        ) : null}
+      </div>
+      )}
+
+      {(variant === "desktop" || variant === "both") && (
+      <div className="panel hidden overflow-hidden sm:block">
+        <div className="border-b border-border px-7 py-6">
+          <p className="section-label">Month at a glance</p>
+          <h2 className="section-title">Performance Calendar</h2>
+          <p className="section-copy">
+            Green for winning days, red for losing days.
+          </p>
         </div>
 
-        {/* Calendar grid */}
-        <div className="space-y-1.5 sm:space-y-2">
-          {weeks.map((week, wi) => (
-            <div key={wi}>
-              <div className="grid grid-cols-7 gap-1.5 sm:grid-cols-[repeat(7,minmax(0,1fr))_5.5rem] sm:gap-2">
-                {week.days.map((day) => {
-                  const inMonth = isSameMonth(day, monthStart);
-                  const key = format(day, "yyyy-MM-dd");
-                  const stat = inMonth ? dayMap.get(key) : undefined;
+        <div className="p-6">
+          <div className="mb-5 flex max-w-sm rounded-xl bg-surface-2 p-1">
+            {(
+              [
+                ["week", "Week"],
+                ["month", "Month"],
+                ["all", "All time"],
+              ] as const
+            ).map(([key, label]) => (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setPeriod(key)}
+                className={`flex-1 rounded-lg py-2 text-xs font-semibold uppercase tracking-wide transition ${
+                  period === key
+                    ? "bg-win text-black"
+                    : "text-muted hover:text-white"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
-                  if (!inMonth) {
-                    return (
-                      <div
-                        key={key}
-                        className="aspect-square min-h-[3.4rem] rounded-xl sm:min-h-[5.5rem]"
-                      />
-                    );
-                  }
-
-                  if (!stat) {
-                    return (
-                      <div
-                        key={key}
-                        className="relative flex aspect-square min-h-[3.4rem] flex-col rounded-xl border border-border/40 bg-surface-2/60 sm:min-h-[5.5rem]"
-                      >
-                        <span className="absolute left-1.5 top-1 text-[10px] font-medium text-muted/80 sm:left-2 sm:top-1.5 sm:text-[11px]">
-                          {format(day, "d")}
-                        </span>
-                      </div>
-                    );
-                  }
-
-                  const tone = cellClasses(stat.units, maxAbs);
-                  return (
-                    <div
-                      key={key}
-                      className={`relative flex aspect-square min-h-[3.4rem] flex-col items-center justify-center rounded-xl border p-1 sm:min-h-[5.5rem] sm:p-2 ${tone}`}
-                    >
-                      <span
-                        className={`absolute left-1.5 top-1 text-[10px] font-semibold sm:left-2 sm:top-1.5 sm:text-[11px] ${
-                          stat.units > 0 && Math.abs(stat.units) / maxAbs >= 0.55
-                            ? "text-black/70"
-                            : stat.units < 0 &&
-                                Math.abs(stat.units) / maxAbs >= 0.55
-                              ? "text-white/80"
-                              : "text-foreground/70"
-                        }`}
-                      >
-                        {format(day, "d")}
-                      </span>
-                      <p className="font-[family-name:var(--font-mono)] text-[0.72rem] font-bold leading-none sm:text-[0.95rem]">
-                        {formatSigned(stat.units)}
-                      </p>
-                      <p className="mt-0.5 hidden text-[10px] opacity-80 sm:block">
-                        {stat.picks}p · {stat.winRate.toFixed(0)}%
-                      </p>
-                    </div>
-                  );
-                })}
-
-                <div className="hidden min-h-[5.5rem] flex-col justify-center rounded-xl border border-border bg-surface-2 px-2 py-2 sm:flex">
-                  <p className="text-[10px] uppercase tracking-[0.14em] text-muted">
-                    W{wi + 1}
-                  </p>
-                  <p
-                    className={`mt-1 font-[family-name:var(--font-mono)] text-sm font-medium ${
-                      week.units >= 0 ? "text-win-bright" : "text-red-bright"
-                    }`}
-                  >
-                    {week.activeDays ? formatSigned(week.units) + "u" : "—"}
-                  </p>
-                  <p className="mt-0.5 text-[10px] text-muted">
-                    {week.activeDays
-                      ? `${week.activeDays}d`
-                      : "—"}
-                  </p>
-                </div>
-              </div>
+          {period !== "all" ? (
+            <div className="mb-5 flex items-center justify-between">
+              <button
+                type="button"
+                onClick={prev}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted hover:text-white"
+              >
+                ‹
+              </button>
+              <p className="font-[family-name:var(--font-display)] text-xl text-white">
+                {navLabel}
+              </p>
+              <button
+                type="button"
+                onClick={next}
+                className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-muted hover:text-white"
+              >
+                ›
+              </button>
             </div>
-          ))}
+          ) : null}
+
+          <div className="mb-6 grid grid-cols-2 gap-4 max-w-lg">
+            <div className="rounded-2xl border border-border bg-surface-2 px-5 py-4">
+              <p className="text-[10px] uppercase tracking-wider text-muted">
+                {pnlLabel}
+              </p>
+              <p
+                className={`mt-2 font-[family-name:var(--font-mono)] text-3xl font-semibold ${
+                  summary.units >= 0 ? "text-win-bright" : "text-red-bright"
+                }`}
+              >
+                {formatSigned(summary.units)}u
+              </p>
+              <p className="mt-1 text-xs text-muted">
+                {formatMoney(summary.units * 100)}
+              </p>
+            </div>
+            <div className="rounded-2xl border border-border bg-surface-2 px-5 py-4">
+              <p className="text-[10px] uppercase tracking-wider text-muted">
+                Win rate
+              </p>
+              <p className="mt-2 font-[family-name:var(--font-mono)] text-3xl font-semibold text-white">
+                {summary.winRate.toFixed(0)}%
+              </p>
+              <p className="mt-1 text-xs text-muted">
+                {summary.activeDays} days · {summary.picksCount} picks
+              </p>
+            </div>
+          </div>
+
+          {period !== "all" ? (
+            <>
+              <div className="mb-2 grid grid-cols-7 gap-2">
+                {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
+                  <div
+                    key={d}
+                    className="text-center text-[10px] font-medium uppercase tracking-wider text-muted"
+                  >
+                    {d}
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-2">
+                {weeks.map((week, wi) => (
+                  <div key={wi} className="grid grid-cols-7 gap-2">
+                    {week.map((day) => {
+                      const inScope =
+                        period === "week"
+                          ? isSameWeek(day, weekStart, { weekStartsOn: 1 })
+                          : isSameMonth(day, monthStart);
+                      const key = format(day, "yyyy-MM-dd");
+                      const stat = inScope ? dayMap.get(key) : undefined;
+
+                      if (!inScope) {
+                        return <div key={key} className="min-h-[5rem]" />;
+                      }
+
+                      if (!stat) {
+                        return (
+                          <div
+                            key={key}
+                            className="relative flex min-h-[5rem] flex-col justify-end rounded-xl border border-border/40 bg-surface-2 p-2"
+                          >
+                            <span className="absolute right-2 top-2 text-[11px] text-muted">
+                              {format(day, "d")}
+                            </span>
+                          </div>
+                        );
+                      }
+
+                      return (
+                        <div
+                          key={key}
+                          className={`relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2 ${
+                            stat.units > 0
+                              ? "bg-win text-black"
+                              : stat.units < 0
+                                ? "bg-brand-red text-white"
+                                : "bg-surface-2 text-muted"
+                          }`}
+                        >
+                          <span className="absolute right-2 top-2 text-[11px] opacity-70">
+                            {format(day, "d")}
+                          </span>
+                          <p className="font-[family-name:var(--font-mono)] text-sm font-semibold">
+                            {formatSigned(stat.units)}u
+                          </p>
+                          <p className="text-[10px] opacity-80">
+                            {stat.picks}p · {stat.winRate.toFixed(0)}%
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            </>
+          ) : null}
         </div>
       </div>
-    </div>
+      )}
+    </>
   );
 }

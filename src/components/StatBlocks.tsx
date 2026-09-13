@@ -72,7 +72,7 @@ function StatIcon({
 }: {
   kind: "units" | "trophy" | "target" | "cash";
 }) {
-  const common = "h-5 w-5 text-gold";
+  const common = "h-5 w-5 text-muted";
   if (kind === "units") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden>
