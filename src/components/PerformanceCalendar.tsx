@@ -25,7 +25,7 @@ type DayStat = {
   winRate: number;
 };
 
-const WEEKDAYS_MOBILE = ["MON", "TUE", "WED", "THU", "FRI"] as const;
+const WEEKDAYS_MOBILE = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] as const;
 
 function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   const map = new Map<string, DayStat>();
@@ -48,11 +48,6 @@ function buildDayMap(picks: Pick[]): Map<string, DayStat> {
     map.set(p.date, prev);
   }
   return map;
-}
-
-function isWeekday(d: Date) {
-  const day = d.getDay();
-  return day >= 1 && day <= 5;
 }
 
 function CalendarIcon({ className }: { className?: string }) {
@@ -135,20 +130,20 @@ export function PerformanceCalendar({
             </button>
           </div>
 
-          <div className="mb-2 grid grid-cols-5 gap-2">
+          <div className="mb-2 grid grid-cols-7 gap-1.5">
             {WEEKDAYS_MOBILE.map((d) => (
               <div
                 key={d}
-                className="text-center text-[10px] font-medium tracking-wide text-muted"
+                className="text-center text-[9px] font-medium tracking-wide text-muted"
               >
                 {d}
               </div>
             ))}
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             {weeks.map((week, wi) => (
-              <div key={wi} className="grid grid-cols-5 gap-2">
-                {week.filter(isWeekday).map((day) => {
+              <div key={wi} className="grid grid-cols-7 gap-1.5">
+                {week.map((day) => {
                   const inMonth = isSameMonth(day, monthStart);
                   const key = format(day, "yyyy-MM-dd");
                   const stat = inMonth ? dayMap.get(key) : undefined;
@@ -157,7 +152,7 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="flex aspect-square items-center justify-center rounded-2xl bg-surface"
+                        className="flex aspect-square items-center justify-center rounded-xl bg-surface"
                       />
                     );
                   }
@@ -166,13 +161,13 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="relative flex aspect-square flex-col items-center justify-center rounded-2xl bg-surface"
+                        className="relative flex aspect-square flex-col items-center justify-center rounded-xl bg-surface"
                       >
-                        <span className="absolute left-2 top-2 flex items-center gap-0.5 text-[10px] text-muted">
-                          <CalendarIcon className="h-2.5 w-2.5" />
+                        <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] text-muted">
+                          <CalendarIcon className="h-2 w-2" />
                           {format(day, "d")}
                         </span>
-                        <span className="text-sm text-muted">—</span>
+                        <span className="text-xs text-muted">—</span>
                       </div>
                     );
                   }
@@ -182,7 +177,7 @@ export function PerformanceCalendar({
                   return (
                     <div
                       key={key}
-                      className={`relative flex aspect-square flex-col items-center justify-center rounded-2xl ${
+                      className={`relative flex aspect-square flex-col items-center justify-center rounded-xl ${
                         positive
                           ? "bg-win text-black"
                           : negative
@@ -190,11 +185,11 @@ export function PerformanceCalendar({
                             : "bg-surface text-muted"
                       }`}
                     >
-                      <span className="absolute left-2 top-2 flex items-center gap-0.5 text-[10px] opacity-80">
-                        <CalendarIcon className="h-2.5 w-2.5" />
+                      <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] opacity-80">
+                        <CalendarIcon className="h-2 w-2" />
                         {format(day, "d")}
                       </span>
-                      <p className="font-[family-name:var(--font-mono)] text-[0.8rem] font-semibold leading-none">
+                      <p className="font-[family-name:var(--font-mono)] text-[0.65rem] font-semibold leading-none">
                         {formatSigned(stat.units)}u
                       </p>
                     </div>
