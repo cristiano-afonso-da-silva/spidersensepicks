@@ -498,5 +498,125 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-parlay",
+    "date": "2026-09-13",
+    "pick": "2 Leg Parlay: Trey McBride 40+ Rec Yds / Juwan Johnson 25+ Rec Yds",
+    "sport": "NFL",
+    "odds": -137,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-commanders",
+    "date": "2026-09-13",
+    "pick": "WAS Commanders +7.5",
+    "sport": "NFL",
+    "odds": -151,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-colts",
+    "date": "2026-09-13",
+    "pick": "Indianapolis Colts (+3.5)",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-mancity-btts",
+    "date": "2026-09-13",
+    "pick": "Man Utd @ Man City BTTS and Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -145,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-cowboys",
+    "date": "2026-09-13",
+    "pick": "Dallas Cowboys -3",
+    "sport": "NFL",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-murray",
+    "date": "2026-09-13",
+    "pick": "Kyler Murray Over 218.5 Passing Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Returned · Premium"
+  },
+  {
+    "id": "2026-09-13-steelers",
+    "date": "2026-09-13",
+    "pick": "Pittsburgh Steelers -6.5",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-wandale",
+    "date": "2026-09-13",
+    "pick": "Wan'Dale Robinson 40+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-jaguars",
+    "date": "2026-09-13",
+    "pick": "Jacksonville Jaguars -8.5",
+    "sport": "NFL",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-parker",
+    "date": "2026-09-13",
+    "pick": "Parker Washington Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 195,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-watson",
+    "date": "2026-09-13",
+    "pick": "Christian Watson Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 185,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-13-johnston",
+    "date": "2026-09-13",
+    "pick": "Quentin Johnston Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 165,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
