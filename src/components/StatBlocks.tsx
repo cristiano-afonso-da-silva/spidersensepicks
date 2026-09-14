@@ -42,10 +42,10 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className="panel animate-rise px-1.5 py-2.5 sm:px-5 sm:py-5"
+          className="panel animate-rise px-1.5 py-2.5 text-center sm:px-5 sm:py-5 sm:text-left"
           style={{ animationDelay: `${i * 90}ms` }}
         >
-          <div className="flex items-start justify-between gap-1">
+          <div className="flex items-start justify-center gap-1 sm:justify-between">
             <p className="text-[8px] font-medium uppercase leading-tight tracking-[0.06em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
               <span className="sm:hidden">{c.shortLabel}</span>
               <span className="hidden sm:inline">{c.label}</span>
