@@ -618,5 +618,55 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-14-leeds-over",
+    "date": "2026-09-14",
+    "pick": "Leeds @ Newcastle Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -140,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-14-walker",
+    "date": "2026-09-14",
+    "pick": "Kenneth Walker III 80+ Rushing + Receiving Yards",
+    "sport": "NFL",
+    "odds": -154,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-14-villarreal-btts",
+    "date": "2026-09-14",
+    "pick": "Villarreal @ Real Betis BTTS",
+    "sport": "Soccer",
+    "odds": -240,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-14-4leg-parlay",
+    "date": "2026-09-14",
+    "pick": "4 Leg Parlay: Inter ML / Leeds United or Tie / Kenneth Walker III 40+ Rush Yds / J.K. Dobbins 30+ Rush Yds",
+    "sport": "Mixed",
+    "odds": 145,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-14-chiefs-parlay",
+    "date": "2026-09-14",
+    "pick": "2 Leg Parlay: Chiefs -2.5 / Broncos @ Chiefs Under 45.5",
+    "sport": "NFL",
+    "odds": 204,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
