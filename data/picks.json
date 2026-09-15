@@ -668,5 +668,15 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-15-max-parlay",
+    "date": "2026-09-15",
+    "pick": "2 Leg Parlay: Liverpool to Qualify / Real Madrid ML",
+    "sport": "Soccer",
+    "odds": -114,
+    "units": 3,
+    "result": "win",
+    "notes": "3 Unit Max Play · Premium"
   }
 ]
