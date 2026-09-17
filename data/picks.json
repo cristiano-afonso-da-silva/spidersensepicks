@@ -678,5 +678,105 @@
     "units": 3,
     "result": "win",
     "notes": "3 Unit Max Play · Premium"
+  },
+  {
+    "id": "2026-09-16-milan-over",
+    "date": "2026-09-16",
+    "pick": "AC Milan v Benfica Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -150,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-yankees",
+    "date": "2026-09-16",
+    "pick": "New York Yankees ML",
+    "sport": "MLB",
+    "odds": -163,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-dorados",
+    "date": "2026-09-16",
+    "pick": "Dorados de Chihuahua ML",
+    "sport": "Baseball",
+    "odds": -195,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-mariners",
+    "date": "2026-09-16",
+    "pick": "SEA Mariners ML",
+    "sport": "MLB",
+    "odds": -142,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-snell",
+    "date": "2026-09-16",
+    "pick": "Blake Snell Over 7.5 Strikeouts",
+    "sport": "MLB",
+    "odds": -142,
+    "units": 0.5,
+    "result": "push",
+    "notes": "0.5 Unit Play · Returned · Premium"
+  },
+  {
+    "id": "2026-09-16-dbacks",
+    "date": "2026-09-16",
+    "pick": "Diamondbacks ML",
+    "sport": "MLB",
+    "odds": -137,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-tigers-f5",
+    "date": "2026-09-16",
+    "pick": "Tigers First 5 Innings ML",
+    "sport": "MLB",
+    "odds": -110,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-orioles-mets-f5",
+    "date": "2026-09-16",
+    "pick": "Orioles v Mets First 5 Innings Over 4.5",
+    "sport": "MLB",
+    "odds": -140,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-phillies-f5",
+    "date": "2026-09-16",
+    "pick": "PHI Phillies -0.5 First 5 Innings",
+    "sport": "MLB",
+    "odds": -125,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-16-max-parlay",
+    "date": "2026-09-16",
+    "pick": "3 Unit Max Parlay: Dodgers @ Reds Under 11.5 / ATL @ CHC Over 4.5 / MIA @ ARI Under 11.5",
+    "sport": "MLB",
+    "odds": -132,
+    "units": 3,
+    "result": "win",
+    "notes": "3 Unit Max Play · Premium"
   }
 ]
