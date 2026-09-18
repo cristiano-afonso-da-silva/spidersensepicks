@@ -778,5 +778,135 @@
     "units": 3,
     "result": "win",
     "notes": "3 Unit Max Play · Premium"
+  },
+  {
+    "id": "2026-09-17-lions-bills-over",
+    "date": "2026-09-17",
+    "pick": "Detroit Lions @ Buffalo Bills Over 54.5",
+    "sport": "NFL",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-stbrown-atd",
+    "date": "2026-09-17",
+    "pick": "Amon-Ra St. Brown Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-gibbs",
+    "date": "2026-09-17",
+    "pick": "Jahmyr Gibbs Over 120 Rush + Rec Yards",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-kincaid-rec",
+    "date": "2026-09-17",
+    "pick": "Kincaid Over 3.5 Receptions",
+    "sport": "NFL",
+    "odds": -164,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-williams-rec",
+    "date": "2026-09-17",
+    "pick": "Williams Over 3.5 Receptions",
+    "sport": "NFL",
+    "odds": -146,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-mancity-tt",
+    "date": "2026-09-17",
+    "pick": "Man City Team Total Over 2.5",
+    "sport": "Soccer",
+    "odds": -179,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-stearns",
+    "date": "2026-09-17",
+    "pick": "Peyton Stearns ML",
+    "sport": "Tennis",
+    "odds": -166,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-kincaid-bills-parlay",
+    "date": "2026-09-17",
+    "pick": "2 Leg Parlay: Dalton Kincaid 25+ Receiving Yards / BUF Bills -2.5",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-syr-pitt-under",
+    "date": "2026-09-17",
+    "pick": "SYR @ PITT Under 54.5 Points",
+    "sport": "NCAAF",
+    "odds": -158,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-betis",
+    "date": "2026-09-17",
+    "pick": "Betis ML",
+    "sport": "Soccer",
+    "odds": -200,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-goff",
+    "date": "2026-09-17",
+    "pick": "Jared Goff 250+ Passing Yards",
+    "sport": "NFL",
+    "odds": -132,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-tds-each-quarter",
+    "date": "2026-09-17",
+    "pick": "2+ TDs Scored in Each Quarter",
+    "sport": "NFL",
+    "odds": 380,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-17-lotto",
+    "date": "2026-09-17",
+    "pick": "Each Team 1+ Rushing TD & 1+ Passing TD in Each Half",
+    "sport": "NFL",
+    "odds": 5000,
+    "units": 0.125,
+    "result": "loss",
+    "notes": "0.125 Unit Lotto · Premium"
   }
 ]
