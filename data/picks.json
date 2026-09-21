@@ -1058,5 +1058,105 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-mbappe",
+    "date": "2026-09-20",
+    "pick": "Kylian Mbappe Anytime Goal Scorer",
+    "sport": "Soccer",
+    "odds": -125,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-madrid-parlay",
+    "date": "2026-09-20",
+    "pick": "2 Leg Parlay: Atletico Madrid @ Real Madrid Over 2.5 / BTTS",
+    "sport": "Soccer",
+    "odds": -145,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-eagles-titans-over",
+    "date": "2026-09-20",
+    "pick": "Eagles vs Titans Over 39.5",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium · Odds assumed -110"
+  },
+  {
+    "id": "2026-09-20-vikings-bears-under",
+    "date": "2026-09-20",
+    "pick": "Vikings vs Bears Under 49.5",
+    "sport": "NFL",
+    "odds": -150,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-steelers",
+    "date": "2026-09-20",
+    "pick": "Steelers +5.5",
+    "sport": "NFL",
+    "odds": -108,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-rush-parlay",
+    "date": "2026-09-20",
+    "pick": "2 Leg Parlay: Derrick Henry 70+ Rush Yds / Kenneth Walker III 60+ Rush Yds",
+    "sport": "NFL",
+    "odds": -135,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-49ers-dolphins-under",
+    "date": "2026-09-20",
+    "pick": "49ers vs Dolphins Under 45.5",
+    "sport": "NFL",
+    "odds": -115,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-cowboys-commanders-over",
+    "date": "2026-09-20",
+    "pick": "Cowboys vs Commanders Over 50.5",
+    "sport": "NFL",
+    "odds": -115,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-chiefs-spread",
+    "date": "2026-09-20",
+    "pick": "KC Chiefs -6.5",
+    "sport": "NFL",
+    "odds": -108,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-20-chiefs-colts-over",
+    "date": "2026-09-20",
+    "pick": "Chiefs vs Colts Over 47.5",
+    "sport": "NFL",
+    "odds": -102,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
