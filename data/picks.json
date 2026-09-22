@@ -1158,5 +1158,105 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-bournemouth-stoke-over",
+    "date": "2026-09-21",
+    "pick": "Bournemouth U21 @ Stoke City U21 Over 3.5 Goals",
+    "sport": "Soccer",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-adams-td",
+    "date": "2026-09-21",
+    "pick": "Davante Adams 1+ Touchdowns",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-stafford-pass",
+    "date": "2026-09-21",
+    "pick": "Matthew Stafford 225+ Passing Yards",
+    "sport": "NFL",
+    "odds": -160,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-rams",
+    "date": "2026-09-21",
+    "pick": "LA Rams -5.5",
+    "sport": "NFL",
+    "odds": -146,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-stafford-int",
+    "date": "2026-09-21",
+    "pick": "Matthew Stafford Under 0.5 Interceptions",
+    "sport": "NFL",
+    "odds": -135,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-skattebo",
+    "date": "2026-09-21",
+    "pick": "Cam Skattebo Over 51.5 Rushing Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-rec-parlay",
+    "date": "2026-09-21",
+    "pick": "2 Leg Parlay: Isaiah Likely 30+ Rec Yds / Malik Nabers 40+ Rec Yds",
+    "sport": "NFL",
+    "odds": -139,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-sakatsume",
+    "date": "2026-09-21",
+    "pick": "Himeno Sakatsume ML",
+    "sport": "Tennis",
+    "odds": -126,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-ruse",
+    "date": "2026-09-21",
+    "pick": "Elena Gabriela Ruse ML",
+    "sport": "Tennis",
+    "odds": -220,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-21-breakers",
+    "date": "2026-09-21",
+    "pick": "New Zealand Breakers ML",
+    "sport": "Basketball",
+    "odds": -102,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
