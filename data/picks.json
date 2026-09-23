@@ -1258,5 +1258,35 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-22-bayern-city-w-over",
+    "date": "2026-09-22",
+    "pick": "Bayern Munich (W) @ Man City LFC (W) Over 3.5 Goals",
+    "sport": "Soccer",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-22-rays-1pm",
+    "date": "2026-09-22",
+    "pick": "Tampa Bay Rays ML",
+    "sport": "MLB",
+    "odds": 108,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · 1:00 PM"
+  },
+  {
+    "id": "2026-09-22-rays-7pm",
+    "date": "2026-09-22",
+    "pick": "Tampa Bay Rays ML",
+    "sport": "MLB",
+    "odds": 110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium · 7:00 PM"
   }
 ]
