@@ -1288,5 +1288,65 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium · 7:00 PM"
+  },
+  {
+    "id": "2026-09-23-grorud-moss-over",
+    "date": "2026-09-23",
+    "pick": "Grorud @ Moss Over 3.5 Goals",
+    "sport": "Soccer",
+    "odds": 116,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-23-jays",
+    "date": "2026-09-23",
+    "pick": "Toronto Blue Jays +3.5",
+    "sport": "MLB",
+    "odds": 100,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-23-twins",
+    "date": "2026-09-23",
+    "pick": "MIN Twins ML",
+    "sport": "MLB",
+    "odds": -154,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-23-brewers-phillies-under",
+    "date": "2026-09-23",
+    "pick": "Brewers @ Phillies Under 7.5",
+    "sport": "MLB",
+    "odds": -138,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-23-cubs",
+    "date": "2026-09-23",
+    "pick": "Chicago Cubs -1.5",
+    "sport": "MLB",
+    "odds": 138,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-23-dodgers",
+    "date": "2026-09-23",
+    "pick": "LA Dodgers -1.5",
+    "sport": "MLB",
+    "odds": -102,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
