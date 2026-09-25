@@ -1348,5 +1348,75 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-ned-ger",
+    "date": "2026-09-24",
+    "pick": "Netherlands @ Germany Over 2.5 Goals & BTTS",
+    "sport": "Soccer",
+    "odds": -185,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-london-atd",
+    "date": "2026-09-24",
+    "pick": "Drake London Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 200,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-falcons-tt",
+    "date": "2026-09-24",
+    "pick": "Falcons Over 17.5 Points",
+    "sport": "NFL",
+    "odds": -132,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-love-tds",
+    "date": "2026-09-24",
+    "pick": "Jordan Love 2+ Passing Touchdowns",
+    "sport": "NFL",
+    "odds": -114,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-liberty",
+    "date": "2026-09-24",
+    "pick": "Liberty ML",
+    "sport": "NCAAF",
+    "odds": -134,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-24-guardians-redsox-over",
+    "date": "2026-09-24",
+    "pick": "Guardians @ Red Sox Over 3.5",
+    "sport": "MLB",
+    "odds": -106,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Units assumed 1u"
+  },
+  {
+    "id": "2026-09-24-parlay",
+    "date": "2026-09-24",
+    "pick": "2 Leg Parlay: Packers ML / Drake London 40+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -135,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
