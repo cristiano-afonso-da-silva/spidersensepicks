@@ -1418,5 +1418,95 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-25-armenia",
+    "date": "2026-09-25",
+    "pick": "Armenia ML",
+    "sport": "Soccer",
+    "odds": -130,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-25-mensik",
+    "date": "2026-09-25",
+    "pick": "Mensik ML",
+    "sport": "Tennis",
+    "odds": -144,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-25-temple",
+    "date": "2026-09-25",
+    "pick": "Temple +3.5",
+    "sport": "NCAAF",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-25-richard-atd",
+    "date": "2026-09-25",
+    "pick": "Turbo Richard Anytime Touchdown Scorer",
+    "sport": "NCAAF",
+    "odds": -190,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-25-clemson-cal-under",
+    "date": "2026-09-25",
+    "pick": "Clemson @ California Under 51.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium · Odds assumed -110"
+  },
+  {
+    "id": "2026-09-25-california",
+    "date": "2026-09-25",
+    "pick": "California +3.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 2,
+    "result": "push",
+    "notes": "2 Unit Play · Cashed Out · Premium · Odds assumed -110"
+  },
+  {
+    "id": "2026-09-25-uab",
+    "date": "2026-09-25",
+    "pick": "UAB +7.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium · Odds assumed -110"
+  },
+  {
+    "id": "2026-09-25-rutgers",
+    "date": "2026-09-25",
+    "pick": "Rutgers -41.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium · Odds assumed -110"
+  },
+  {
+    "id": "2026-09-25-parlay",
+    "date": "2026-09-25",
+    "pick": "2 Leg Parlay",
+    "sport": "Mixed",
+    "odds": -104,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
