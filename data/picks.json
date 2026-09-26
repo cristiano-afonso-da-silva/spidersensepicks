@@ -1432,7 +1432,7 @@
   {
     "id": "2026-09-25-mensik",
     "date": "2026-09-25",
-    "pick": "Mensik ML",
+    "pick": "Jakub Mensik ML",
     "sport": "Tennis",
     "odds": -144,
     "units": 0.5,
@@ -1464,46 +1464,46 @@
     "date": "2026-09-25",
     "pick": "Clemson @ California Under 51.5",
     "sport": "NCAAF",
-    "odds": -110,
+    "odds": -118,
     "units": 0.5,
     "result": "win",
-    "notes": "0.5 Unit Play · Premium · Odds assumed -110"
+    "notes": "0.5 Unit Play · Premium"
   },
   {
     "id": "2026-09-25-california",
     "date": "2026-09-25",
     "pick": "California +3.5",
     "sport": "NCAAF",
-    "odds": -110,
+    "odds": -158,
     "units": 2,
     "result": "push",
-    "notes": "2 Unit Play · Cashed Out · Premium · Odds assumed -110"
+    "notes": "2 Unit Play · Cashed out at 2U (stake returned) · Premium"
   },
   {
     "id": "2026-09-25-uab",
     "date": "2026-09-25",
     "pick": "UAB +7.5",
     "sport": "NCAAF",
-    "odds": -110,
+    "odds": -150,
     "units": 2,
     "result": "win",
-    "notes": "2 Unit Play · Premium · Odds assumed -110"
+    "notes": "2 Unit Play · Premium"
   },
   {
     "id": "2026-09-25-rutgers",
     "date": "2026-09-25",
     "pick": "Rutgers -41.5",
     "sport": "NCAAF",
-    "odds": -110,
+    "odds": -115,
     "units": 2,
     "result": "win",
-    "notes": "2 Unit Play · Premium · Odds assumed -110"
+    "notes": "2 Unit Play · Premium"
   },
   {
     "id": "2026-09-25-parlay",
     "date": "2026-09-25",
-    "pick": "2 Leg Parlay",
-    "sport": "Mixed",
+    "pick": "2 Leg Parlay: Italy vs Belgium BTTS / France ML",
+    "sport": "Soccer",
     "odds": -104,
     "units": 1,
     "result": "loss",
