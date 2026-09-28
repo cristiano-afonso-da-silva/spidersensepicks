@@ -1558,5 +1558,175 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-panthers-browns-under",
+    "date": "2026-09-27",
+    "pick": "Panthers @ Browns Under 42.5",
+    "sport": "NFL",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-jets-lions-over",
+    "date": "2026-09-27",
+    "pick": "Jets @ Lions Over 47.5",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-patriots-jaguars-under",
+    "date": "2026-09-27",
+    "pick": "Patriots @ Jaguars Under 45.5",
+    "sport": "NFL",
+    "odds": -102,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-titans",
+    "date": "2026-09-27",
+    "pick": "Titans +3.5",
+    "sport": "NFL",
+    "odds": -150,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-bengals-steelers-under",
+    "date": "2026-09-27",
+    "pick": "Bengals @ Steelers Under 42.5",
+    "sport": "NFL",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-bills-chargers-over",
+    "date": "2026-09-27",
+    "pick": "Bills @ Chargers Over 49.5",
+    "sport": "NFL",
+    "odds": -122,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-montgomery-atd",
+    "date": "2026-09-27",
+    "pick": "David Montgomery Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-walker-mcconkey-parlay",
+    "date": "2026-09-27",
+    "pick": "2 Leg Parlay: Kenneth Walker III 60+ Rush Yds / Ladd McConkey 40+ Rec Yds",
+    "sport": "NFL",
+    "odds": -138,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-norway-portugal",
+    "date": "2026-09-27",
+    "pick": "Norway @ Portugal Over 2.5 Goals & BTTS",
+    "sport": "Soccer",
+    "odds": -165,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-vikings-bucs-under",
+    "date": "2026-09-27",
+    "pick": "Vikings @ Buccaneers Under 43.5",
+    "sport": "NFL",
+    "odds": -115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-saints",
+    "date": "2026-09-27",
+    "pick": "Saints -3",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-ravens-cowboys-over",
+    "date": "2026-09-27",
+    "pick": "Ravens @ Cowboys Over 52.5",
+    "sport": "NFL",
+    "odds": -114,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-mccaffrey-rush",
+    "date": "2026-09-27",
+    "pick": "Christian McCaffrey Over 55.5 Rushing Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-jeanty-olave-parlay",
+    "date": "2026-09-27",
+    "pick": "4 Leg Parlay: Jeanty O94.5 Rush+Rec / Jeanty ATD / Olave ATD / Olave O76.5 Rec Yds",
+    "sport": "NFL",
+    "odds": 782,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-rams-broncos-over",
+    "date": "2026-09-27",
+    "pick": "LAR @ DEN Over 42.5",
+    "sport": "NFL",
+    "odds": -150,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-rams-ml",
+    "date": "2026-09-27",
+    "pick": "LA Rams ML",
+    "sport": "NFL",
+    "odds": -126,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-27-ferguson",
+    "date": "2026-09-27",
+    "pick": "Terrance Ferguson (+250 prop)",
+    "sport": "NFL",
+    "odds": 250,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Market not specified"
   }
 ]
