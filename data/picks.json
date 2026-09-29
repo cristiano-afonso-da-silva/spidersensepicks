@@ -1728,5 +1728,65 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium · Market not specified"
+  },
+  {
+    "id": "2026-09-28-cyprus-dnb",
+    "date": "2026-09-28",
+    "pick": "Cyprus Draw No Bet",
+    "sport": "Soccer",
+    "odds": 100,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Returned"
+  },
+  {
+    "id": "2026-09-28-france-ml",
+    "date": "2026-09-28",
+    "pick": "France ML",
+    "sport": "Soccer",
+    "odds": -125,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-28-wicks-atd",
+    "date": "2026-09-28",
+    "pick": "Dontayvion Wicks Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 340,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-28-barkley-atd",
+    "date": "2026-09-28",
+    "pick": "Saquon Barkley Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-28-devonta-smith-rec",
+    "date": "2026-09-28",
+    "pick": "DeVonta Smith Over 70.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-28-eagles",
+    "date": "2026-09-28",
+    "pick": "PHI Eagles -3.5",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
