@@ -1788,5 +1788,55 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-29-spain-croatia-over",
+    "date": "2026-09-29",
+    "pick": "Spain @ Croatia Total Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -184,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-29-redsox-yankees-under",
+    "date": "2026-09-29",
+    "pick": "Red Sox @ Yankees Under 6.5 Runs",
+    "sport": "MLB",
+    "odds": -112,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-29-padres-ml",
+    "date": "2026-09-29",
+    "pick": "Padres ML",
+    "sport": "MLB",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-29-white-sox-ml",
+    "date": "2026-09-29",
+    "pick": "White Sox ML",
+    "sport": "MLB",
+    "odds": 110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-29-parlay",
+    "date": "2026-09-29",
+    "pick": "2 Leg Parlay: England Team to Score First Goal / Spain Over 1.5 Total Goals",
+    "sport": "Soccer",
+    "odds": 107,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
