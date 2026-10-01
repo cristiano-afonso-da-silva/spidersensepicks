@@ -1838,5 +1838,85 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-phillies-ml",
+    "date": "2026-09-30",
+    "pick": "Phillies ML",
+    "sport": "MLB",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-lyon-chelsea-over",
+    "date": "2026-09-30",
+    "pick": "Lyon W @ Chelsea W Total Over 2.5 Goals",
+    "sport": "Soccer",
+    "odds": -230,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-valkyries",
+    "date": "2026-09-30",
+    "pick": "Valkyries -4.5",
+    "sport": "Basketball",
+    "odds": -106,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-redsox-yankees-under",
+    "date": "2026-09-30",
+    "pick": "Red Sox @ Yankees Under 6.5",
+    "sport": "MLB",
+    "odds": 101,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-horvat-shots",
+    "date": "2026-09-30",
+    "pick": "Bo Horvat Over 2.5 Shots",
+    "sport": "NHL",
+    "odds": -165,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-tippett-shots",
+    "date": "2026-09-30",
+    "pick": "Owen Tippett Over 2.5 Shots",
+    "sport": "NHL",
+    "odds": 100,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-mackinnon-shots",
+    "date": "2026-09-30",
+    "pick": "Nathan MacKinnon Over 3.5 Shots",
+    "sport": "NHL",
+    "odds": -125,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-09-30-padres-ml",
+    "date": "2026-09-30",
+    "pick": "Padres ML",
+    "sport": "MLB",
+    "odds": -144,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
