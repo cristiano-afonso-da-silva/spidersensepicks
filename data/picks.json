@@ -1918,5 +1918,105 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-kosovo-dnb",
+    "date": "2026-10-01",
+    "pick": "Kosovo Draw No Bet",
+    "sport": "Soccer",
+    "odds": -154,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Returned"
+  },
+  {
+    "id": "2026-10-01-steelers-browns-under",
+    "date": "2026-10-01",
+    "pick": "Steelers @ Browns Under 38.5",
+    "sport": "NFL",
+    "odds": -122,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-north-texas-ml",
+    "date": "2026-10-01",
+    "pick": "North Texas ML",
+    "sport": "NCAAF",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-concepcion-rec",
+    "date": "2026-10-01",
+    "pick": "KC Concepcion Over 35.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-metcalf-atd",
+    "date": "2026-10-01",
+    "pick": "DK Metcalf Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 250,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-jackie-young-points",
+    "date": "2026-10-01",
+    "pick": "Jackie Young Over 19.5 Points",
+    "sport": "Basketball",
+    "odds": -155,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-aliyah-boston-rebounds",
+    "date": "2026-10-01",
+    "pick": "Aliyah Boston Over 7.5 Rebounds",
+    "sport": "Basketball",
+    "odds": -164,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-freiermuth-rec",
+    "date": "2026-10-01",
+    "pick": "Pat Freiermuth Over 26.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-jeudy-rec",
+    "date": "2026-10-01",
+    "pick": "Jerry Jeudy Over 14.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-01-watson-completions",
+    "date": "2026-10-01",
+    "pick": "D. Watson Over 17.5 Pass Completions",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
