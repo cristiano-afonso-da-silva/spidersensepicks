@@ -2158,5 +2158,65 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-04-ireland-dnb",
+    "date": "2026-10-04",
+    "pick": "Ireland Draw No Bet",
+    "sport": "Soccer",
+    "odds": -194,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Returned"
+  },
+  {
+    "id": "2026-10-04-chase-rec",
+    "date": "2026-10-04",
+    "pick": "J. Chase 80+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -125,
+    "units": 2,
+    "result": "push",
+    "notes": "2 Unit Play · Premium · Returned"
+  },
+  {
+    "id": "2026-10-04-bowers-atd",
+    "date": "2026-10-04",
+    "pick": "Brock Bowers Anytime Touchdown Scorer",
+    "sport": "NFL",
+    "odds": 180,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-04-49ers",
+    "date": "2026-10-04",
+    "pick": "49ers -2.5",
+    "sport": "NFL",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-04-nabers-rec",
+    "date": "2026-10-04",
+    "pick": "M. Nabers Over 54.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-04-rams",
+    "date": "2026-10-04",
+    "pick": "LA Rams -2.5",
+    "sport": "NFL",
+    "odds": -154,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
