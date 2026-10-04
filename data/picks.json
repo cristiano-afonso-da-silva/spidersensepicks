@@ -2078,5 +2078,85 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-michigan",
+    "date": "2026-10-03",
+    "pick": "Michigan -6.5",
+    "sport": "NCAAF",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-michigan-state",
+    "date": "2026-10-03",
+    "pick": "Michigan State +10.5",
+    "sport": "NCAAF",
+    "odds": -128,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-air-force-ml",
+    "date": "2026-10-03",
+    "pick": "Air Force ML",
+    "sport": "NCAAF",
+    "odds": -150,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-air-force-under",
+    "date": "2026-10-03",
+    "pick": "Air Force Under 45.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-alabama-mississippi-state-over",
+    "date": "2026-10-03",
+    "pick": "Alabama @ Mississippi State Over 58.5",
+    "sport": "NCAAF",
+    "odds": -172,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-south-florida",
+    "date": "2026-10-03",
+    "pick": "South Florida -5.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-indiana",
+    "date": "2026-10-03",
+    "pick": "Indiana -24.5",
+    "sport": "NCAAF",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-03-padres-brewers-under",
+    "date": "2026-10-03",
+    "pick": "Padres @ Brewers Under 7.5 Total Runs",
+    "sport": "MLB",
+    "odds": -150,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
