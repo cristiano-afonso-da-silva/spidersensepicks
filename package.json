@@ -7,7 +7,8 @@
     "build": "next build",
     "build:pages": "BASE_PATH=/spidersensepicks NEXT_PUBLIC_BASE_PATH=/spidersensepicks next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test --experimental-strip-types --no-warnings src/lib/*.test.ts"
   },
   "dependencies": {
     "date-fns": "^4.4.0",

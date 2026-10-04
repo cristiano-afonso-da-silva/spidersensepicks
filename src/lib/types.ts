@@ -1,4 +1,4 @@
-export type PickResult = "win" | "loss" | "push" | "pending";
+export type PickResult = "win" | "loss" | "push" | "void" | "pending";
 
 /** Daily pick log entry — follow this shape when adding picks. */
 export interface Pick {
@@ -31,86 +31,4 @@ export interface CreatePickInput {
   units: number;
   result: PickResult;
   notes?: string;
-}
-
-export interface DayBucket {
-  date: string;
-  label: string;
-  units: number;
-  cumulative: number;
-  result: "WIN" | "LOSS" | "PUSH";
-  pickCount: number;
-}
-
-export interface WeekBucket {
-  weekStart: string;
-  weekEnd: string;
-  label: string;
-  units: number;
-  cumulative: number;
-  result: "WIN" | "LOSS" | "PUSH";
-  pickCount: number;
-}
-
-export interface MonthBucket {
-  key: string;
-  label: string;
-  units: number;
-}
-
-export interface SportBucket {
-  sport: string;
-  picks: number;
-  wins: number;
-  losses: number;
-  pushes: number;
-  winRate: number;
-  units: number;
-  profitAt100: number;
-  /** Share of total units risked (settled stakes). */
-  stakeShare: number;
-}
-
-export interface SeasonStats {
-  settledPicks: number;
-  pendingPicks: number;
-  wins: number;
-  losses: number;
-  pushes: number;
-  netUnits: number;
-  winRate: number;
-  profitAt100: number;
-  daysTracked: number;
-  weeksTracked: number;
-  winningDays: number;
-  losingDays: number;
-  winningWeeks: number;
-  losingWeeks: number;
-  pushWeeks: number;
-  dayWinRate: number;
-  weekWinRate: number;
-  seasonStart: string | null;
-  seasonEnd: string | null;
-  peak: { units: number; weekLabel: string } | null;
-  largestDrawdown: {
-    amount: number;
-    fromLabel: string;
-    toLabel: string;
-  } | null;
-  bestMonth: { label: string; units: number } | null;
-  largestWinningWeek: { units: number; label: string } | null;
-  largestLosingWeek: { units: number; label: string } | null;
-  longestWinStreak: {
-    weeks: number;
-    fromLabel: string;
-    toLabel: string;
-  } | null;
-  bestSport: { sport: string; units: number; winRate: number } | null;
-  worstSport: { sport: string; units: number; winRate: number } | null;
-  cumulativeSeries: { date: string; label: string; cumulative: number }[];
-  daily: DayBucket[];
-  weekly: WeekBucket[];
-  monthly: MonthBucket[];
-  bySport: SportBucket[];
-  annotations: { date: string; label: string; cumulative: number; kind?: "peak" | "drawdown" }[];
 }
