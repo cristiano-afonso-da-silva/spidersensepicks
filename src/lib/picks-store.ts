@@ -40,8 +40,11 @@ export async function readPicks(): Promise<Pick[]> {
     parsed = JSON.parse(fixed) as Pick[];
     await writePicks(parsed);
   }
-  // Newest date first; within a date, latest-logged first (sort is stable).
-  return parsed.reverse().sort((a, b) => b.date.localeCompare(a.date));
+  return parsed.sort((a, b) => {
+    const byDate = b.date.localeCompare(a.date);
+    if (byDate !== 0) return byDate;
+    return b.id.localeCompare(a.id);
+  });
 }
 
 async function writePicks(picks: Pick[]): Promise<void> {
@@ -60,8 +63,8 @@ function validateInput(input: CreatePickInput): string | null {
   if (typeof input.units !== "number" || Number.isNaN(input.units) || input.units <= 0) {
     return "units must be a positive number";
   }
-  if (!["win", "loss", "push", "void", "pending"].includes(input.result)) {
-    return "result must be win, loss, push, void, or pending";
+  if (!["win", "loss", "push", "pending"].includes(input.result)) {
+    return "result must be win, loss, push, or pending";
   }
   return null;
 }
