@@ -22,8 +22,7 @@ import { formatSigned } from "@/lib/stats";
 const TIFFANY = "#81d8d0";
 const TIFFANY_BRIGHT = "#a8ece5";
 const TIFFANY_DEEP = "#0abab5";
-const RED = "#ef4444";
-const RED_DEEP = "#b91c1c";
+const RED = "#e0457b";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
@@ -262,7 +261,6 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
       ) : (
         <ChartFrame heightClass="h-[220px] sm:h-[260px]">
           <BarChart data={stats.daily}>
-            <BarGradients />
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -292,7 +290,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
               {stats.daily.map((d) => (
                 <Cell
                   key={d.date}
-                  fill={d.units >= 0 ? "url(#barWin)" : "url(#barLoss)"}
+                  fill={d.units >= 0 ? TIFFANY : RED}
                 />
               ))}
             </Bar>
@@ -312,7 +310,6 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
       ) : (
         <ChartFrame heightClass="h-[200px]">
           <BarChart data={stats.monthly}>
-            <BarGradients />
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -341,7 +338,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
               {stats.monthly.map((m) => (
                 <Cell
                   key={m.key}
-                  fill={m.units >= 0 ? "url(#barWin)" : "url(#barLoss)"}
+                  fill={m.units >= 0 ? TIFFANY : RED}
                 />
               ))}
             </Bar>
@@ -416,21 +413,6 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
         </span>
       </div>
     </div>
-  );
-}
-
-function BarGradients() {
-  return (
-    <defs>
-      <linearGradient id="barWin" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={TIFFANY_BRIGHT} />
-        <stop offset="100%" stopColor={TIFFANY_DEEP} stopOpacity={0.75} />
-      </linearGradient>
-      <linearGradient id="barLoss" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stopColor={RED_DEEP} stopOpacity={0.75} />
-        <stop offset="100%" stopColor={RED} />
-      </linearGradient>
-    </defs>
   );
 }
 
