@@ -10,6 +10,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "units" as const,
       iconTone: "muted" as const,
       tone: stats.netUnits >= 0 ? ("win" as const) : ("red" as const),
+      glow: stats.netUnits >= 0 ? "glow-teal" : "glow-red",
     },
     {
       label: "Winning Days",
@@ -18,6 +19,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "trophy" as const,
       iconTone: "win" as const,
       tone: "win" as const,
+      glow: "glow-violet",
     },
     {
       label: "Win Rate",
@@ -26,6 +28,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "target" as const,
       iconTone: "muted" as const,
       tone: "win" as const,
+      glow: "glow-mint",
     },
     {
       label: "Profit at $1,000/Unit",
@@ -34,6 +37,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "cash" as const,
       iconTone: "win" as const,
       tone: stats.profitAt100 >= 0 ? ("win" as const) : ("red" as const),
+      glow: stats.profitAt100 >= 0 ? "glow-indigo" : "glow-red",
     },
   ];
 
@@ -42,20 +46,18 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className="panel animate-rise px-1.5 py-2.5 text-center sm:px-5 sm:py-5 sm:text-left"
+          className={`glow-card ${c.glow} animate-rise px-1.5 py-2.5 text-center sm:px-5 sm:py-5 sm:text-left`}
           style={{ animationDelay: `${i * 90}ms` }}
         >
-          <div className="flex items-start justify-center gap-1 sm:justify-between">
-            <p className="text-[8px] font-medium uppercase leading-tight tracking-[0.06em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
-              <span className="sm:hidden">{c.shortLabel}</span>
-              <span className="hidden sm:inline">{c.label}</span>
-            </p>
-            <span className="hidden sm:inline">
-              <StatIcon kind={c.icon} tone={c.iconTone} />
-            </span>
-          </div>
+          <span className="icon-chip mb-4 hidden sm:inline-flex">
+            <StatIcon kind={c.icon} tone={c.iconTone} />
+          </span>
+          <p className="text-[8px] font-medium uppercase leading-tight tracking-[0.06em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
+            <span className="sm:hidden">{c.shortLabel}</span>
+            <span className="hidden sm:inline">{c.label}</span>
+          </p>
           <p
-            className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(0.85rem,3.6vw,1.2rem)] leading-none tracking-tight sm:mt-4 sm:text-[2.35rem] ${
+            className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(0.85rem,3.6vw,1.2rem)] leading-none tracking-tight sm:mt-2 sm:text-[2.35rem] ${
               c.tone === "win"
                 ? "text-win-bright"
                 : c.tone === "red"
@@ -78,7 +80,7 @@ function StatIcon({
   kind: "units" | "trophy" | "target" | "cash";
   tone?: "muted" | "win";
 }) {
-  const common = `h-5 w-5 ${tone === "win" ? "text-win" : "text-muted"}`;
+  const common = `h-[18px] w-[18px] ${tone === "win" ? "text-win" : "text-white/80"}`;
   if (kind === "units") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -170,7 +172,9 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
       {items.map((item, i) => (
         <div
           key={item.label}
-          className="panel animate-rise px-5 py-5"
+          className={`glow-card ${
+            item.tone === "red" ? "glow-red" : ["glow-teal", "glow-mint", "", "glow-violet"][i]
+          } animate-rise px-5 py-5`}
           style={{ animationDelay: `${i * 70}ms` }}
         >
           <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">

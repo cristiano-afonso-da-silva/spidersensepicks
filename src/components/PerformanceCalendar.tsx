@@ -107,7 +107,7 @@ export function PerformanceCalendar({
     <>
       {(variant === "mobile" || variant === "both") && (
         <div className="sm:hidden">
-          <div className="bg-black">
+          <div>
           <div className="mb-5 flex items-center justify-between">
             <button
               type="button"
@@ -152,7 +152,7 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="flex aspect-square items-center justify-center rounded-xl bg-surface"
+                        className="tile-empty flex aspect-square items-center justify-center rounded-xl opacity-40"
                       />
                     );
                   }
@@ -161,7 +161,7 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="relative flex aspect-square flex-col items-center justify-center rounded-xl bg-surface"
+                        className="tile-empty relative flex aspect-square flex-col items-center justify-center rounded-xl"
                       >
                         <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] text-muted">
                           <CalendarIcon className="h-2 w-2" />
@@ -179,10 +179,10 @@ export function PerformanceCalendar({
                       key={key}
                       className={`relative flex aspect-square flex-col items-center justify-center rounded-xl ${
                         positive
-                          ? "bg-win text-black"
+                          ? "tile-win"
                           : negative
-                            ? "bg-brand-red text-white"
-                            : "bg-surface text-muted"
+                            ? "tile-loss"
+                            : "tile-empty text-muted"
                       }`}
                     >
                       <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] opacity-80">
@@ -203,7 +203,7 @@ export function PerformanceCalendar({
       )}
 
       {(variant === "desktop" || variant === "both") && (
-        <div className="panel hidden overflow-hidden sm:block">
+        <div className="panel-soft hidden overflow-hidden sm:block">
           <div className="p-6">
             <div className="mb-5 flex items-center justify-between">
               <button
@@ -253,7 +253,7 @@ export function PerformanceCalendar({
                       return (
                         <div
                           key={key}
-                          className="relative flex min-h-[5rem] flex-col justify-end rounded-xl border border-border/40 bg-surface-2 p-2"
+                          className="tile-empty relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2"
                         >
                           <span className="absolute right-2 top-2 text-[11px] text-muted">
                             {format(day, "d")}
@@ -267,10 +267,10 @@ export function PerformanceCalendar({
                         key={key}
                         className={`relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2 ${
                           stat.units > 0
-                            ? "bg-win text-black"
+                            ? "tile-win"
                             : stat.units < 0
-                              ? "bg-brand-red text-white"
-                              : "bg-surface-2 text-muted"
+                              ? "tile-loss"
+                              : "tile-empty text-muted"
                         }`}
                       >
                         <span className="absolute right-2 top-2 text-[11px] opacity-70">

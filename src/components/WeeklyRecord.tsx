@@ -135,9 +135,9 @@ export function WeeklyRecord({
                     <span
                       className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${
                         d.result === "WIN"
-                          ? "bg-win text-black"
+                          ? "tile-win"
                           : d.result === "LOSS"
-                            ? "bg-brand-red text-white"
+                            ? "tile-loss"
                             : "bg-white/10 text-muted"
                       }`}
                     >
@@ -190,9 +190,9 @@ export function WeeklyRecord({
                               <span
                                 className={`justify-self-end rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
                                   p.result === "win"
-                                    ? "bg-win text-black"
+                                    ? "tile-win"
                                     : p.result === "loss"
-                                      ? "bg-brand-red text-white"
+                                      ? "tile-loss"
                                       : "bg-white/10 text-muted"
                                 }`}
                               >

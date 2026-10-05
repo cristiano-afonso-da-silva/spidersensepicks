@@ -26,12 +26,12 @@ export default async function HomePage() {
     : "—";
 
   return (
-    <main className="bg-black sm:py-16">
+    <main className="sm:py-16">
       {/* Mobile */}
       <div className="space-y-8 px-4 pb-12 pt-8 sm:hidden">
         <section className="animate-rise text-center">
           <img
-            src={`${basePath}/ssp-logo.jpg`}
+            src={`${basePath}/ssp-logo.png`}
             alt="Spider Sense Picks logo"
             width={200}
             height={200}
@@ -62,7 +62,7 @@ export default async function HomePage() {
       <div className="shell hidden space-y-10 sm:block">
         <section className="animate-rise mb-12 text-center">
           <img
-            src={`${basePath}/ssp-logo.jpg`}
+            src={`${basePath}/ssp-logo.png`}
             alt="Spider Sense Picks logo"
             width={240}
             height={240}

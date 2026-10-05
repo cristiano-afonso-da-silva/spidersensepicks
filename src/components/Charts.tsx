@@ -19,9 +19,11 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const GOLD = "#e8c574";
-const GOLD_BRIGHT = "#ffe4a8";
+const TIFFANY = "#81d8d0";
+const TIFFANY_BRIGHT = "#a8ece5";
+const TIFFANY_DEEP = "#0abab5";
 const RED = "#ef4444";
+const RED_DEEP = "#b91c1c";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
@@ -51,11 +53,11 @@ function ChartTooltip({
 
 const tooltipWrapper = { outline: "none", zIndex: 20 } as const;
 const darkCursorBar = {
-  fill: "rgba(212, 24, 40, 0.12)",
+  fill: "rgba(129, 216, 208, 0.08)",
   stroke: "transparent",
 } as const;
 const darkCursorLine = {
-  stroke: "rgba(212, 175, 105, 0.5)",
+  stroke: "rgba(129, 216, 208, 0.5)",
   strokeWidth: 1,
   strokeDasharray: "4 4",
 } as const;
@@ -120,8 +122,12 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           >
             <defs>
               <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={GOLD} stopOpacity={0.35} />
-                <stop offset="100%" stopColor={GOLD} stopOpacity={0} />
+                <stop offset="0%" stopColor={TIFFANY_DEEP} stopOpacity={0.45} />
+                <stop offset="100%" stopColor={TIFFANY_DEEP} stopOpacity={0} />
+              </linearGradient>
+              <linearGradient id="cumStroke" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stopColor={TIFFANY_DEEP} />
+                <stop offset="100%" stopColor={TIFFANY_BRIGHT} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke={GRID} vertical={false} />
@@ -155,11 +161,11 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
             <Area
               type="monotone"
               dataKey="cumulative"
-              stroke={GOLD_BRIGHT}
+              stroke="url(#cumStroke)"
               strokeWidth={2.6}
               fill="url(#cumFill)"
-              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#000", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#000" }}
+              dot={{ r: 4, fill: TIFFANY_BRIGHT, stroke: "#000", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: TIFFANY_BRIGHT, stroke: "#000" }}
             />
             {stats.annotations.map((a) => {
               const point = [...stats.cumulativeSeries]
@@ -172,7 +178,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                   x={point.label}
                   y={a.cumulative}
                   r={3.5}
-                  fill={GOLD}
+                  fill={TIFFANY}
                   stroke="#000"
                   label={(props) => (
                     <AnnotationLabel
@@ -224,7 +230,7 @@ function AnnotationLabel({
       x={x}
       y={y - 14}
       textAnchor="middle"
-      fill={GOLD}
+      fill={TIFFANY}
       fontSize={10}
       fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
     >
@@ -249,13 +255,14 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
     <div className="panel p-6 sm:p-7">
       <SectionHead
         title="Daily Performance"
-        copy="Net units day by day — yellow above zero, red below."
+        copy="Net units day by day — Tiffany above zero, red below."
       />
       {stats.daily.length === 0 ? (
         <EmptyChart />
       ) : (
         <ChartFrame heightClass="h-[220px] sm:h-[260px]">
           <BarChart data={stats.daily}>
+            <BarGradients />
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -281,9 +288,12 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
                 />
               )}
             />
-            <Bar dataKey="units" radius={[3, 3, 0, 0]}>
+            <Bar dataKey="units" radius={[4, 4, 4, 4]}>
               {stats.daily.map((d) => (
-                <Cell key={d.date} fill={d.units >= 0 ? GOLD : RED} />
+                <Cell
+                  key={d.date}
+                  fill={d.units >= 0 ? "url(#barWin)" : "url(#barLoss)"}
+                />
               ))}
             </Bar>
           </BarChart>
@@ -302,6 +312,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
       ) : (
         <ChartFrame heightClass="h-[200px]">
           <BarChart data={stats.monthly}>
+            <BarGradients />
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -326,9 +337,12 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
                 />
               )}
             />
-            <Bar dataKey="units" radius={[3, 3, 0, 0]}>
+            <Bar dataKey="units" radius={[6, 6, 6, 6]}>
               {stats.monthly.map((m) => (
-                <Cell key={m.key} fill={m.units >= 0 ? GOLD : RED} />
+                <Cell
+                  key={m.key}
+                  fill={m.units >= 0 ? "url(#barWin)" : "url(#barLoss)"}
+                />
               ))}
             </Bar>
           </BarChart>
@@ -340,7 +354,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
 
 export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   const data = [
-    { name: "Wins", value: stats.winningDays, color: GOLD },
+    { name: "Wins", value: stats.winningDays, color: TIFFANY },
     { name: "Losses", value: stats.losingDays, color: RED },
   ].filter((d) => d.value > 0);
 
@@ -371,13 +385,13 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   formatter={(value) => [`${value} days`, ""]}
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
-                    background: "#1a1416",
-                    border: "1px solid rgba(212,175,105,0.35)",
+                    background: "#0b0e0f",
+                    border: "1px solid rgba(129,216,208,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
-                    color: "#f4f0ea",
+                    color: "#ffffff",
                   }}
-                  itemStyle={{ color: GOLD_BRIGHT }}
+                  itemStyle={{ color: TIFFANY_BRIGHT }}
                   labelStyle={{ color: MUTED }}
                 />
               </PieChart>
@@ -402,6 +416,21 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
         </span>
       </div>
     </div>
+  );
+}
+
+function BarGradients() {
+  return (
+    <defs>
+      <linearGradient id="barWin" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor={TIFFANY_BRIGHT} />
+        <stop offset="100%" stopColor={TIFFANY_DEEP} stopOpacity={0.75} />
+      </linearGradient>
+      <linearGradient id="barLoss" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stopColor={RED_DEEP} stopOpacity={0.75} />
+        <stop offset="100%" stopColor={RED} />
+      </linearGradient>
+    </defs>
   );
 }
 
