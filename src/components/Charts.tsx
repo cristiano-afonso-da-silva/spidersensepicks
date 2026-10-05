@@ -19,10 +19,10 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const TIFFANY = "#81d8d0";
-const TIFFANY_BRIGHT = "#a8ece5";
-const TIFFANY_DEEP = "#0abab5";
-const RED = "#e0457b";
+const TIFFANY = "#42fdfe";
+const TIFFANY_BRIGHT = "#8dfefe";
+const TIFFANY_DEEP = "#00c4cc";
+const RED = "#ef3b4f";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
@@ -52,11 +52,11 @@ function ChartTooltip({
 
 const tooltipWrapper = { outline: "none", zIndex: 20 } as const;
 const darkCursorBar = {
-  fill: "rgba(129, 216, 208, 0.08)",
+  fill: "rgba(66, 253, 254, 0.08)",
   stroke: "transparent",
 } as const;
 const darkCursorLine = {
-  stroke: "rgba(129, 216, 208, 0.5)",
+  stroke: "rgba(66, 253, 254, 0.5)",
   strokeWidth: 1,
   strokeDasharray: "4 4",
 } as const;
@@ -383,7 +383,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
                     background: "#0b0e0f",
-                    border: "1px solid rgba(129,216,208,0.3)",
+                    border: "1px solid rgba(66,253,254,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
                     color: "#ffffff",

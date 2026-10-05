@@ -8,12 +8,12 @@
   --surface-3: #1b2021;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
-  --red: #e0457b;
-  --red-soft: #f07aa3;
+  --red: #ef3b4f;
+  --red-soft: #ff7080;
   --muted: #94a3a8;
-  --win: #81d8d0;
-  --win-bright: #a8ece5;
-  --win-deep: #0abab5;
+  --win: #42fdfe;
+  --win-bright: #8dfefe;
+  --win-deep: #00c4cc;
 }
 
 @theme inline {
@@ -47,7 +47,7 @@ body {
   min-height: 100vh;
   color: var(--foreground);
   background:
-    radial-gradient(900px 520px at 12% -8%, rgba(10, 186, 181, 0.12), transparent 60%),
+    radial-gradient(900px 520px at 12% -8%, rgba(66, 253, 254, 0.08), transparent 60%),
     radial-gradient(800px 480px at 92% 4%, rgba(124, 92, 255, 0.09), transparent 60%),
     #000000;
   background-repeat: no-repeat;
@@ -55,7 +55,7 @@ body {
 }
 
 ::selection {
-  background: rgba(10, 186, 181, 0.35);
+  background: rgba(66, 253, 254, 0.35);
   color: #fff;
 }
 
@@ -68,7 +68,7 @@ body {
 .panel-soft {
   position: relative;
   background:
-    radial-gradient(120% 90% at 100% 0%, rgba(10, 186, 181, 0.08), transparent 55%),
+    radial-gradient(120% 90% at 100% 0%, rgba(66, 253, 254, 0.05), transparent 55%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.008)),
     var(--surface);
   border: 1px solid var(--line);
@@ -80,7 +80,7 @@ body {
 
 .panel-soft {
   background:
-    radial-gradient(90% 70% at 0% 0%, rgba(10, 186, 181, 0.14), transparent 60%),
+    radial-gradient(90% 70% at 0% 0%, rgba(66, 253, 254, 0.09), transparent 60%),
     radial-gradient(70% 60% at 100% 100%, rgba(124, 92, 255, 0.08), transparent 60%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)),
     var(--surface);
@@ -103,7 +103,7 @@ body {
 }
 
 .glow-teal {
-  --glow: rgba(10, 186, 181, 0.55);
+  --glow: rgba(66, 253, 254, 0.38);
 }
 
 .glow-violet {
@@ -119,7 +119,7 @@ body {
 }
 
 .glow-red {
-  --glow: rgba(224, 69, 123, 0.45);
+  --glow: rgba(239, 59, 79, 0.45);
 }
 
 .icon-chip {
@@ -135,7 +135,7 @@ body {
 
 .tile-win {
   background: var(--win);
-  color: #04201f;
+  color: #022b2c;
 }
 
 .tile-loss {
