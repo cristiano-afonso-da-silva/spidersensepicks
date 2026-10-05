@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Spider Sense Picks | Performance Report",
+  title: "Spider Sense Picks | Results Tracker",
   description:
     "Private performance dashboard for Spider Sense Picks — log daily picks, odds, units, and results.",
 };

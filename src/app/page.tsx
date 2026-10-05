@@ -21,7 +21,7 @@ function SiteHeader({ stats }: { stats: SeasonStats }) {
   return (
     <header className="pb-2 pt-4 sm:pb-4 sm:pt-6">
       <p className="text-xs font-bold uppercase tracking-[0.22em] text-win sm:text-[13px]">
-        Private Performance Report
+        Results Tracker
       </p>
       <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
         <div>
