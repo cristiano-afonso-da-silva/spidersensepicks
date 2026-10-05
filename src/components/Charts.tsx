@@ -19,9 +19,9 @@ import {
 import type { SeasonStats } from "@/lib/types";
 import { formatSigned } from "@/lib/stats";
 
-const TIFFANY = "#42fdfe";
-const TIFFANY_BRIGHT = "#8dfefe";
-const TIFFANY_DEEP = "#00c4cc";
+const GOLD = "#ffd60a";
+const GOLD_BRIGHT = "#ffe566";
+const GOLD_DEEP = "#f5b800";
 const RED = "#eb4669";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
@@ -52,11 +52,11 @@ function ChartTooltip({
 
 const tooltipWrapper = { outline: "none", zIndex: 20 } as const;
 const darkCursorBar = {
-  fill: "rgba(66, 253, 254, 0.08)",
+  fill: "rgba(255, 214, 10, 0.08)",
   stroke: "transparent",
 } as const;
 const darkCursorLine = {
-  stroke: "rgba(66, 253, 254, 0.5)",
+  stroke: "rgba(255, 214, 10, 0.5)",
   strokeWidth: 1,
   strokeDasharray: "4 4",
 } as const;
@@ -121,12 +121,12 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           >
             <defs>
               <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={TIFFANY_DEEP} stopOpacity={0.45} />
-                <stop offset="100%" stopColor={TIFFANY_DEEP} stopOpacity={0} />
+                <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity={0.45} />
+                <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity={0} />
               </linearGradient>
               <linearGradient id="cumStroke" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor={TIFFANY_DEEP} />
-                <stop offset="100%" stopColor={TIFFANY_BRIGHT} />
+                <stop offset="0%" stopColor={GOLD_DEEP} />
+                <stop offset="100%" stopColor={GOLD_BRIGHT} />
               </linearGradient>
             </defs>
             <CartesianGrid stroke={GRID} vertical={false} />
@@ -163,8 +163,8 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               stroke="url(#cumStroke)"
               strokeWidth={2.6}
               fill="url(#cumFill)"
-              dot={{ r: 4, fill: TIFFANY_BRIGHT, stroke: "#000", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: TIFFANY_BRIGHT, stroke: "#000" }}
+              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#000", strokeWidth: 2 }}
+              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#000" }}
             />
             {stats.annotations.map((a) => {
               const point = [...stats.cumulativeSeries]
@@ -181,7 +181,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                   x={point.label}
                   y={a.cumulative}
                   r={3.5}
-                  fill={TIFFANY}
+                  fill={GOLD}
                   stroke="#000"
                   label={(props) => (
                     <AnnotationLabel
@@ -237,7 +237,7 @@ function AnnotationLabel({
       x={x + dx}
       y={y - 14}
       textAnchor={anchor}
-      fill={TIFFANY}
+      fill={GOLD}
       fontSize={12}
       fontWeight={700}
     >
@@ -262,7 +262,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
     <div className="panel p-6 sm:p-7">
       <SectionHead
         title="Daily Performance"
-        copy="Net units day by day — Tiffany above zero, red below."
+        copy="Net units day by day — yellow above zero, red below."
       />
       {stats.daily.length === 0 ? (
         <EmptyChart />
@@ -298,7 +298,7 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
               {stats.daily.map((d) => (
                 <Cell
                   key={d.date}
-                  fill={d.units >= 0 ? TIFFANY : RED}
+                  fill={d.units >= 0 ? GOLD : RED}
                 />
               ))}
             </Bar>
@@ -346,7 +346,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
               {stats.monthly.map((m) => (
                 <Cell
                   key={m.key}
-                  fill={m.units >= 0 ? TIFFANY : RED}
+                  fill={m.units >= 0 ? GOLD : RED}
                 />
               ))}
             </Bar>
@@ -359,7 +359,7 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
 
 export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
   const data = [
-    { name: "Wins", value: stats.winningDays, color: TIFFANY },
+    { name: "Wins", value: stats.winningDays, color: GOLD },
     { name: "Losses", value: stats.losingDays, color: RED },
   ].filter((d) => d.value > 0);
 
@@ -391,12 +391,12 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
                   wrapperStyle={tooltipWrapper}
                   contentStyle={{
                     background: "#0b0e0f",
-                    border: "1px solid rgba(66,253,254,0.3)",
+                    border: "1px solid rgba(255,214,10,0.3)",
                     borderRadius: 8,
                     fontSize: 12,
                     color: "#ffffff",
                   }}
-                  itemStyle={{ color: TIFFANY_BRIGHT }}
+                  itemStyle={{ color: GOLD_BRIGHT }}
                   labelStyle={{ color: MUTED }}
                 />
               </PieChart>
