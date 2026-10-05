@@ -49,7 +49,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
       </div>
 
       {stats.bySport.length === 0 ? (
-        <p className="px-6 py-10 text-center text-[15px] text-muted">
+        <p className="px-6 py-10 text-center text-sm text-muted">
           No settled picks to analyze yet.
         </p>
       ) : (
@@ -82,10 +82,10 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                         {s.sport}
                       </span>
                     </td>
-                    <td className="px-3 py-3.5 font-semibold tabular-nums text-[15px] text-foreground">
+                    <td className="px-3 py-3.5 font-semibold tabular-nums text-sm text-foreground">
                       {s.picks}
                     </td>
-                    <td className="px-3 py-3.5 font-semibold tabular-nums text-[15px] text-muted">
+                    <td className="px-3 py-3.5 font-semibold tabular-nums text-sm text-muted">
                       {sportRecord}
                     </td>
                     <td className="px-3 py-3.5">
@@ -99,7 +99,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                           />
                         </div>
                         <span
-                          className={`font-semibold tabular-nums text-[15px] ${
+                          className={`font-semibold tabular-nums text-sm ${
                             s.winRate >= 50
                               ? "text-win-bright"
                               : "text-red-bright"
@@ -110,14 +110,14 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                       </div>
                     </td>
                     <td
-                      className={`px-3 py-3.5 text-right font-semibold tabular-nums text-[15px] ${
+                      className={`px-3 py-3.5 text-right font-semibold tabular-nums text-sm ${
                         s.units >= 0 ? "text-win-bright" : "text-red-bright"
                       }`}
                     >
                       {formatSigned(s.units)}u
                     </td>
                     <td
-                      className={`px-5 py-3.5 text-right font-semibold tabular-nums text-[15px] sm:px-7 ${
+                      className={`px-5 py-3.5 text-right font-semibold tabular-nums text-sm sm:px-7 ${
                         s.profitAt100 >= 0
                           ? "text-win-bright"
                           : "text-red-bright"
@@ -153,7 +153,7 @@ function SummaryCell({
         {label}
       </p>
       <p
-        className={`mt-2 font-bold text-[1.85rem] leading-none tracking-tight ${
+        className={`mt-2 font-bold text-[1.4rem] leading-none tracking-tight ${
           tone === "red" ? "text-red-bright" : "text-win-bright"
         }`}
       >

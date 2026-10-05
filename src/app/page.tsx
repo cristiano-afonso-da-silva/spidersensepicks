@@ -25,10 +25,10 @@ function SiteHeader({ stats }: { stats: SeasonStats }) {
       </p>
       <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
         <div>
-          <h1 className="text-[2.1rem] font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl">
+          <h1 className="text-[1.75rem] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[2.5rem]">
             Spider <span className="text-win">Sense</span> Picks
           </h1>
-          <p className="mt-3 max-w-xl text-[15px] font-medium leading-relaxed text-muted sm:text-base">
+          <p className="mt-2 max-w-xl text-sm font-medium leading-relaxed text-muted sm:text-[15px]">
             How sharp are the picks? Every pick logged and settled — wins,
             losses and pushes. Updated daily.
           </p>

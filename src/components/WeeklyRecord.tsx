@@ -85,7 +85,7 @@ export function WeeklyRecord({
 
       <div className="ledger-scroll max-h-[560px] overflow-y-auto">
         {days.length === 0 ? (
-          <p className="px-6 py-10 text-center text-[15px] text-muted">
+          <p className="px-6 py-10 text-center text-sm text-muted">
             No picks recorded yet.
           </p>
         ) : (
@@ -143,7 +143,7 @@ export function WeeklyRecord({
                     >
                       {d.result}
                     </span>
-                    <span className="ml-auto flex items-center gap-4 font-semibold tabular-nums text-[15px] sm:gap-8">
+                    <span className="ml-auto flex items-center gap-4 font-semibold tabular-nums text-sm sm:gap-8">
                       <span
                         className={`min-w-[4.25rem] text-right ${
                           d.units >= 0 ? "text-win-bright" : "text-red-bright"
@@ -176,7 +176,7 @@ export function WeeklyRecord({
                               key={p.id}
                               className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:items-center"
                             >
-                              <p className="text-[15px] text-foreground">{p.pick}</p>
+                              <p className="text-sm text-foreground">{p.pick}</p>
                               <span className="font-semibold tabular-nums text-[13px] text-muted sm:justify-self-end">
                                 {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}u
                               </span>
@@ -199,7 +199,7 @@ export function WeeklyRecord({
                                 {p.result}
                               </span>
                               <span
-                                className={`justify-self-end font-semibold tabular-nums text-[15px] ${
+                                className={`justify-self-end font-semibold tabular-nums text-sm ${
                                   pl === null
                                     ? "text-muted"
                                     : pl >= 0

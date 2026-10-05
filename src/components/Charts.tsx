@@ -89,7 +89,7 @@ function ChartFrame({
           {children}
         </ResponsiveContainer>
       ) : (
-        <div className="flex h-full items-center justify-center text-[15px] text-muted">
+        <div className="flex h-full items-center justify-center text-sm text-muted">
           Loading chart…
         </div>
       )}
@@ -110,7 +110,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
         copy="Running total of units won and lost, with defining moments marked along the way."
       />
       {data.length === 0 ? (
-        <div className="flex h-[280px] items-center justify-center text-[15px] text-muted sm:h-[340px]">
+        <div className="flex h-[280px] items-center justify-center text-sm text-muted sm:h-[340px]">
           No chart data yet.
         </div>
       ) : (
@@ -171,6 +171,10 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                 .reverse()
                 .find((c) => c.date === a.date && c.label !== "Open");
               if (!point) return null;
+              const index = stats.cumulativeSeries.indexOf(point);
+              const total = stats.cumulativeSeries.length;
+              const anchor =
+                index >= total - 3 ? "end" : index <= 2 ? "start" : "middle";
               return (
                 <ReferenceDot
                   key={`peak-${a.date}`}
@@ -183,6 +187,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                     <AnnotationLabel
                       viewBox={props.viewBox as { x?: number; y?: number }}
                       text={a.label}
+                      anchor={anchor}
                     />
                   )}
                 />
@@ -217,18 +222,21 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
 function AnnotationLabel({
   text,
   viewBox,
+  anchor = "middle",
 }: {
   text: string;
   viewBox?: { x?: number; y?: number; width?: number; height?: number };
+  anchor?: "start" | "middle" | "end";
 }) {
   const x = viewBox?.x ?? 0;
   const y = viewBox?.y ?? 0;
+  const dx = anchor === "end" ? 6 : anchor === "start" ? -6 : 0;
 
   return (
     <text
-      x={x}
+      x={x + dx}
       y={y - 14}
-      textAnchor="middle"
+      textAnchor={anchor}
       fill={TIFFANY}
       fontSize={12}
       fontWeight={700}
@@ -242,7 +250,7 @@ function MetricLine({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <p className="text-xs uppercase tracking-[0.18em] text-muted">{label}</p>
-      <p className="mt-1 font-semibold tabular-nums text-[15px] text-white">
+      <p className="mt-1 font-semibold tabular-nums text-sm text-white">
         {value}
       </p>
     </div>
@@ -394,7 +402,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
               </PieChart>
             </ChartFrame>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <p className="font-bold text-3xl text-win-bright">
+              <p className="text-2xl font-bold text-win-bright">
                 {stats.dayWinRate.toFixed(1)}%
               </p>
               <p className="text-xs uppercase tracking-[0.16em] text-muted">
@@ -418,7 +426,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
 
 function EmptyChart() {
   return (
-    <div className="flex h-[200px] items-center justify-center text-[15px] text-muted">
+    <div className="flex h-[200px] items-center justify-center text-sm text-muted">
       No chart data yet.
     </div>
   );

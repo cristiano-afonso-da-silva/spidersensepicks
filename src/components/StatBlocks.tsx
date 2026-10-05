@@ -57,7 +57,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
             <span className="hidden sm:inline">{c.label}</span>
           </p>
           <p
-            className={`mt-2 font-bold text-[clamp(0.95rem,4.1vw,1.3rem)] leading-none tracking-tight sm:mt-2 sm:text-[2.35rem] ${
+            className={`mt-2 font-bold text-[clamp(0.9rem,3.9vw,1.15rem)] leading-none tracking-tight sm:mt-2 sm:text-[1.85rem] ${
               c.tone === "win"
                 ? "text-win-bright"
                 : c.tone === "red"
@@ -181,7 +181,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
             {item.label}
           </p>
           <p
-            className={`mt-3 font-bold text-[1.95rem] leading-none ${
+            className={`mt-3 font-bold text-[1.5rem] leading-none ${
               item.tone === "red" ? "text-red-bright" : "text-win-bright"
             }`}
           >

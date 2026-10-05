@@ -117,7 +117,7 @@ export function PerformanceCalendar({
             >
               ‹
             </button>
-            <p className="font-bold text-lg text-white">
+            <p className="text-base font-bold text-white">
               {format(cursor, "MMMM yyyy")}
             </p>
             <button
@@ -214,7 +214,7 @@ export function PerformanceCalendar({
               >
                 ‹
               </button>
-              <p className="font-bold text-xl text-white">
+              <p className="text-lg font-bold text-white">
                 {format(cursor, "MMMM yyyy")}
               </p>
               <button
@@ -276,7 +276,7 @@ export function PerformanceCalendar({
                         <span className="absolute right-2 top-2 text-[13px] opacity-70">
                           {format(day, "d")}
                         </span>
-                        <p className="font-semibold tabular-nums text-[15px] font-bold">
+                        <p className="text-sm font-bold tabular-nums">
                           {formatSigned(stat.units)}u
                         </p>
                         <p className="text-xs opacity-80">
