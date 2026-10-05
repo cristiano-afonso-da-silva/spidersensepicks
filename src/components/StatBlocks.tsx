@@ -10,7 +10,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "units" as const,
       iconTone: "muted" as const,
       tone: stats.netUnits >= 0 ? ("win" as const) : ("red" as const),
-      glow: stats.netUnits >= 0 ? "glow-teal" : "glow-red",
+      glow: stats.netUnits >= 0 ? "glow-gold" : "glow-red",
     },
     {
       label: "Winning Days",
@@ -19,7 +19,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "trophy" as const,
       iconTone: "win" as const,
       tone: "win" as const,
-      glow: "glow-violet",
+      glow: "glow-aqua",
     },
     {
       label: "Win Rate",
@@ -28,7 +28,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "target" as const,
       iconTone: "win" as const,
       tone: "win" as const,
-      glow: "glow-mint",
+      glow: "glow-red",
     },
     {
       label: "Profit at $1,000/Unit",
@@ -37,7 +37,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       icon: "cash" as const,
       iconTone: "win" as const,
       tone: stats.profitAt100 >= 0 ? ("win" as const) : ("red" as const),
-      glow: stats.profitAt100 >= 0 ? "glow-indigo" : "glow-red",
+      glow: stats.profitAt100 >= 0 ? "glow-gold" : "glow-red",
     },
   ];
 
@@ -173,7 +173,7 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
         <div
           key={item.label}
           className={`glow-card ${
-            item.tone === "red" ? "glow-red" : ["glow-teal", "glow-mint", "", "glow-violet"][i]
+            item.tone === "red" ? "glow-red" : ["glow-gold", "glow-aqua", "", "glow-gold"][i]
           } animate-rise px-5 py-5`}
           style={{ animationDelay: `${i * 70}ms` }}
         >
