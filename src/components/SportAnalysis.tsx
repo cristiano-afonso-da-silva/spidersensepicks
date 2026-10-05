@@ -49,20 +49,20 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
       </div>
 
       {stats.bySport.length === 0 ? (
-        <p className="px-6 py-10 text-center text-sm text-muted">
+        <p className="px-6 py-10 text-center text-[15px] text-muted">
           No settled picks to analyze yet.
         </p>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full min-w-[640px] border-collapse text-left">
             <thead>
-              <tr className="border-b border-border text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
-                <th className="px-5 py-3 font-medium sm:px-7">Sport</th>
-                <th className="px-3 py-3 font-medium">Picks</th>
-                <th className="px-3 py-3 font-medium">Record</th>
-                <th className="px-3 py-3 font-medium">Win Rate</th>
-                <th className="px-3 py-3 text-right font-medium">Profit</th>
-                <th className="px-5 py-3 text-right font-medium sm:px-7">
+              <tr className="border-b border-border text-xs font-semibold uppercase tracking-[0.16em] text-muted">
+                <th className="px-5 py-3 font-semibold sm:px-7">Sport</th>
+                <th className="px-3 py-3 font-semibold">Picks</th>
+                <th className="px-3 py-3 font-semibold">Record</th>
+                <th className="px-3 py-3 font-semibold">Win Rate</th>
+                <th className="px-3 py-3 text-right font-semibold">Profit</th>
+                <th className="px-5 py-3 text-right font-semibold sm:px-7">
                   At $1k/u
                 </th>
               </tr>
@@ -78,14 +78,14 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                     className="border-t border-border/80 transition hover:bg-white/[0.02]"
                   >
                     <td className="px-5 py-3.5 sm:px-7">
-                      <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
+                      <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-muted">
                         {s.sport}
                       </span>
                     </td>
-                    <td className="px-3 py-3.5 font-[family-name:var(--font-mono)] text-sm text-foreground">
+                    <td className="px-3 py-3.5 font-semibold tabular-nums text-[15px] text-foreground">
                       {s.picks}
                     </td>
-                    <td className="px-3 py-3.5 font-[family-name:var(--font-mono)] text-sm text-muted">
+                    <td className="px-3 py-3.5 font-semibold tabular-nums text-[15px] text-muted">
                       {sportRecord}
                     </td>
                     <td className="px-3 py-3.5">
@@ -99,7 +99,7 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                           />
                         </div>
                         <span
-                          className={`font-[family-name:var(--font-mono)] text-sm ${
+                          className={`font-semibold tabular-nums text-[15px] ${
                             s.winRate >= 50
                               ? "text-win-bright"
                               : "text-red-bright"
@@ -110,14 +110,14 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
                       </div>
                     </td>
                     <td
-                      className={`px-3 py-3.5 text-right font-[family-name:var(--font-mono)] text-sm ${
+                      className={`px-3 py-3.5 text-right font-semibold tabular-nums text-[15px] ${
                         s.units >= 0 ? "text-win-bright" : "text-red-bright"
                       }`}
                     >
                       {formatSigned(s.units)}u
                     </td>
                     <td
-                      className={`px-5 py-3.5 text-right font-[family-name:var(--font-mono)] text-sm sm:px-7 ${
+                      className={`px-5 py-3.5 text-right font-semibold tabular-nums text-[15px] sm:px-7 ${
                         s.profitAt100 >= 0
                           ? "text-win-bright"
                           : "text-red-bright"
@@ -149,17 +149,17 @@ function SummaryCell({
 }) {
   return (
     <div className="bg-surface-2 px-5 py-5 sm:px-7">
-      <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-muted">
+      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted">
         {label}
       </p>
       <p
-        className={`mt-2 font-[family-name:var(--font-display)] text-[1.85rem] leading-none tracking-tight ${
+        className={`mt-2 font-bold text-[1.85rem] leading-none tracking-tight ${
           tone === "red" ? "text-red-bright" : "text-win-bright"
         }`}
       >
         {value}
       </p>
-      <p className="mt-2 text-xs text-muted">{foot}</p>
+      <p className="mt-2 text-[13px] text-muted">{foot}</p>
     </div>
   );
 }

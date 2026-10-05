@@ -85,7 +85,7 @@ export function WeeklyRecord({
 
       <div className="ledger-scroll max-h-[560px] overflow-y-auto">
         {days.length === 0 ? (
-          <p className="px-6 py-10 text-center text-sm text-muted">
+          <p className="px-6 py-10 text-center text-[15px] text-muted">
             No picks recorded yet.
           </p>
         ) : (
@@ -95,17 +95,17 @@ export function WeeklyRecord({
               role="row"
             >
               <span className="w-4 shrink-0" aria-hidden />
-              <span className="min-w-[3.5rem] text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+              <span className="min-w-[3.5rem] text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                 Date
               </span>
-              <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+              <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                 Result
               </span>
               <span className="ml-auto flex items-center gap-4 sm:gap-8">
-                <span className="min-w-[4.25rem] text-right text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                <span className="min-w-[4.25rem] text-right text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                   Day
                 </span>
-                <span className="min-w-[4.5rem] text-right text-[10px] font-medium uppercase tracking-[0.16em] text-muted">
+                <span className="min-w-[4.5rem] text-right text-xs font-semibold uppercase tracking-[0.16em] text-muted">
                   Total
                 </span>
               </span>
@@ -129,11 +129,11 @@ export function WeeklyRecord({
                     >
                       ▸
                     </span>
-                    <span className="min-w-[3.5rem] font-[family-name:var(--font-mono)] text-foreground">
+                    <span className="min-w-[3.5rem] font-semibold tabular-nums text-foreground">
                       {d.label}
                     </span>
                     <span
-                      className={`rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wide ${
+                      className={`rounded-full px-2.5 py-0.5 text-xs font-bold tracking-wide ${
                         d.result === "WIN"
                           ? "tile-win"
                           : d.result === "LOSS"
@@ -143,7 +143,7 @@ export function WeeklyRecord({
                     >
                       {d.result}
                     </span>
-                    <span className="ml-auto flex items-center gap-4 font-[family-name:var(--font-mono)] text-sm sm:gap-8">
+                    <span className="ml-auto flex items-center gap-4 font-semibold tabular-nums text-[15px] sm:gap-8">
                       <span
                         className={`min-w-[4.25rem] text-right ${
                           d.units >= 0 ? "text-win-bright" : "text-red-bright"
@@ -176,19 +176,19 @@ export function WeeklyRecord({
                               key={p.id}
                               className="grid grid-cols-[1fr_auto] gap-x-3 gap-y-2 rounded-lg border border-border/70 bg-surface px-3 py-2.5 sm:grid-cols-[minmax(0,1fr)_auto_auto_auto_auto] sm:items-center"
                             >
-                              <p className="text-sm text-foreground">{p.pick}</p>
-                              <span className="font-[family-name:var(--font-mono)] text-xs text-muted sm:justify-self-end">
+                              <p className="text-[15px] text-foreground">{p.pick}</p>
+                              <span className="font-semibold tabular-nums text-[13px] text-muted sm:justify-self-end">
                                 {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}u
                               </span>
                               {p.sport ? (
-                                <span className="justify-self-end rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted">
+                                <span className="justify-self-end rounded-full bg-white/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-muted">
                                   {p.sport}
                                 </span>
                               ) : (
                                 <span className="hidden sm:block" />
                               )}
                               <span
-                                className={`justify-self-end rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ${
+                                className={`justify-self-end rounded-full px-2 py-0.5 text-xs font-bold uppercase ${
                                   p.result === "win"
                                     ? "tile-win"
                                     : p.result === "loss"
@@ -199,7 +199,7 @@ export function WeeklyRecord({
                                 {p.result}
                               </span>
                               <span
-                                className={`justify-self-end font-[family-name:var(--font-mono)] text-sm ${
+                                className={`justify-self-end font-semibold tabular-nums text-[15px] ${
                                   pl === null
                                     ? "text-muted"
                                     : pl >= 0

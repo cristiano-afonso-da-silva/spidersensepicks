@@ -52,12 +52,12 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
           <span className="icon-chip mb-4 hidden sm:inline-flex">
             <StatIcon kind={c.icon} tone={c.iconTone} />
           </span>
-          <p className="text-[8px] font-medium uppercase leading-tight tracking-[0.06em] text-muted sm:text-[11px] sm:tracking-[0.18em]">
+          <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.06em] text-muted sm:text-[13px] sm:tracking-[0.18em]">
             <span className="sm:hidden">{c.shortLabel}</span>
             <span className="hidden sm:inline">{c.label}</span>
           </p>
           <p
-            className={`mt-2 font-[family-name:var(--font-display)] text-[clamp(0.85rem,3.6vw,1.2rem)] leading-none tracking-tight sm:mt-2 sm:text-[2.35rem] ${
+            className={`mt-2 font-bold text-[clamp(0.95rem,4.1vw,1.3rem)] leading-none tracking-tight sm:mt-2 sm:text-[2.35rem] ${
               c.tone === "win"
                 ? "text-win-bright"
                 : c.tone === "red"
@@ -177,18 +177,18 @@ export function HighlightStats({ stats }: { stats: SeasonStats }) {
           } animate-rise px-5 py-5`}
           style={{ animationDelay: `${i * 70}ms` }}
         >
-          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-muted">
+          <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-muted">
             {item.label}
           </p>
           <p
-            className={`mt-3 font-[family-name:var(--font-display)] text-[1.95rem] leading-none ${
+            className={`mt-3 font-bold text-[1.95rem] leading-none ${
               item.tone === "red" ? "text-red-bright" : "text-win-bright"
             }`}
           >
             {item.value}
           </p>
           {item.sub ? (
-            <p className="mt-3 font-[family-name:var(--font-mono)] text-xs text-muted">
+            <p className="mt-3 font-semibold tabular-nums text-[13px] text-muted">
               {item.sub}
             </p>
           ) : null}

@@ -22,7 +22,7 @@ import { formatSigned } from "@/lib/stats";
 const TIFFANY = "#42fdfe";
 const TIFFANY_BRIGHT = "#8dfefe";
 const TIFFANY_DEEP = "#00c4cc";
-const RED = "#ef3b4f";
+const RED = "#eb4669";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
@@ -40,9 +40,9 @@ function ChartTooltip({
   if (!active || !payload?.length) return null;
   const value = typeof payload[0].value === "number" ? payload[0].value : 0;
   return (
-    <div className="rounded-lg border border-border bg-surface px-3 py-2 text-xs shadow-xl">
+    <div className="rounded-lg border border-border bg-surface px-3 py-2 text-[13px] shadow-xl">
       <p className="text-muted">{label}</p>
-      <p className="mt-0.5 font-medium text-win-bright">
+      <p className="mt-0.5 font-semibold text-win-bright">
         {formatSigned(value)}
         {suffix}
       </p>
@@ -89,7 +89,7 @@ function ChartFrame({
           {children}
         </ResponsiveContainer>
       ) : (
-        <div className="flex h-full items-center justify-center text-sm text-muted">
+        <div className="flex h-full items-center justify-center text-[15px] text-muted">
           Loading chart…
         </div>
       )}
@@ -110,7 +110,7 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
         copy="Running total of units won and lost, with defining moments marked along the way."
       />
       {data.length === 0 ? (
-        <div className="flex h-[280px] items-center justify-center text-sm text-muted sm:h-[340px]">
+        <div className="flex h-[280px] items-center justify-center text-[15px] text-muted sm:h-[340px]">
           No chart data yet.
         </div>
       ) : (
@@ -132,14 +132,14 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
               interval="preserveStartEnd"
             />
             <YAxis
               tickFormatter={(v) => `${v > 0 ? "+" : ""}${v}u`}
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
               width={48}
@@ -230,8 +230,8 @@ function AnnotationLabel({
       y={y - 14}
       textAnchor="middle"
       fill={TIFFANY}
-      fontSize={10}
-      fontFamily="ui-monospace, SFMono-Regular, Menlo, monospace"
+      fontSize={12}
+      fontWeight={700}
     >
       {text}
     </text>
@@ -241,8 +241,8 @@ function AnnotationLabel({
 function MetricLine({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-[0.18em] text-muted">{label}</p>
-      <p className="mt-1 font-[family-name:var(--font-mono)] text-sm text-white">
+      <p className="text-xs uppercase tracking-[0.18em] text-muted">{label}</p>
+      <p className="mt-1 font-semibold tabular-nums text-[15px] text-white">
         {value}
       </p>
     </div>
@@ -264,13 +264,13 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
               interval="preserveStartEnd"
             />
             <YAxis
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
               width={36}
@@ -313,12 +313,12 @@ export function MonthlyBars({ stats }: { stats: SeasonStats }) {
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
             />
             <YAxis
-              tick={{ fill: MUTED, fontSize: 11 }}
+              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
               axisLine={false}
               tickLine={false}
               width={36}
@@ -394,17 +394,17 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
               </PieChart>
             </ChartFrame>
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-              <p className="font-[family-name:var(--font-display)] text-3xl text-win-bright">
+              <p className="font-bold text-3xl text-win-bright">
                 {stats.dayWinRate.toFixed(1)}%
               </p>
-              <p className="text-[10px] uppercase tracking-[0.16em] text-muted">
+              <p className="text-xs uppercase tracking-[0.16em] text-muted">
                 Win rate
               </p>
             </div>
           </>
         )}
       </div>
-      <div className="mt-1 flex justify-center gap-5 text-xs text-muted">
+      <div className="mt-1 flex justify-center gap-5 text-[13px] text-muted">
         <span className="flex items-center gap-2">
           <span className="h-2 w-2 rounded-full bg-win" /> Wins {stats.winningDays}
         </span>
@@ -418,7 +418,7 @@ export function WinsLossesDonut({ stats }: { stats: SeasonStats }) {
 
 function EmptyChart() {
   return (
-    <div className="flex h-[200px] items-center justify-center text-sm text-muted">
+    <div className="flex h-[200px] items-center justify-center text-[15px] text-muted">
       No chart data yet.
     </div>
   );

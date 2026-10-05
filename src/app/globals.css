@@ -8,9 +8,9 @@
   --surface-3: #1b2021;
   --line: rgba(255, 255, 255, 0.08);
   --line-strong: rgba(255, 255, 255, 0.14);
-  --red: #ef3b4f;
-  --red-soft: #ff7080;
-  --muted: #94a3a8;
+  --red: #eb4669;
+  --red-soft: #ff7d96;
+  --muted: #a7b3b7;
   --win: #42fdfe;
   --win-bright: #8dfefe;
   --win-deep: #00c4cc;
@@ -51,7 +51,9 @@ body {
     radial-gradient(800px 480px at 92% 4%, rgba(124, 92, 255, 0.09), transparent 60%),
     #000000;
   background-repeat: no-repeat;
-  font-family: var(--font-body), "EB Garamond", Georgia, serif;
+  font-family: var(--font-body), "Inter", system-ui, sans-serif;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
 }
 
 ::selection {
@@ -119,7 +121,7 @@ body {
 }
 
 .glow-red {
-  --glow: rgba(239, 59, 79, 0.45);
+  --glow: rgba(235, 70, 105, 0.45);
 }
 
 .icon-chip {
@@ -149,26 +151,26 @@ body {
 }
 
 .section-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.26em;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .section-title {
   margin: 0.4rem 0 0;
-  font-family: var(--font-display), "EB Garamond", Georgia, serif;
-  font-size: clamp(1.75rem, 3.2vw, 2.25rem);
-  font-weight: 600;
+  font-family: var(--font-display), "Inter", system-ui, sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 700;
   color: var(--foreground);
-  letter-spacing: 0.015em;
+  letter-spacing: -0.02em;
 }
 
 .section-copy {
   margin: 0.45rem 0 0;
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 1rem;
   line-height: 1.5;
   max-width: 38rem;
 }
@@ -193,7 +195,8 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 0.5rem;
-  font-size: 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--muted);

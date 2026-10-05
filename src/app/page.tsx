@@ -19,21 +19,26 @@ function SiteHeader({ stats }: { stats: SeasonStats }) {
     : null;
 
   return (
-    <header className="flex flex-col items-center gap-1.5 border-b border-border pb-4 text-center sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:pb-5 sm:text-left">
-      <div>
-        <p className="font-[family-name:var(--font-display)] text-xl font-semibold uppercase tracking-[0.14em] text-white sm:text-2xl">
-          Spider <span className="text-win">Sense</span> Picks
-        </p>
-        <p className="mt-1 text-xs leading-snug text-muted sm:text-sm">
-          Every pick logged and settled — wins, losses and pushes. Updated
-          daily.
-        </p>
+    <header className="pb-2 pt-4 sm:pb-4 sm:pt-6">
+      <p className="text-xs font-bold uppercase tracking-[0.22em] text-win sm:text-[13px]">
+        Private Performance Report
+      </p>
+      <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between sm:gap-8">
+        <div>
+          <h1 className="text-[2.1rem] font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl">
+            Spider <span className="text-win">Sense</span> Picks
+          </h1>
+          <p className="mt-3 max-w-xl text-[15px] font-medium leading-relaxed text-muted sm:text-base">
+            How sharp are the picks? Every pick logged and settled — wins,
+            losses and pushes. Updated daily.
+          </p>
+        </div>
+        {through ? (
+          <p className="shrink-0 text-[13px] font-semibold tabular-nums text-muted">
+            Through {through} · {stats.settledPicks} picks
+          </p>
+        ) : null}
       </div>
-      {through ? (
-        <p className="font-[family-name:var(--font-mono)] text-[10px] uppercase tracking-[0.14em] text-muted sm:text-[11px]">
-          Through {through} · {stats.settledPicks} picks
-        </p>
-      ) : null}
     </header>
   );
 }

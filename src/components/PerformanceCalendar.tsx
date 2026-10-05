@@ -117,7 +117,7 @@ export function PerformanceCalendar({
             >
               ‹
             </button>
-            <p className="font-[family-name:var(--font-display)] text-lg text-white">
+            <p className="font-bold text-lg text-white">
               {format(cursor, "MMMM yyyy")}
             </p>
             <button
@@ -134,7 +134,7 @@ export function PerformanceCalendar({
             {WEEKDAYS_MOBILE.map((d) => (
               <div
                 key={d}
-                className="text-center text-[9px] font-medium tracking-wide text-muted"
+                className="text-center text-[11px] font-semibold tracking-wide text-muted"
               >
                 {d}
               </div>
@@ -163,11 +163,11 @@ export function PerformanceCalendar({
                         key={key}
                         className="tile-empty relative flex aspect-square flex-col items-center justify-center rounded-xl"
                       >
-                        <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] text-muted">
+                        <span className="absolute left-1.5 top-1 flex items-center gap-0.5 text-[10px] font-semibold text-muted">
                           <CalendarIcon className="h-2 w-2" />
                           {format(day, "d")}
                         </span>
-                        <span className="text-xs text-muted">—</span>
+                        <span className="mt-3 text-[13px] text-muted">—</span>
                       </div>
                     );
                   }
@@ -185,11 +185,11 @@ export function PerformanceCalendar({
                             : "tile-empty text-muted"
                       }`}
                     >
-                      <span className="absolute left-1 top-1 flex items-center gap-0.5 text-[9px] opacity-80">
+                      <span className="absolute left-1.5 top-1 flex items-center gap-0.5 text-[10px] font-semibold opacity-80">
                         <CalendarIcon className="h-2 w-2" />
                         {format(day, "d")}
                       </span>
-                      <p className="font-[family-name:var(--font-mono)] text-[0.65rem] font-semibold leading-none">
+                      <p className="mt-3 text-[0.78rem] font-bold tabular-nums leading-none">
                         {formatSigned(stat.units)}u
                       </p>
                     </div>
@@ -214,7 +214,7 @@ export function PerformanceCalendar({
               >
                 ‹
               </button>
-              <p className="font-[family-name:var(--font-display)] text-xl text-white">
+              <p className="font-bold text-xl text-white">
                 {format(cursor, "MMMM yyyy")}
               </p>
               <button
@@ -231,7 +231,7 @@ export function PerformanceCalendar({
               {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
                 <div
                   key={d}
-                  className="text-center text-[10px] font-medium uppercase tracking-wider text-muted"
+                  className="text-center text-xs font-semibold uppercase tracking-wider text-muted"
                 >
                   {d}
                 </div>
@@ -255,7 +255,7 @@ export function PerformanceCalendar({
                           key={key}
                           className="tile-empty relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2"
                         >
-                          <span className="absolute right-2 top-2 text-[11px] text-muted">
+                          <span className="absolute right-2 top-2 text-[13px] text-muted">
                             {format(day, "d")}
                           </span>
                         </div>
@@ -273,13 +273,13 @@ export function PerformanceCalendar({
                               : "tile-empty text-muted"
                         }`}
                       >
-                        <span className="absolute right-2 top-2 text-[11px] opacity-70">
+                        <span className="absolute right-2 top-2 text-[13px] opacity-70">
                           {format(day, "d")}
                         </span>
-                        <p className="font-[family-name:var(--font-mono)] text-sm font-semibold">
+                        <p className="font-semibold tabular-nums text-[15px] font-bold">
                           {formatSigned(stat.units)}u
                         </p>
-                        <p className="text-[10px] opacity-80">
+                        <p className="text-xs opacity-80">
                           {stat.picks}p · {stat.winRate.toFixed(0)}%
                         </p>
                       </div>
