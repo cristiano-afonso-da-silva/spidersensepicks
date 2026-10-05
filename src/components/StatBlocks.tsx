@@ -26,7 +26,7 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
       shortLabel: "Win Rate",
       value: `${stats.dayWinRate.toFixed(1)}%`,
       icon: "target" as const,
-      iconTone: "muted" as const,
+      iconTone: "win" as const,
       tone: "win" as const,
       glow: "glow-mint",
     },
@@ -113,7 +113,7 @@ function StatIcon({
   if (kind === "target") {
     return (
       <svg className={common} viewBox="0 0 24 24" fill="none" aria-hidden>
-        <circle cx="12" cy="12" r="7" stroke="var(--red)" strokeWidth="1.5" />
+        <circle cx="12" cy="12" r="7" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="12" cy="12" r="3.5" stroke="currentColor" strokeWidth="1.5" />
         <circle cx="12" cy="12" r="1.2" fill="currentColor" />
       </svg>
