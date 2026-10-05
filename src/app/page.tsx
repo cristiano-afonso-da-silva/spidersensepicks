@@ -14,8 +14,8 @@ import { computeStats } from "@/lib/stats";
 import type { SeasonStats } from "@/lib/types";
 
 function SiteHeader({ stats }: { stats: SeasonStats }) {
-  const through = stats.seasonEnd
-    ? format(parseISO(stats.seasonEnd), "MMM d, yyyy")
+  const since = stats.seasonStart
+    ? format(parseISO(stats.seasonStart), "MMM d, yyyy")
     : null;
 
   return (
@@ -33,9 +33,11 @@ function SiteHeader({ stats }: { stats: SeasonStats }) {
             losses and pushes. Updated daily.
           </p>
         </div>
-        {through ? (
+        {since ? (
           <p className="shrink-0 text-[13px] font-semibold tabular-nums text-muted">
-            Through {through} · {stats.settledPicks} picks
+            Since {since} ·{" "}
+            <span className="font-bold text-win">{stats.settledPicks}</span>{" "}
+            picks
           </p>
         ) : null}
       </div>
