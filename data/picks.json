@@ -2218,5 +2218,75 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-cyprus-ml",
+    "date": "2026-10-05",
+    "pick": "Cyprus ML",
+    "sport": "Soccer",
+    "odds": -175,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-parlay",
+    "date": "2026-10-05",
+    "pick": "2 Leg Parlay: Italy ML / Sweden Draw No Bet",
+    "sport": "Soccer",
+    "odds": -134,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-guardians-ml",
+    "date": "2026-10-05",
+    "pick": "Guardians ML",
+    "sport": "MLB",
+    "odds": -152,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-bijan-rush",
+    "date": "2026-10-05",
+    "pick": "Bijan Robinson Over 87.5 Rushing Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-juwan-johnson-rec",
+    "date": "2026-10-05",
+    "pick": "Juwan Johnson Over 44.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-olave-rec",
+    "date": "2026-10-05",
+    "pick": "Chris Olave 80+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -138,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-05-vele-rec",
+    "date": "2026-10-05",
+    "pick": "D. Vele Over 44.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
   }
 ]
