@@ -2288,5 +2288,55 @@
     "units": 2,
     "result": "win",
     "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-06-dodgers-ml",
+    "date": "2026-10-06",
+    "pick": "Dodgers ML",
+    "sport": "MLB",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-06-dodgers-braves-nrfi",
+    "date": "2026-10-06",
+    "pick": "Dodgers @ Braves No Run 1st Inning",
+    "sport": "MLB",
+    "odds": -180,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-06-sabres-ml",
+    "date": "2026-10-06",
+    "pick": "Sabres ML",
+    "sport": "NHL",
+    "odds": -105,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-06-usa-canada-over",
+    "date": "2026-10-06",
+    "pick": "USA @ Canada Over 2.5 Total Goals",
+    "sport": "Soccer",
+    "odds": -168,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-06-padres-ml",
+    "date": "2026-10-06",
+    "pick": "Padres ML",
+    "sport": "MLB",
+    "odds": -136,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
