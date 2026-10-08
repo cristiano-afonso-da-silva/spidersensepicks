@@ -2338,5 +2338,65 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-whitesox-guardians-over",
+    "date": "2026-10-07",
+    "pick": "White Sox @ Guardians Over 7.5",
+    "sport": "MLB",
+    "odds": -114,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-glasnow-ks",
+    "date": "2026-10-07",
+    "pick": "Tyler Glasnow Over 6.5 Strikeouts",
+    "sport": "MLB",
+    "odds": 100,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-rays-ml",
+    "date": "2026-10-07",
+    "pick": "Tampa Rays ML",
+    "sport": "MLB",
+    "odds": 142,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-padres-ml",
+    "date": "2026-10-07",
+    "pick": "San Diego Padres ML",
+    "sport": "MLB",
+    "odds": -110,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-new-mexico-state",
+    "date": "2026-10-07",
+    "pick": "New Mexico State +7.5",
+    "sport": "NCAAF",
+    "odds": -140,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-07-ionescu-points",
+    "date": "2026-10-07",
+    "pick": "Sabrina Ionescu Over 15.5 Points",
+    "sport": "Basketball",
+    "odds": -108,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
