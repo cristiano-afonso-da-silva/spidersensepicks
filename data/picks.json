@@ -2398,5 +2398,75 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-lamb-receptions",
+    "date": "2026-10-08",
+    "pick": "CeeDee Lamb Over 5.5 Receptions",
+    "sport": "NFL",
+    "odds": -200,
+    "units": 3,
+    "result": "push",
+    "notes": "3 Unit Play · Premium · Cashed out 2.5u"
+  },
+  {
+    "id": "2026-10-08-otton-rec",
+    "date": "2026-10-08",
+    "pick": "Cade Otton 25+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -166,
+    "units": 4,
+    "result": "win",
+    "notes": "4 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-jalon-daniels-rush",
+    "date": "2026-10-08",
+    "pick": "Jalon Daniels Over 43.5 Rushing Yards",
+    "sport": "NCAAF",
+    "odds": -113,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-bucky-irving-attempts",
+    "date": "2026-10-08",
+    "pick": "Bucky Irving Over 13.5 Rush Attempts",
+    "sport": "NFL",
+    "odds": -108,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-guardians-ml",
+    "date": "2026-10-08",
+    "pick": "Guardians ML",
+    "sport": "MLB",
+    "odds": -116,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-vgk-leafs-over",
+    "date": "2026-10-08",
+    "pick": "Golden Knights @ Maple Leafs Over 5.5 Goals",
+    "sport": "NHL",
+    "odds": -196,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-08-senators-ml",
+    "date": "2026-10-08",
+    "pick": "Senators ML",
+    "sport": "NHL",
+    "odds": -178,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
