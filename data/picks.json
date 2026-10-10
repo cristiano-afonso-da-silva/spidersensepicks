@@ -2468,5 +2468,65 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-09-reese-reb-ast",
+    "date": "2026-10-09",
+    "pick": "Angel Reese Under 13.5 Reb + Ast",
+    "sport": "Basketball",
+    "odds": -138,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-09-louisville-ml",
+    "date": "2026-10-09",
+    "pick": "Louisville ML",
+    "sport": "NCAAF",
+    "odds": -184,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-09-sjsu-spread",
+    "date": "2026-10-09",
+    "pick": "San Jose St. -4.5",
+    "sport": "NCAAF",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-09-wyo-sjsu-under",
+    "date": "2026-10-09",
+    "pick": "Wyoming @ San Jose St. Under 42.5",
+    "sport": "NCAAF",
+    "odds": -115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-09-washington-ml",
+    "date": "2026-10-09",
+    "pick": "Washington ML",
+    "sport": "NCAAF",
+    "odds": -150,
+    "units": 1.25,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Cashed out 0.75u (-1.25u)"
+  },
+  {
+    "id": "2026-10-09-soccer-parlay",
+    "date": "2026-10-09",
+    "pick": "2 Leg Parlay: Lyon and Draw / Sporting Lisbon and Draw",
+    "sport": "Soccer",
+    "odds": 109,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
