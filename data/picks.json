@@ -2405,9 +2405,9 @@
     "pick": "CeeDee Lamb Over 5.5 Receptions",
     "sport": "NFL",
     "odds": -200,
-    "units": 3,
-    "result": "push",
-    "notes": "3 Unit Play · Premium · Cashed out 2.5u"
+    "units": 0.5,
+    "result": "loss",
+    "notes": "3 Unit Play · Premium · Cashed out 2.5u (-0.5u)"
   },
   {
     "id": "2026-10-08-otton-rec",
