@@ -2577,7 +2577,7 @@
     "odds": -140,
     "units": 1,
     "result": "loss",
-    "notes": "1 Unit Play · Premium · Could have cashed out for +0.5u"
+    "notes": "1 Unit Play · Premium"
   },
   {
     "id": "2026-10-10-uab-memphis-under",
@@ -2616,7 +2616,7 @@
     "sport": "NCAAF",
     "odds": -112,
     "units": 1,
-    "result": "win",
+    "result": "loss",
     "notes": "1 Unit Play · Premium"
   },
   {
