@@ -2528,5 +2528,115 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-unc-ml",
+    "date": "2026-10-10",
+    "pick": "North Carolina Tar Heels ML",
+    "sport": "NCAAF",
+    "odds": 160,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-app-state-spread",
+    "date": "2026-10-10",
+    "pick": "App State -9.5",
+    "sport": "NCAAF",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-oregon-tt-over",
+    "date": "2026-10-10",
+    "pick": "Oregon Team Total Over 34.5",
+    "sport": "NCAAF",
+    "odds": -115,
+    "units": 0.25,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.75u (-0.25u)"
+  },
+  {
+    "id": "2026-10-10-texas-ou-under",
+    "date": "2026-10-10",
+    "pick": "Texas vs. Oklahoma Under 42.5",
+    "sport": "NCAAF",
+    "odds": -138,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-man-united-ml",
+    "date": "2026-10-10",
+    "pick": "Man United to Win",
+    "sport": "Soccer",
+    "odds": -140,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Could have cashed out for +0.5u"
+  },
+  {
+    "id": "2026-10-10-uab-memphis-under",
+    "date": "2026-10-10",
+    "pick": "UAB @ Memphis Under 54.5",
+    "sport": "NCAAF",
+    "odds": -104,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-lsu-kentucky-under",
+    "date": "2026-10-10",
+    "pick": "LSU @ Kentucky Under 51.5",
+    "sport": "NCAAF",
+    "odds": -136,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.5u (-0.5u)"
+  },
+  {
+    "id": "2026-10-10-penn-state-ml",
+    "date": "2026-10-10",
+    "pick": "Penn State ML",
+    "sport": "NCAAF",
+    "odds": -125,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-minn-purdue-under",
+    "date": "2026-10-10",
+    "pick": "Minnesota @ Purdue Under 50.5",
+    "sport": "NCAAF",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-10-utah-kansas-under",
+    "date": "2026-10-10",
+    "pick": "Utah @ Kansas Under 51.5",
+    "sport": "NCAAF",
+    "odds": -142,
+    "units": 0.35,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.65u (-0.35u)"
+  },
+  {
+    "id": "2026-10-10-utah-spread",
+    "date": "2026-10-10",
+    "pick": "Utah -13.5",
+    "sport": "NCAAF",
+    "odds": -148,
+    "units": 0.25,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.75u (-0.25u)"
   }
 ]
