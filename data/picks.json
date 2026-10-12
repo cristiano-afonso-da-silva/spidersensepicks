@@ -2638,5 +2638,85 @@
     "units": 0.25,
     "result": "loss",
     "notes": "1 Unit Play · Premium · Cashed out 0.75u (-0.25u)"
+  },
+  {
+    "id": "2026-10-11-liv-mci-over-btts",
+    "date": "2026-10-11",
+    "pick": "Liverpool @ Man City Over 2.5 Goals & BTTS",
+    "sport": "Soccer",
+    "odds": -136,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-rodgers-pass-yds",
+    "date": "2026-10-11",
+    "pick": "Aaron Rodgers 220+ Passing Yards",
+    "sport": "NFL",
+    "odds": -124,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-hutchinson-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Xavier Hutchinson Over 15.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-tucker-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Tre Tucker 40+ Rec Yards",
+    "sport": "NFL",
+    "odds": -119,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
+  },
+  {
+    "id": "2026-10-11-likely-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Isaiah Likely 40+ Rec Yards",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-cooper-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Darius Cooper 20+ Rec Yards",
+    "sport": "NFL",
+    "odds": -136,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-waddle-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Jaylen Waddle 50+ Rec Yards",
+    "sport": "NFL",
+    "odds": -151,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-11-london-rec-yds",
+    "date": "2026-10-11",
+    "pick": "Drake London 80+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -117,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
