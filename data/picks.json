@@ -2718,5 +2718,55 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-12-allen-atd",
+    "date": "2026-10-12",
+    "pick": "Josh Allen Anytime TD",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-12-nacua-rec-yds",
+    "date": "2026-10-12",
+    "pick": "Puka Nacua 90+ Rec Yards",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-12-cook-rush-yds",
+    "date": "2026-10-12",
+    "pick": "James Cook III 70+ Rush Yards",
+    "sport": "NFL",
+    "odds": -158,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-12-kyren-rec-yds",
+    "date": "2026-10-12",
+    "pick": "Kyren Williams 20+ Rec Yards",
+    "sport": "NFL",
+    "odds": -136,
+    "units": 0.25,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Cashed out 0.25u (-0.25u)"
+  },
+  {
+    "id": "2026-10-12-rams-spread",
+    "date": "2026-10-12",
+    "pick": "LA Rams -2.5",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
