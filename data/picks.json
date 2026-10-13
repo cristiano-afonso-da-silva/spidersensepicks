@@ -2755,9 +2755,9 @@
     "pick": "Kyren Williams 20+ Rec Yards",
     "sport": "NFL",
     "odds": -136,
-    "units": 0.25,
-    "result": "loss",
-    "notes": "0.5 Unit Play · Premium · Cashed out 0.25u (-0.25u)"
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   },
   {
     "id": "2026-10-12-rams-spread",
