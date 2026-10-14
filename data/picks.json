@@ -2768,5 +2768,75 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-olise-sot",
+    "date": "2026-10-13",
+    "pick": "Michael Olise 2+ Shots on Target",
+    "sport": "Soccer",
+    "odds": -160,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-soccer-4-leg-parlay",
+    "date": "2026-10-13",
+    "pick": "4 Leg Parlay: Bayern Munich ML / Inter Milan ML / Barcelona ML / Arsenal ML",
+    "sport": "Soccer",
+    "odds": 112,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-devils-wings-over",
+    "date": "2026-10-13",
+    "pick": "Devils @ Red Wings Over 5.5 Goals",
+    "sport": "NHL",
+    "odds": -142,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-guardians-rays-under",
+    "date": "2026-10-13",
+    "pick": "Guardians @ Rays Under 7.5 Runs",
+    "sport": "MLB",
+    "odds": -154,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-rays-ml",
+    "date": "2026-10-13",
+    "pick": "Tampa Bay Rays ML",
+    "sport": "MLB",
+    "odds": -132,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-peralta-outs",
+    "date": "2026-10-13",
+    "pick": "Freddy Peralta Over 13.5 Pitching Outs",
+    "sport": "MLB",
+    "odds": -138,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-13-jax-state-spread",
+    "date": "2026-10-13",
+    "pick": "Jacksonville State Gamecocks -2.5",
+    "sport": "NCAAF",
+    "odds": -115,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
   }
 ]
