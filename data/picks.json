@@ -2838,5 +2838,55 @@
     "units": 1,
     "result": "push",
     "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
+  },
+  {
+    "id": "2026-10-14-haaland-atg",
+    "date": "2026-10-14",
+    "pick": "Erling Haaland Anytime Goalscorer",
+    "sport": "Soccer",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-14-mbappe-atg",
+    "date": "2026-10-14",
+    "pick": "Kylian Mbappe Anytime Goalscorer",
+    "sport": "Soccer",
+    "odds": -140,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-14-gasser-outs",
+    "date": "2026-10-14",
+    "pick": "Robert Gasser Over 11.5 Outs",
+    "sport": "MLB",
+    "odds": -136,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-14-kennesaw-mostate-under",
+    "date": "2026-10-14",
+    "pick": "Kennesaw State @ Missouri State Under 53.5",
+    "sport": "NCAAF",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-14-capitals-ml",
+    "date": "2026-10-14",
+    "pick": "Capitals ML",
+    "sport": "NHL",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
