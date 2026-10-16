@@ -25,7 +25,7 @@ type DayStat = {
   winRate: number;
 };
 
-const WEEKDAYS_MOBILE = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] as const;
+const WEEKDAYS_MOBILE = ["S", "M", "T", "W", "T", "F", "S"] as const;
 
 function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   const map = new Map<string, DayStat>();
@@ -50,27 +50,24 @@ function buildDayMap(picks: Pick[]): Map<string, DayStat> {
   return map;
 }
 
-function CalendarIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 12 12" fill="none" aria-hidden>
-      <rect
-        x="1.5"
-        y="2.5"
-        width="9"
-        height="8"
-        rx="1"
-        stroke="currentColor"
-        strokeWidth="1"
-      />
-      <path d="M1.5 5h9" stroke="currentColor" strokeWidth="1" />
-      <path
-        d="M4 1.5v2M8 1.5v2"
-        stroke="currentColor"
-        strokeWidth="1"
-        strokeLinecap="round"
-      />
-    </svg>
-  );
+function monthUnitsTotal(
+  dayMap: Map<string, DayStat>,
+  monthStart: Date,
+): number {
+  const prefix = format(monthStart, "yyyy-MM");
+  let total = 0;
+  for (const [date, stat] of dayMap) {
+    if (date.startsWith(prefix)) total = round2(total + stat.units);
+  }
+  return total;
+}
+
+/** Compact units for calendar cells, e.g. +6.08u / -0.9u */
+function formatCellUnits(n: number): string {
+  const abs = Math.abs(n).toFixed(2).replace(/\.?0+$/, "");
+  if (n > 0) return `+${abs}u`;
+  if (n < 0) return `-${abs}u`;
+  return `${abs}u`;
 }
 
 export function PerformanceCalendar({
@@ -93,6 +90,10 @@ export function PerformanceCalendar({
   const monthEnd = endOfMonth(cursor);
   const gridStart = startOfWeek(monthStart, { weekStartsOn: 0 });
   const gridEnd = endOfWeek(monthEnd, { weekStartsOn: 0 });
+  const monthUnits = useMemo(
+    () => monthUnitsTotal(dayMap, monthStart),
+    [dayMap, monthStart],
+  );
 
   const weeks = useMemo(() => {
     const allDays = eachDayOfInterval({ start: gridStart, end: gridEnd });
@@ -107,34 +108,46 @@ export function PerformanceCalendar({
     <>
       {(variant === "mobile" || variant === "both") && (
         <div className="sm:hidden">
-          <div>
-          <div className="mb-5 flex items-center justify-between">
+          <div className="mb-4 flex items-center gap-2">
             <button
               type="button"
               onClick={() => setCursor((c) => startOfMonth(subMonths(c, 1)))}
-              className="flex h-9 w-9 items-center justify-center text-xl text-muted"
+              className="flex h-9 w-9 shrink-0 items-center justify-center text-2xl leading-none text-muted"
               aria-label="Previous month"
             >
               ‹
             </button>
-            <p className="text-base font-bold text-white">
-              {format(cursor, "MMMM yyyy")}
-            </p>
+            <div className="flex min-w-0 flex-1 items-baseline gap-2">
+              <p className="truncate text-[1.35rem] font-bold leading-none tracking-tight text-white">
+                {format(cursor, "MMMM yyyy")}
+              </p>
+              <span
+                className={`shrink-0 text-sm font-bold tabular-nums ${
+                  monthUnits > 0
+                    ? "text-win"
+                    : monthUnits < 0
+                      ? "text-[var(--red-soft)]"
+                      : "text-muted"
+                }`}
+              >
+                {formatSigned(monthUnits)}u
+              </span>
+            </div>
             <button
               type="button"
               onClick={() => setCursor((c) => startOfMonth(addMonths(c, 1)))}
-              className="flex h-9 w-9 items-center justify-center text-xl text-muted"
+              className="flex h-9 w-9 shrink-0 items-center justify-center text-2xl leading-none text-muted"
               aria-label="Next month"
             >
               ›
             </button>
           </div>
 
-          <div className="mb-2 grid grid-cols-7 gap-1.5">
-            {WEEKDAYS_MOBILE.map((d) => (
+          <div className="mb-1.5 grid grid-cols-7 gap-1.5">
+            {WEEKDAYS_MOBILE.map((d, i) => (
               <div
-                key={d}
-                className="text-center text-[11px] font-semibold tracking-wide text-muted"
+                key={`${d}-${i}`}
+                className="text-center text-[11px] font-semibold text-muted"
               >
                 {d}
               </div>
@@ -149,55 +162,48 @@ export function PerformanceCalendar({
                   const stat = inMonth ? dayMap.get(key) : undefined;
 
                   if (!inMonth) {
-                    return (
-                      <div
-                        key={key}
-                        className="tile-empty flex aspect-square items-center justify-center rounded-xl opacity-40"
-                      />
-                    );
+                    return <div key={key} className="aspect-square" />;
                   }
 
                   if (!stat) {
                     return (
                       <div
                         key={key}
-                        className="tile-empty relative flex aspect-square flex-col items-center justify-center rounded-xl"
+                        className="tile-empty relative flex aspect-square flex-col rounded-[0.7rem] px-1 pb-1.5 pt-1"
                       >
-                        <span className="absolute left-1.5 top-1 flex items-center gap-0.5 text-[10px] font-semibold text-muted">
-                          <CalendarIcon className="h-2 w-2" />
+                        <span className="text-[11px] font-semibold leading-none text-muted/70">
                           {format(day, "d")}
                         </span>
-                        <span className="mt-3 text-[13px] text-muted">—</span>
                       </div>
                     );
                   }
 
                   const positive = stat.units > 0;
                   const negative = stat.units < 0;
+                  const tileClass = positive
+                    ? "tile-win-soft"
+                    : negative
+                      ? "tile-loss-soft"
+                      : "tile-flat-soft";
+
                   return (
                     <div
                       key={key}
-                      className={`relative flex aspect-square flex-col items-center justify-center rounded-xl ${
-                        positive
-                          ? "tile-win"
-                          : negative
-                            ? "tile-loss"
-                            : "tile-empty text-muted"
-                      }`}
+                      className={`relative flex aspect-square flex-col rounded-[0.7rem] px-1 pb-1.5 pt-1 ${tileClass}`}
                     >
-                      <span className="absolute left-1.5 top-1 flex items-center gap-0.5 text-[10px] font-semibold opacity-80">
-                        <CalendarIcon className="h-2 w-2" />
+                      <span className="text-[11px] font-semibold leading-none opacity-70">
                         {format(day, "d")}
                       </span>
-                      <p className="mt-3 text-[0.78rem] font-bold tabular-nums leading-none">
-                        {formatSigned(stat.units)}u
-                      </p>
+                      <div className="flex flex-1 items-center justify-center">
+                        <p className="text-center text-[0.7rem] font-bold tabular-nums leading-none tracking-tight">
+                          {formatCellUnits(stat.units)}
+                        </p>
+                      </div>
                     </div>
                   );
                 })}
               </div>
             ))}
-          </div>
           </div>
         </div>
       )}
@@ -214,9 +220,22 @@ export function PerformanceCalendar({
               >
                 ‹
               </button>
-              <p className="text-lg font-bold text-white">
-                {format(cursor, "MMMM yyyy")}
-              </p>
+              <div className="flex items-baseline gap-2.5">
+                <p className="text-lg font-bold text-white">
+                  {format(cursor, "MMMM yyyy")}
+                </p>
+                <span
+                  className={`text-sm font-bold tabular-nums ${
+                    monthUnits > 0
+                      ? "text-win"
+                      : monthUnits < 0
+                        ? "text-[var(--red-soft)]"
+                        : "text-muted"
+                  }`}
+                >
+                  {formatSigned(monthUnits)}u
+                </span>
+              </div>
               <button
                 type="button"
                 onClick={() => setCursor((c) => startOfMonth(addMonths(c, 1)))}

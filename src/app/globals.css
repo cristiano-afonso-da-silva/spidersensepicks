@@ -142,6 +142,25 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+/* Soft calendar tiles — muted fill, bright unit text */
+.tile-win-soft {
+  background: rgba(255, 214, 10, 0.14);
+  border: 1px solid rgba(255, 214, 10, 0.16);
+  color: var(--win);
+}
+
+.tile-loss-soft {
+  background: rgba(235, 70, 105, 0.16);
+  border: 1px solid rgba(235, 70, 105, 0.18);
+  color: var(--red-soft);
+}
+
+.tile-flat-soft {
+  background: rgba(66, 253, 254, 0.1);
+  border: 1px solid rgba(66, 253, 254, 0.14);
+  color: #42fdfe;
+}
+
 .section-label {
   font-size: 0.7rem;
   letter-spacing: 0.2em;
