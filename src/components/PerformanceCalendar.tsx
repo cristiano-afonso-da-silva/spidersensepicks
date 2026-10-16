@@ -269,33 +269,34 @@ export function PerformanceCalendar({
                       return (
                         <div
                           key={key}
-                          className="tile-empty relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2"
+                          className="tile-empty flex min-h-[5rem] flex-col items-center justify-center rounded-xl p-2"
                         >
-                          <span className="absolute right-2 top-2 text-[13px] text-muted">
+                          <span className="text-[16px] font-bold leading-none text-muted/60">
                             {format(day, "d")}
                           </span>
                         </div>
                       );
                     }
 
+                    const tileClass =
+                      stat.units > 0
+                        ? "tile-win-soft"
+                        : stat.units < 0
+                          ? "tile-loss-soft"
+                          : "tile-flat-soft";
+
                     return (
                       <div
                         key={key}
-                        className={`relative flex min-h-[5rem] flex-col justify-end rounded-xl p-2 ${
-                          stat.units > 0
-                            ? "tile-win"
-                            : stat.units < 0
-                              ? "tile-loss"
-                              : "tile-empty text-muted"
-                        }`}
+                        className={`flex min-h-[5rem] flex-col items-center justify-center gap-1.5 rounded-xl p-2 ${tileClass}`}
                       >
-                        <span className="absolute right-2 top-2 text-[13px] opacity-70">
+                        <span className="text-[16px] font-bold leading-none">
                           {format(day, "d")}
                         </span>
-                        <p className="text-sm font-bold tabular-nums">
-                          {formatSigned(stat.units)}u
+                        <p className="text-sm font-semibold tabular-nums leading-none">
+                          {formatCellUnits(stat.units)}
                         </p>
-                        <p className="text-xs opacity-80">
+                        <p className="text-xs font-semibold opacity-70">
                           {stat.picks}p · {stat.winRate.toFixed(0)}%
                         </p>
                       </div>
