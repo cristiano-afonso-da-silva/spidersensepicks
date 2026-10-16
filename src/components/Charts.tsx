@@ -158,7 +158,7 @@ function periodStats(picks: Pick[], start: string | null, end: string | null) {
     else if (p.result === "push") pushes += 1;
   }
   const roi = stake === 0 ? 0 : round2((profit / stake) * 100);
-  return { profit, roi, wins, losses, pushes, stake };
+  return { profit, roi, wins, losses, pushes };
 }
 
 function ChartFrame({
@@ -196,7 +196,7 @@ export function CumulativeChart({
   picks?: Pick[];
 }) {
   const isMobile = useIsMobile();
-  const [range, setRange] = useState<ChartRange>("week");
+  const [range, setRange] = useState<ChartRange>("month");
 
   const window = useMemo(
     () => periodWindow(range, stats.seasonEnd),
@@ -248,7 +248,6 @@ export function CumulativeChart({
     return formatRangeLabel(range, window?.start ?? null, window?.end ?? null);
   }, [range, window, stats.seasonStart, stats.seasonEnd]);
 
-  const lastIndex = Math.max(data.length - 1, 0);
   const xTicks = pickAxisTicks(
     data.map((d) => d.label),
     isMobile ? 5 : 8,
@@ -257,8 +256,8 @@ export function CumulativeChart({
   return (
     <div className={isMobile ? "" : "panel-soft p-8"}>
       {isMobile ? (
-        <div className="mb-4">
-          <div className="flex rounded-xl bg-surface-2 p-1">
+        <div className="space-y-3">
+          <div className="mobile-card flex p-1">
             {(
               [
                 ["week", "Week"],
@@ -272,7 +271,7 @@ export function CumulativeChart({
                   key={key}
                   type="button"
                   onClick={() => setRange(key)}
-                  className={`flex-1 rounded-lg py-2 text-center text-[13px] font-bold transition-colors ${
+                  className={`flex-1 rounded-[0.75rem] py-2.5 text-center text-[13px] font-bold transition-colors ${
                     active
                       ? "bg-surface-3 text-white"
                       : "text-muted hover:text-white"
@@ -283,11 +282,11 @@ export function CumulativeChart({
               );
             })}
           </div>
-          <h2 className="mt-4 text-[1.55rem] font-extrabold leading-none tracking-tight text-white">
+          <p className="text-[1.15rem] font-extrabold leading-none tracking-tight text-white">
             {rangeLabel}
-          </h2>
+          </p>
           {metrics ? (
-            <div className="mt-4 grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-3 pt-1">
               <PeriodStat
                 label="Profit"
                 value={`${formatSigned(metrics.profit)}u`}
@@ -322,13 +321,13 @@ export function CumulativeChart({
           No chart data yet.
         </div>
       ) : (
-        <div className={isMobile ? "-mx-4" : undefined}>
-          <ChartFrame heightClass="h-[240px] sm:h-[340px]">
+        <div className={isMobile ? "-mx-4 mt-4" : undefined}>
+          <ChartFrame heightClass="h-[220px] sm:h-[340px]">
             <AreaChart
               data={data}
               margin={
                 isMobile
-                  ? { top: 28, right: 18, left: 14, bottom: 4 }
+                  ? { top: 16, right: 16, left: 12, bottom: 4 }
                   : { top: 36, right: 28, left: 0, bottom: 8 }
               }
             >
@@ -388,23 +387,6 @@ export function CumulativeChart({
                 dot={false}
                 activeDot={{ r: 5, fill: GOLD_BRIGHT, stroke: "#000" }}
               />
-              {data[lastIndex] ? (
-                <ReferenceDot
-                  x={data[lastIndex].label}
-                  y={data[lastIndex].cumulative}
-                  r={0}
-                  fill="transparent"
-                  stroke="none"
-                  label={(props) => (
-                    <EndpointLabel
-                      viewBox={props.viewBox as { x?: number; y?: number }}
-                      text={`${formatSigned(data[lastIndex].cumulative)}u`}
-                      anchor="end"
-                      dy={-12}
-                    />
-                  )}
-                />
-              ) : null}
               {!isMobile &&
                 stats.annotations.map((a) => {
                   const point = [...stats.cumulativeSeries]
@@ -517,33 +499,6 @@ function AnnotationLabel({
       fill={GOLD}
       fontSize={12}
       fontWeight={700}
-    >
-      {text}
-    </text>
-  );
-}
-
-function EndpointLabel({
-  text,
-  viewBox,
-  anchor = "start",
-  dy = -12,
-}: {
-  text: string;
-  viewBox?: { x?: number; y?: number };
-  anchor?: "start" | "middle" | "end";
-  dy?: number;
-}) {
-  const x = viewBox?.x ?? 0;
-  const y = viewBox?.y ?? 0;
-  return (
-    <text
-      x={x}
-      y={y + dy}
-      textAnchor={anchor}
-      fill={MUTED}
-      fontSize={11}
-      fontWeight={600}
     >
       {text}
     </text>

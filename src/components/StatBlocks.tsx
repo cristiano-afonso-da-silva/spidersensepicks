@@ -5,63 +5,54 @@ export function HeroStats({ stats }: { stats: SeasonStats }) {
   const cards = [
     {
       label: "Final Net Units",
-      shortLabel: "Net Units",
       value: formatSigned(stats.netUnits),
       icon: "units" as const,
       iconTone: "muted" as const,
       tone: stats.netUnits >= 0 ? ("win" as const) : ("red" as const),
-      glow: stats.netUnits >= 0 ? "glow-gold" : "glow-red",
     },
     {
       label: "Winning Days",
-      shortLabel: "Win Days",
       value: `${stats.winningDays} / ${stats.daysTracked}`,
       icon: "trophy" as const,
       iconTone: "win" as const,
       tone: "win" as const,
-      glow: "glow-aqua",
     },
     {
       label: "Win Rate",
-      shortLabel: "Win Rate",
       value: `${stats.dayWinRate.toFixed(1)}%`,
       icon: "target" as const,
       iconTone: "win" as const,
       tone: "win" as const,
-      glow: "glow-red",
     },
     {
       label: "Profit at $1,000/Unit",
-      shortLabel: "Profit",
       value: formatMoney(stats.profitAt100),
       icon: "cash" as const,
       iconTone: "win" as const,
       tone: stats.profitAt100 >= 0 ? ("win" as const) : ("red" as const),
-      glow: stats.profitAt100 >= 0 ? "glow-gold" : "glow-red",
     },
   ];
 
   return (
-    <div className="grid grid-cols-4 gap-1.5 sm:gap-4">
+    <div className="grid grid-cols-4 gap-4">
       {cards.map((c, i) => (
         <div
           key={c.label}
-          className={`glow-card ${c.glow} animate-rise px-1.5 py-2.5 text-center sm:px-5 sm:py-5 sm:text-left`}
+          className="stat-cell animate-rise px-5 py-5 text-left"
           style={{ animationDelay: `${i * 90}ms` }}
         >
-          <span className="icon-chip mb-4 hidden sm:inline-flex">
+          <span className="icon-chip mb-4 inline-flex">
             <StatIcon kind={c.icon} tone={c.iconTone} />
           </span>
-          <p className="text-[10px] font-semibold uppercase leading-tight tracking-[0.06em] text-muted sm:text-[13px] sm:tracking-[0.18em]">
-            <span className="sm:hidden">{c.shortLabel}</span>
-            <span className="hidden sm:inline">{c.label}</span>
+          <p className="text-[13px] font-semibold uppercase leading-tight tracking-[0.18em] text-muted">
+            {c.label}
           </p>
           <p
-            className={`mt-2 font-bold text-[clamp(0.9rem,3.9vw,1.15rem)] leading-none tracking-tight sm:mt-2 sm:text-[1.85rem] ${
+            className={`mt-2 font-extrabold text-[1.85rem] leading-none tracking-tight ${
               c.tone === "win"
-                ? "text-win-bright"
+                ? "text-win"
                 : c.tone === "red"
-                  ? "text-red-bright"
+                  ? "text-[var(--red-soft)]"
                   : "text-foreground"
             }`}
           >

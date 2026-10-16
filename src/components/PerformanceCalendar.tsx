@@ -107,7 +107,7 @@ export function PerformanceCalendar({
     <>
       {(variant === "mobile" || variant === "both") && (
         <div className="sm:hidden">
-          <div className="mb-4 flex items-center gap-2">
+          <div className="mb-3 flex items-center gap-2">
             <button
               type="button"
               onClick={() => setCursor((c) => startOfMonth(subMonths(c, 1)))}
@@ -117,7 +117,7 @@ export function PerformanceCalendar({
               ‹
             </button>
             <div className="flex min-w-0 flex-1 items-baseline gap-2">
-              <p className="truncate text-[1.35rem] font-bold leading-none tracking-tight text-white">
+              <p className="truncate text-[1.15rem] font-extrabold leading-none tracking-tight text-white">
                 {format(cursor, "MMMM yyyy")}
               </p>
               <span

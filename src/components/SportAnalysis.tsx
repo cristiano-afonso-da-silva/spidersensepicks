@@ -1,7 +1,17 @@
 import type { SeasonStats } from "@/lib/types";
 import { formatMoney, formatSigned } from "@/lib/stats";
 
-export function SportAnalysis({ stats }: { stats: SeasonStats }) {
+export function SportAnalysis({
+  stats,
+  variant = "desktop",
+}: {
+  stats: SeasonStats;
+  variant?: "mobile" | "desktop";
+}) {
+  if (variant === "mobile") {
+    return <MobileSportList stats={stats} />;
+  }
+
   const decided = stats.wins + stats.losses;
   const record =
     decided > 0
@@ -132,6 +142,45 @@ export function SportAnalysis({ stats }: { stats: SeasonStats }) {
           </table>
         </div>
       )}
+    </div>
+  );
+}
+
+function MobileSportList({ stats }: { stats: SeasonStats }) {
+  if (stats.bySport.length === 0) {
+    return (
+      <p className="text-sm text-muted">No settled picks to analyze yet.</p>
+    );
+  }
+
+  return (
+    <div className="mobile-card">
+      {stats.bySport.map((s, i) => (
+        <div
+          key={s.sport}
+          className={`flex items-center justify-between gap-3 px-4 py-3.5 ${
+            i > 0 ? "border-t border-border/70" : ""
+          }`}
+        >
+          <div className="min-w-0">
+            <p className="text-[15px] font-bold text-white">{s.sport}</p>
+            <p className="mt-0.5 text-[13px] font-semibold tabular-nums text-muted">
+              {s.wins}-{s.losses}-{s.pushes}
+            </p>
+          </div>
+          <p
+            className={`shrink-0 text-[15px] font-extrabold tabular-nums ${
+              s.units > 0
+                ? "text-win"
+                : s.units < 0
+                  ? "text-[var(--red-soft)]"
+                  : "text-muted"
+            }`}
+          >
+            {formatSigned(s.units)}u
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
