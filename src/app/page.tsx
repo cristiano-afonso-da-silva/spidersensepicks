@@ -56,7 +56,7 @@ export default async function HomePage() {
         <SiteHeader stats={stats} />
         <HeroStats stats={stats} />
         <PerformanceCalendar picks={picks} variant="mobile" />
-        <CumulativeChart stats={stats} />
+        <CumulativeChart stats={stats} picks={picks} />
         <WeeklyBars stats={stats} />
         <SportAnalysis stats={stats} />
         <WeeklyRecord stats={stats} picks={picks} />
@@ -73,7 +73,7 @@ export default async function HomePage() {
           <HeroStats stats={stats} />
         </div>
         <PerformanceCalendar picks={picks} variant="desktop" />
-        <CumulativeChart stats={stats} />
+        <CumulativeChart stats={stats} picks={picks} />
         <div className="grid gap-5 lg:grid-cols-2">
           <MonthlyBars stats={stats} />
           <WinsLossesDonut stats={stats} />

@@ -1,6 +1,14 @@
 "use client";
 
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  endOfMonth,
+  endOfWeek,
+  format,
+  parseISO,
+  startOfMonth,
+  startOfWeek,
+} from "date-fns";
 import {
   Area,
   AreaChart,
@@ -16,8 +24,10 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { SeasonStats } from "@/lib/types";
-import { formatSigned } from "@/lib/stats";
+import type { Pick, SeasonStats } from "@/lib/types";
+import { formatSigned, round2, unitsFromPick } from "@/lib/stats";
+
+type ChartRange = "week" | "month" | "all";
 
 const GOLD = "#ffd60a";
 const GOLD_BRIGHT = "#ffe566";
@@ -86,13 +96,69 @@ const darkCursorLine = {
   strokeDasharray: "4 4",
 } as const;
 
-function SectionHead({ title, copy }: { title: string; copy: string }) {
+function SectionHead({ title, copy }: { title: string; copy?: string }) {
   return (
     <div className="mb-5 max-w-2xl">
       <h2 className="section-title">{title}</h2>
-      <p className="section-copy">{copy}</p>
+      {copy ? <p className="section-copy">{copy}</p> : null}
     </div>
   );
+}
+
+function periodWindow(
+  range: ChartRange,
+  seasonEnd: string | null,
+): { start: string; end: string } | null {
+  if (range === "all" || !seasonEnd) return null;
+  const endDate = parseISO(seasonEnd);
+  if (range === "week") {
+    return {
+      start: format(startOfWeek(endDate, { weekStartsOn: 1 }), "yyyy-MM-dd"),
+      end: format(endOfWeek(endDate, { weekStartsOn: 1 }), "yyyy-MM-dd"),
+    };
+  }
+  return {
+    start: format(startOfMonth(endDate), "yyyy-MM-dd"),
+    end: format(endOfMonth(endDate), "yyyy-MM-dd"),
+  };
+}
+
+function formatRangeLabel(
+  range: ChartRange,
+  start: string | null,
+  end: string | null,
+): string {
+  if (!start || !end) return "No data";
+  if (range === "all") {
+    return `${format(parseISO(start), "MMM d")} – ${format(parseISO(end), "MMM d, yyyy")}`;
+  }
+  if (range === "month") {
+    return format(parseISO(start), "MMMM yyyy");
+  }
+  return `${format(parseISO(start), "MMM d")} – ${format(parseISO(end), "MMM d")}`;
+}
+
+function periodStats(picks: Pick[], start: string | null, end: string | null) {
+  const settled = picks.filter((p) => {
+    if (p.result === "pending") return false;
+    if (start && p.date < start) return false;
+    if (end && p.date > end) return false;
+    return true;
+  });
+  let profit = 0;
+  let stake = 0;
+  let wins = 0;
+  let losses = 0;
+  let pushes = 0;
+  for (const p of settled) {
+    stake = round2(stake + p.units);
+    profit = round2(profit + unitsFromPick(p.odds, p.units, p.result));
+    if (p.result === "win") wins += 1;
+    else if (p.result === "loss") losses += 1;
+    else if (p.result === "push") pushes += 1;
+  }
+  const roi = stake === 0 ? 0 : round2((profit / stake) * 100);
+  return { profit, roi, wins, losses, pushes, stake };
 }
 
 function ChartFrame({
@@ -122,12 +188,66 @@ function ChartFrame({
   );
 }
 
-export function CumulativeChart({ stats }: { stats: SeasonStats }) {
+export function CumulativeChart({
+  stats,
+  picks = [],
+}: {
+  stats: SeasonStats;
+  picks?: Pick[];
+}) {
   const isMobile = useIsMobile();
-  const data = stats.cumulativeSeries.map((p) => ({
-    ...p,
-    value: p.cumulative,
-  }));
+  const [range, setRange] = useState<ChartRange>("week");
+
+  const window = useMemo(
+    () => periodWindow(range, stats.seasonEnd),
+    [range, stats.seasonEnd],
+  );
+
+  const data = useMemo(() => {
+    if (!isMobile || range === "all") {
+      return stats.cumulativeSeries.map((p) => ({
+        ...p,
+        value: p.cumulative,
+      }));
+    }
+    const start = window?.start;
+    const end = window?.end;
+    const days = stats.daily.filter((d) => {
+      if (start && d.date < start) return false;
+      if (end && d.date > end) return false;
+      return true;
+    });
+    let running = 0;
+    const openDate = days[0]?.date ?? start ?? stats.seasonStart ?? "";
+    return [
+      { date: openDate, label: "Open", cumulative: 0, value: 0 },
+      ...days.map((d) => {
+        running = round2(running + d.units);
+        return {
+          date: d.date,
+          label: d.label,
+          cumulative: running,
+          value: running,
+        };
+      }),
+    ];
+  }, [isMobile, range, window, stats.cumulativeSeries, stats.daily, stats.seasonStart]);
+
+  const metrics = useMemo(() => {
+    if (!isMobile) return null;
+    const start =
+      range === "all" ? stats.seasonStart : (window?.start ?? null);
+    const end = range === "all" ? stats.seasonEnd : (window?.end ?? null);
+    return periodStats(picks, start, end);
+  }, [isMobile, range, window, picks, stats.seasonStart, stats.seasonEnd]);
+
+  const rangeLabel = useMemo(() => {
+    if (range === "all") {
+      return formatRangeLabel("all", stats.seasonStart, stats.seasonEnd);
+    }
+    return formatRangeLabel(range, window?.start ?? null, window?.end ?? null);
+  }, [range, window, stats.seasonStart, stats.seasonEnd]);
+
   const lastIndex = Math.max(data.length - 1, 0);
   const xTicks = pickAxisTicks(
     data.map((d) => d.label),
@@ -136,10 +256,67 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
 
   return (
     <div className={isMobile ? "" : "panel-soft p-8"}>
-      <SectionHead
-        title="Cumulative Unit Curve"
-        copy="Running total of units won and lost, with defining moments marked along the way."
-      />
+      {isMobile ? (
+        <div className="mb-4">
+          <div className="flex rounded-xl bg-surface-2 p-1">
+            {(
+              [
+                ["week", "Week"],
+                ["month", "Month"],
+                ["all", "All time"],
+              ] as const
+            ).map(([key, label]) => {
+              const active = range === key;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => setRange(key)}
+                  className={`flex-1 rounded-lg py-2 text-center text-[13px] font-bold transition-colors ${
+                    active
+                      ? "bg-surface-3 text-white"
+                      : "text-muted hover:text-white"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
+          <h2 className="mt-4 text-[1.55rem] font-extrabold leading-none tracking-tight text-white">
+            {rangeLabel}
+          </h2>
+          {metrics ? (
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              <PeriodStat
+                label="Profit"
+                value={`${formatSigned(metrics.profit)}u`}
+                tone={
+                  metrics.profit > 0
+                    ? "win"
+                    : metrics.profit < 0
+                      ? "loss"
+                      : "muted"
+                }
+              />
+              <PeriodStat
+                label="ROI"
+                value={`${formatSigned(metrics.roi)}%`}
+                tone={
+                  metrics.roi > 0 ? "win" : metrics.roi < 0 ? "loss" : "muted"
+                }
+              />
+              <PeriodStat
+                label="Record"
+                value={`${metrics.wins}-${metrics.losses}-${metrics.pushes}`}
+                tone="muted"
+              />
+            </div>
+          ) : null}
+        </div>
+      ) : (
+        <SectionHead title="Cumulative Unit Curve" />
+      )}
       {data.length === 0 ? (
         <div className="flex h-[240px] items-center justify-center text-sm text-muted sm:h-[340px]">
           No chart data yet.
@@ -211,23 +388,6 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
                 dot={false}
                 activeDot={{ r: 5, fill: GOLD_BRIGHT, stroke: "#000" }}
               />
-              {data[0] ? (
-                <ReferenceDot
-                  x={data[0].label}
-                  y={data[0].cumulative}
-                  r={0}
-                  fill="transparent"
-                  stroke="none"
-                  label={(props) => (
-                    <EndpointLabel
-                      viewBox={props.viewBox as { x?: number; y?: number }}
-                      text={`${formatSigned(data[0].cumulative)}u`}
-                      anchor="start"
-                      dy={isMobile ? 16 : -12}
-                    />
-                  )}
-                />
-              ) : null}
               {data[lastIndex] ? (
                 <ReferenceDot
                   x={data[lastIndex].label}
@@ -281,34 +441,57 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
           </ChartFrame>
         </div>
       )}
-      <div
-        className={
-          isMobile
-            ? "mt-4 grid gap-3"
-            : "mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3"
-        }
-      >
-        <MetricLine
-          label="Peak"
-          value={
-            stats.peak
-              ? `${formatSigned(stats.peak.units)}u · ${stats.peak.weekLabel}`
-              : "—"
-          }
-        />
-        <MetricLine
-          label="Largest drawdown"
-          value={
-            stats.largestDrawdown
-              ? `${formatSigned(stats.largestDrawdown.amount)}u · ${stats.largestDrawdown.fromLabel} → ${stats.largestDrawdown.toLabel}`
-              : "—"
-          }
-        />
-        <MetricLine
-          label="Season finish"
-          value={`${formatSigned(stats.netUnits)}u`}
-        />
-      </div>
+      {!isMobile ? (
+        <div className="mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
+          <MetricLine
+            label="Peak"
+            value={
+              stats.peak
+                ? `${formatSigned(stats.peak.units)}u · ${stats.peak.weekLabel}`
+                : "—"
+            }
+          />
+          <MetricLine
+            label="Largest drawdown"
+            value={
+              stats.largestDrawdown
+                ? `${formatSigned(stats.largestDrawdown.amount)}u · ${stats.largestDrawdown.fromLabel} → ${stats.largestDrawdown.toLabel}`
+                : "—"
+            }
+          />
+          <MetricLine
+            label="Season finish"
+            value={`${formatSigned(stats.netUnits)}u`}
+          />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function PeriodStat({
+  label,
+  value,
+  tone,
+}: {
+  label: string;
+  value: string;
+  tone: "win" | "loss" | "muted";
+}) {
+  const valueClass =
+    tone === "win"
+      ? "text-win"
+      : tone === "loss"
+        ? "text-[var(--red-soft)]"
+        : "text-white";
+  return (
+    <div>
+      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-muted">
+        {label}
+      </p>
+      <p className={`mt-1 text-[1.05rem] font-extrabold tabular-nums ${valueClass}`}>
+        {value}
+      </p>
     </div>
   );
 }
