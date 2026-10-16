@@ -168,9 +168,9 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="tile-empty flex aspect-square flex-col items-center justify-center rounded-[0.7rem] px-0.5"
+                        className="tile-empty flex aspect-square flex-col items-center justify-center rounded-[0.7rem] border-none px-0.5"
                       >
-                        <span className="text-[16px] font-bold leading-none text-muted/60">
+                        <span className="text-[14px] font-bold leading-none text-muted/60">
                           {format(day, "d")}
                         </span>
                       </div>
@@ -190,10 +190,10 @@ export function PerformanceCalendar({
                       key={key}
                       className={`flex aspect-square flex-col items-center justify-center gap-1 rounded-[0.7rem] px-0.5 ${tileClass}`}
                     >
-                      <span className="text-[16px] font-bold leading-none">
+                      <span className="text-[14px] font-bold leading-none">
                         {format(day, "d")}
                       </span>
-                      <p className="text-center text-[14px] font-semibold tabular-nums leading-none tracking-tight">
+                      <p className="text-center text-[12px] font-semibold tabular-nums leading-none tracking-tight">
                         {formatCellUnits(stat.units)}
                       </p>
                     </div>
@@ -269,9 +269,9 @@ export function PerformanceCalendar({
                       return (
                         <div
                           key={key}
-                          className="tile-empty flex min-h-[5rem] flex-col items-center justify-center rounded-xl p-2"
+                          className="tile-empty flex min-h-[5rem] flex-col items-center justify-center rounded-xl border-none p-2"
                         >
-                          <span className="text-[16px] font-bold leading-none text-muted/60">
+                          <span className="text-[14px] font-bold leading-none text-muted/60">
                             {format(day, "d")}
                           </span>
                         </div>
@@ -288,15 +288,15 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className={`flex min-h-[5rem] flex-col items-center justify-center gap-1.5 rounded-xl p-2 ${tileClass}`}
+                        className={`flex min-h-[5rem] flex-col items-center justify-center gap-1 rounded-xl p-2 ${tileClass}`}
                       >
-                        <span className="text-[16px] font-bold leading-none">
+                        <span className="text-[14px] font-bold leading-none">
                           {format(day, "d")}
                         </span>
-                        <p className="text-sm font-semibold tabular-nums leading-none">
+                        <p className="text-[12px] font-semibold tabular-nums leading-none">
                           {formatCellUnits(stat.units)}
                         </p>
-                        <p className="text-xs font-semibold opacity-70">
+                        <p className="text-[11px] font-semibold opacity-70">
                           {stat.picks}p · {stat.winRate.toFixed(0)}%
                         </p>
                       </div>
