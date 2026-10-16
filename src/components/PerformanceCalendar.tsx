@@ -62,10 +62,9 @@ function monthUnitsTotal(
   return total;
 }
 
-/** Compact units for calendar cells, e.g. +6.08u / -0.9u */
+/** Compact units for calendar cells — matches reference style (6.47u / -4.25u) */
 function formatCellUnits(n: number): string {
   const abs = Math.abs(n).toFixed(2).replace(/\.?0+$/, "");
-  if (n > 0) return `+${abs}u`;
   if (n < 0) return `-${abs}u`;
   return `${abs}u`;
 }
@@ -169,9 +168,9 @@ export function PerformanceCalendar({
                     return (
                       <div
                         key={key}
-                        className="tile-empty relative flex aspect-square flex-col rounded-[0.7rem] px-1 pb-1.5 pt-1"
+                        className="tile-empty flex aspect-square flex-col items-center justify-center rounded-[0.7rem] px-0.5"
                       >
-                        <span className="text-[11px] font-semibold leading-none text-muted/70">
+                        <span className="text-[16px] font-bold leading-none text-muted/60">
                           {format(day, "d")}
                         </span>
                       </div>
@@ -189,16 +188,14 @@ export function PerformanceCalendar({
                   return (
                     <div
                       key={key}
-                      className={`relative flex aspect-square flex-col rounded-[0.7rem] px-1 pb-1.5 pt-1 ${tileClass}`}
+                      className={`flex aspect-square flex-col items-center justify-center gap-1 rounded-[0.7rem] px-0.5 ${tileClass}`}
                     >
-                      <span className="text-[11px] font-semibold leading-none opacity-70">
+                      <span className="text-[16px] font-bold leading-none">
                         {format(day, "d")}
                       </span>
-                      <div className="flex flex-1 items-center justify-center">
-                        <p className="text-center text-[0.7rem] font-bold tabular-nums leading-none tracking-tight">
-                          {formatCellUnits(stat.units)}
-                        </p>
-                      </div>
+                      <p className="text-center text-[14px] font-semibold tabular-nums leading-none tracking-tight">
+                        {formatCellUnits(stat.units)}
+                      </p>
                     </div>
                   );
                 })}
