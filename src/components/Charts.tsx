@@ -26,6 +26,31 @@ const RED = "#eb4669";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
+function useIsMobile(breakpoint = 640) {
+  // Mobile-first default avoids a desktop→mobile flash on phones.
+  const [mobile, setMobile] = useState(true);
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
+    const sync = () => setMobile(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [breakpoint]);
+  return mobile;
+}
+
+/** Evenly spaced categorical ticks so mobile x-axis dates don't stack. */
+function pickAxisTicks(labels: string[], maxTicks: number): string[] {
+  const series = labels[0] === "Open" ? labels.slice(1) : labels;
+  if (series.length <= maxTicks) return series;
+  const ticks: string[] = [];
+  for (let i = 0; i < maxTicks; i++) {
+    const idx = Math.round((i * (series.length - 1)) / (maxTicks - 1));
+    ticks.push(series[idx]);
+  }
+  return [...new Set(ticks)];
+}
+
 function ChartTooltip({
   active,
   payload,
@@ -98,105 +123,171 @@ function ChartFrame({
 }
 
 export function CumulativeChart({ stats }: { stats: SeasonStats }) {
+  const isMobile = useIsMobile();
   const data = stats.cumulativeSeries.map((p) => ({
     ...p,
     value: p.cumulative,
   }));
+  const lastIndex = Math.max(data.length - 1, 0);
+  const xTicks = pickAxisTicks(
+    data.map((d) => d.label),
+    isMobile ? 5 : 8,
+  );
 
   return (
-    <div className="panel-soft p-6 sm:p-8">
+    <div className={isMobile ? "" : "panel-soft p-8"}>
       <SectionHead
         title="Cumulative Unit Curve"
         copy="Running total of units won and lost, with defining moments marked along the way."
       />
       {data.length === 0 ? (
-        <div className="flex h-[280px] items-center justify-center text-sm text-muted sm:h-[340px]">
+        <div className="flex h-[240px] items-center justify-center text-sm text-muted sm:h-[340px]">
           No chart data yet.
         </div>
       ) : (
-        <ChartFrame heightClass="h-[280px] sm:h-[340px]">
-          <AreaChart
-            data={data}
-            margin={{ top: 36, right: 28, left: 0, bottom: 8 }}
-          >
-            <defs>
-              <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity={0.45} />
-                <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity={0} />
-              </linearGradient>
-              <linearGradient id="cumStroke" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%" stopColor={GOLD_DEEP} />
-                <stop offset="100%" stopColor={GOLD_BRIGHT} />
-              </linearGradient>
-            </defs>
-            <CartesianGrid stroke={GRID} vertical={false} />
-            <XAxis
-              dataKey="label"
-              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
-              axisLine={false}
-              tickLine={false}
-              interval="preserveStartEnd"
-            />
-            <YAxis
-              tickFormatter={(v) => `${v > 0 ? "+" : ""}${v}u`}
-              tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
-              axisLine={false}
-              tickLine={false}
-              width={48}
-              domain={[0, "auto"]}
-            />
-            <Tooltip
-              cursor={darkCursorLine}
-              wrapperStyle={tooltipWrapper}
-              content={({ active, payload, label }) => (
-                <ChartTooltip
-                  active={active}
-                  payload={payload as never}
-                  label={`Point ${label}`}
-                  suffix="u cumulative"
-                />
-              )}
-            />
-            <Area
-              type="monotone"
-              dataKey="cumulative"
-              stroke="url(#cumStroke)"
-              strokeWidth={2.6}
-              fill="url(#cumFill)"
-              dot={{ r: 4, fill: GOLD_BRIGHT, stroke: "#000", strokeWidth: 2 }}
-              activeDot={{ r: 6, fill: GOLD_BRIGHT, stroke: "#000" }}
-            />
-            {stats.annotations.map((a) => {
-              const point = [...stats.cumulativeSeries]
-                .reverse()
-                .find((c) => c.date === a.date && c.label !== "Open");
-              if (!point) return null;
-              const index = stats.cumulativeSeries.indexOf(point);
-              const total = stats.cumulativeSeries.length;
-              const anchor =
-                index >= total - 3 ? "end" : index <= 2 ? "start" : "middle";
-              return (
+        <div className={isMobile ? "-mx-4" : undefined}>
+          <ChartFrame heightClass="h-[240px] sm:h-[340px]">
+            <AreaChart
+              data={data}
+              margin={
+                isMobile
+                  ? { top: 28, right: 18, left: 14, bottom: 4 }
+                  : { top: 36, right: 28, left: 0, bottom: 8 }
+              }
+            >
+              <defs>
+                <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor={GOLD_DEEP} stopOpacity={0.28} />
+                  <stop offset="100%" stopColor={GOLD_DEEP} stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="cumStroke" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stopColor={GOLD_DEEP} />
+                  <stop offset="100%" stopColor={GOLD_BRIGHT} />
+                </linearGradient>
+              </defs>
+              {!isMobile && <CartesianGrid stroke={GRID} vertical={false} />}
+              <XAxis
+                dataKey="label"
+                ticks={xTicks}
+                tick={{
+                  fill: MUTED,
+                  fontSize: isMobile ? 11 : 12,
+                  fontWeight: 600,
+                }}
+                axisLine={false}
+                tickLine={false}
+                interval={0}
+                padding={{ left: 4, right: 4 }}
+              />
+              <YAxis
+                hide={isMobile}
+                tickFormatter={(v) => `${v > 0 ? "+" : ""}${v}u`}
+                tick={{ fill: MUTED, fontSize: 12, fontWeight: 600 }}
+                axisLine={false}
+                tickLine={false}
+                width={48}
+                domain={["auto", "auto"]}
+              />
+              <Tooltip
+                cursor={darkCursorLine}
+                wrapperStyle={tooltipWrapper}
+                content={({ active, payload, label }) => (
+                  <ChartTooltip
+                    active={active}
+                    payload={payload as never}
+                    label={label === "Open" ? "Open" : String(label)}
+                    suffix="u cumulative"
+                  />
+                )}
+              />
+              <Area
+                type="stepAfter"
+                dataKey="cumulative"
+                stroke="url(#cumStroke)"
+                strokeWidth={isMobile ? 2.8 : 2.6}
+                fill={isMobile ? "transparent" : "url(#cumFill)"}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                dot={false}
+                activeDot={{ r: 5, fill: GOLD_BRIGHT, stroke: "#000" }}
+              />
+              {data[0] ? (
                 <ReferenceDot
-                  key={`peak-${a.date}`}
-                  x={point.label}
-                  y={a.cumulative}
-                  r={3.5}
-                  fill={GOLD}
-                  stroke="#000"
+                  x={data[0].label}
+                  y={data[0].cumulative}
+                  r={0}
+                  fill="transparent"
+                  stroke="none"
                   label={(props) => (
-                    <AnnotationLabel
+                    <EndpointLabel
                       viewBox={props.viewBox as { x?: number; y?: number }}
-                      text={a.label}
-                      anchor={anchor}
+                      text={`${formatSigned(data[0].cumulative)}u`}
+                      anchor="start"
+                      dy={isMobile ? 16 : -12}
                     />
                   )}
                 />
-              );
-            })}
-          </AreaChart>
-        </ChartFrame>
+              ) : null}
+              {data[lastIndex] ? (
+                <ReferenceDot
+                  x={data[lastIndex].label}
+                  y={data[lastIndex].cumulative}
+                  r={0}
+                  fill="transparent"
+                  stroke="none"
+                  label={(props) => (
+                    <EndpointLabel
+                      viewBox={props.viewBox as { x?: number; y?: number }}
+                      text={`${formatSigned(data[lastIndex].cumulative)}u`}
+                      anchor="end"
+                      dy={-12}
+                    />
+                  )}
+                />
+              ) : null}
+              {!isMobile &&
+                stats.annotations.map((a) => {
+                  const point = [...stats.cumulativeSeries]
+                    .reverse()
+                    .find((c) => c.date === a.date && c.label !== "Open");
+                  if (!point) return null;
+                  const index = stats.cumulativeSeries.indexOf(point);
+                  const total = stats.cumulativeSeries.length;
+                  const anchor =
+                    index >= total - 3
+                      ? "end"
+                      : index <= 2
+                        ? "start"
+                        : "middle";
+                  return (
+                    <ReferenceDot
+                      key={`peak-${a.date}`}
+                      x={point.label}
+                      y={a.cumulative}
+                      r={3.5}
+                      fill={GOLD}
+                      stroke="#000"
+                      label={(props) => (
+                        <AnnotationLabel
+                          viewBox={props.viewBox as { x?: number; y?: number }}
+                          text={a.label}
+                          anchor={anchor}
+                        />
+                      )}
+                    />
+                  );
+                })}
+            </AreaChart>
+          </ChartFrame>
+        </div>
       )}
-      <div className="mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3">
+      <div
+        className={
+          isMobile
+            ? "mt-4 grid gap-3"
+            : "mt-5 grid gap-3 border-t border-border pt-4 sm:grid-cols-3"
+        }
+      >
         <MetricLine
           label="Peak"
           value={
@@ -213,7 +304,10 @@ export function CumulativeChart({ stats }: { stats: SeasonStats }) {
               : "—"
           }
         />
-        <MetricLine label="Season finish" value={`${formatSigned(stats.netUnits)}u`} />
+        <MetricLine
+          label="Season finish"
+          value={`${formatSigned(stats.netUnits)}u`}
+        />
       </div>
     </div>
   );
@@ -240,6 +334,33 @@ function AnnotationLabel({
       fill={GOLD}
       fontSize={12}
       fontWeight={700}
+    >
+      {text}
+    </text>
+  );
+}
+
+function EndpointLabel({
+  text,
+  viewBox,
+  anchor = "start",
+  dy = -12,
+}: {
+  text: string;
+  viewBox?: { x?: number; y?: number };
+  anchor?: "start" | "middle" | "end";
+  dy?: number;
+}) {
+  const x = viewBox?.x ?? 0;
+  const y = viewBox?.y ?? 0;
+  return (
+    <text
+      x={x}
+      y={y + dy}
+      textAnchor={anchor}
+      fill={MUTED}
+      fontSize={11}
+      fontWeight={600}
     >
       {text}
     </text>
