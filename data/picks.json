@@ -2948,5 +2948,115 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-frankfurt-koln-over",
+    "date": "2026-10-17",
+    "pick": "Eintracht Frankfurt @ FC Koln Over 3.5 Goals",
+    "sport": "Soccer",
+    "odds": -130,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-memphis-tulane-over",
+    "date": "2026-10-17",
+    "pick": "Memphis @ Tulane Over 53.5",
+    "sport": "NCAAF",
+    "odds": -136,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-stokes-pass-tds",
+    "date": "2026-10-17",
+    "pick": "Marcus Stokes Over 1.5 Pass TDs",
+    "sport": "NCAAF",
+    "odds": -108,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-roebuck-receptions",
+    "date": "2026-10-17",
+    "pick": "Dezmen Roebuck Over 5.5 Receptions",
+    "sport": "NCAAF",
+    "odds": -102,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-lozano-kicking",
+    "date": "2026-10-17",
+    "pick": "Jacobo Echeverria Lozano 7+ Kicking Points",
+    "sport": "NCAAF",
+    "odds": -150,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-bailey-pass-yds",
+    "date": "2026-10-17",
+    "pick": "Deuce Bailey 200+ Passing Yards",
+    "sport": "NCAAF",
+    "odds": -152,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-avalanche-reg-ml",
+    "date": "2026-10-17",
+    "pick": "Colorado Avalanche Regulation ML",
+    "sport": "NHL",
+    "odds": -135,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-pens-avs-over",
+    "date": "2026-10-17",
+    "pick": "Penguins @ Avalanche Over 6.5 Goals",
+    "sport": "NHL",
+    "odds": -122,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-mackinnon-sog",
+    "date": "2026-10-17",
+    "pick": "Nathan MacKinnon Over 3.5 Shots on Goal",
+    "sport": "NHL",
+    "odds": -140,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-bruins-ml",
+    "date": "2026-10-17",
+    "pick": "Boston Bruins ML",
+    "sport": "NHL",
+    "odds": -108,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-17-pastrnak-assists",
+    "date": "2026-10-17",
+    "pick": "David Pastrnak 1+ Assists",
+    "sport": "NHL",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
