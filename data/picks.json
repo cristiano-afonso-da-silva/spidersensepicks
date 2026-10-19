@@ -3128,5 +3128,125 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-marks-rush-yds",
+    "date": "2026-10-18",
+    "pick": "Woody Marks Under 45.5 Rushing Yards",
+    "sport": "NFL",
+    "odds": -109,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-bijan-longest-rush",
+    "date": "2026-10-18",
+    "pick": "Bijan Robinson Over 18.5 Longest Rush",
+    "sport": "NFL",
+    "odds": -114,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-mcmillan-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Tetairoa McMillan Over 64.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-likely-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Isaiah Likely 50+ Receiving Yards",
+    "sport": "NFL",
+    "odds": -130,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-hubbard-rush-yds",
+    "date": "2026-10-18",
+    "pick": "Chuba Hubbard 70+ Rush Yards",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-bowers-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Brock Bowers Over 79.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-love-pass-tds",
+    "date": "2026-10-18",
+    "pick": "Jordan Love Over 1.5 Passing TDs",
+    "sport": "NFL",
+    "odds": -172,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-watson-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Christian Watson Over 76.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-javonte-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Javonte Williams Over 12.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -114,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-ferguson-rec-yds",
+    "date": "2026-10-18",
+    "pick": "Jake Ferguson Under 23.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -108,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-cowboys-ml",
+    "date": "2026-10-18",
+    "pick": "Dallas Cowboys ML",
+    "sport": "NFL",
+    "odds": -112,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-18-dal-gb-over",
+    "date": "2026-10-18",
+    "pick": "Cowboys @ Green Bay Over 51.5",
+    "sport": "NFL",
+    "odds": -142,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
