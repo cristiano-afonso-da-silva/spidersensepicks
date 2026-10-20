@@ -3248,5 +3248,55 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-19-commanders-spread",
+    "date": "2026-10-19",
+    "pick": "Commanders +7.5",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-19-daniels-rush-yds",
+    "date": "2026-10-19",
+    "pick": "Jayden Daniels Over 38.5 Rushing Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-19-mccaffrey-receptions",
+    "date": "2026-10-19",
+    "pick": "Christian McCaffrey Over 4.5 Receptions",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-19-mclaurin-rec-yds",
+    "date": "2026-10-19",
+    "pick": "Terry McLaurin Over 49.5 Receiving Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 0.5,
+    "result": "push",
+    "notes": "0.5 Unit Play · Premium · Cashed out (stake returned)"
+  },
+  {
+    "id": "2026-10-19-gabby-pts-reb",
+    "date": "2026-10-19",
+    "pick": "Gabby Williams Over 22.5 Points + Rebounds",
+    "sport": "Basketball",
+    "odds": -135,
+    "units": 0.2,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium · Cashed out 0.65u (+0.15u)"
   }
 ]
