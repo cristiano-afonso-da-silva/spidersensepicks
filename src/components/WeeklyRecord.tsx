@@ -14,6 +14,8 @@ type DayRow = {
   picks: Pick[];
 };
 
+const PAGE_SIZE = 10;
+
 export function WeeklyRecord({
   stats,
   picks,
@@ -22,6 +24,7 @@ export function WeeklyRecord({
   picks: Pick[];
 }) {
   const [openDate, setOpenDate] = useState<string | null>(null);
+  const [page, setPage] = useState(0);
 
   const days = useMemo(() => {
     const byDate = new Map<string, Pick[]>();
@@ -71,19 +74,35 @@ export function WeeklyRecord({
     d.picks.some((p) => p.result !== "pending"),
   ).length;
 
+  // Newest first — cumulative values were computed oldest → newest above.
+  const sortedDays = useMemo(() => [...days].reverse(), [days]);
+  const totalPages = Math.max(1, Math.ceil(sortedDays.length / PAGE_SIZE));
+  const safePage = Math.min(page, totalPages - 1);
+  const pageDays = sortedDays.slice(
+    safePage * PAGE_SIZE,
+    safePage * PAGE_SIZE + PAGE_SIZE,
+  );
+  const rangeStart = sortedDays.length === 0 ? 0 : safePage * PAGE_SIZE + 1;
+  const rangeEnd = Math.min(sortedDays.length, safePage * PAGE_SIZE + PAGE_SIZE);
+
+  function goToPage(next: number) {
+    setPage(Math.max(0, Math.min(totalPages - 1, next)));
+    setOpenDate(null);
+  }
+
   return (
     <div className="panel overflow-hidden">
       <div className="border-b border-border px-5 py-6 sm:px-7">
         <p className="section-label">Full pick ledger</p>
         <h2 className="section-title">All Records</h2>
         <p className="section-copy">
-          Tap a date to expand its picks
-          {settledDays ? ` — ${settledDays} days tracked` : ""}.
+          Newest first — tap a date to expand its picks
+          {settledDays ? ` · ${settledDays} days tracked` : ""}
           {stats.weeksTracked ? ` · ${stats.weeksTracked} weeks` : ""}
         </p>
       </div>
 
-      <div className="ledger-scroll max-h-[560px] overflow-y-auto">
+      <div>
         {days.length === 0 ? (
           <p className="px-6 py-10 text-center text-sm text-muted">
             No picks recorded yet.
@@ -91,7 +110,7 @@ export function WeeklyRecord({
         ) : (
           <>
             <div
-              className="sticky top-0 z-10 flex items-center gap-3 border-b border-border bg-surface/95 px-5 py-2.5 backdrop-blur-sm sm:px-7"
+              className="flex items-center gap-3 border-b border-border bg-surface/95 px-5 py-2.5 sm:px-7"
               role="row"
             >
               <span className="w-4 shrink-0" aria-hidden />
@@ -111,7 +130,7 @@ export function WeeklyRecord({
               </span>
             </div>
             <ul>
-            {days.map((d) => {
+            {pageDays.map((d) => {
               const open = openDate === d.date;
               return (
                 <li key={d.date} className="border-t border-border">
@@ -219,6 +238,47 @@ export function WeeklyRecord({
               );
             })}
             </ul>
+
+            <div className="flex flex-wrap items-center gap-3 border-t border-border px-5 py-4 sm:px-7">
+              <p className="text-[13px] font-semibold tabular-nums text-muted">
+                {rangeStart}–{rangeEnd} of {sortedDays.length} days
+              </p>
+              <div className="ml-auto flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => goToPage(safePage - 1)}
+                  disabled={safePage === 0}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-lg text-muted transition hover:text-white disabled:opacity-30"
+                  aria-label="Previous page"
+                >
+                  ‹
+                </button>
+                {Array.from({ length: totalPages }, (_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => goToPage(i)}
+                    className={`h-9 min-w-9 rounded-lg px-2 text-[13px] font-bold tabular-nums transition ${
+                      i === safePage
+                        ? "bg-win text-black"
+                        : "border border-border text-muted hover:text-white"
+                    }`}
+                    aria-current={i === safePage ? "page" : undefined}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+                <button
+                  type="button"
+                  onClick={() => goToPage(safePage + 1)}
+                  disabled={safePage >= totalPages - 1}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border text-lg text-muted transition hover:text-white disabled:opacity-30"
+                  aria-label="Next page"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
           </>
         )}
       </div>

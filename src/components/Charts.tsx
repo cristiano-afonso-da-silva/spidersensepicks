@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   endOfMonth,
   endOfWeek,
@@ -36,18 +42,6 @@ const RED = "#eb4669";
 const MUTED = "#9ca3af";
 const GRID = "rgba(255, 255, 255, 0.08)";
 
-function useIsMobile(breakpoint = 640) {
-  // Mobile-first default avoids a desktop→mobile flash on phones.
-  const [mobile, setMobile] = useState(true);
-  useEffect(() => {
-    const mq = window.matchMedia(`(max-width: ${breakpoint - 1}px)`);
-    const sync = () => setMobile(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, [breakpoint]);
-  return mobile;
-}
 
 /** Evenly spaced categorical ticks so mobile x-axis dates don't stack. */
 function pickAxisTicks(labels: string[], maxTicks: number): string[] {
@@ -168,21 +162,36 @@ function ChartFrame({
   heightClass: string;
   children: ReactNode;
 }) {
-  const [ready, setReady] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
+
   useEffect(() => {
-    setReady(true);
+    const el = ref.current;
+    if (!el) return;
+    const update = () => {
+      const r = el.getBoundingClientRect();
+      setSize((prev) =>
+        prev.w === r.width && prev.h === r.height
+          ? prev
+          : { w: r.width, h: r.height },
+      );
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
+  const visible = size.w > 0 && size.h > 0;
+
   return (
-    <div className={`${heightClass} w-full`}>
-      {ready ? (
+    <div ref={ref} className={`${heightClass} w-full`}>
+      {visible ? (
         <ResponsiveContainer width="100%" height="100%">
           {children}
         </ResponsiveContainer>
       ) : (
-        <div className="flex h-full items-center justify-center text-sm text-muted">
-          Loading chart…
-        </div>
+        <div className="h-full w-full" aria-hidden />
       )}
     </div>
   );
@@ -191,11 +200,13 @@ function ChartFrame({
 export function CumulativeChart({
   stats,
   picks = [],
+  variant = "desktop",
 }: {
   stats: SeasonStats;
   picks?: Pick[];
+  variant?: "mobile" | "desktop";
 }) {
-  const isMobile = useIsMobile();
+  const isMobile = variant === "mobile";
   const [range, setRange] = useState<ChartRange>("month");
 
   const window = useMemo(
@@ -520,14 +531,14 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
   return (
     <div className="panel p-6 sm:p-7">
       <SectionHead
-        title="Daily Performance"
-        copy="Net units day by day — yellow above zero, red below."
+        title="Weekly Performance"
+        copy="Net units week by week — yellow above zero, red below."
       />
-      {stats.daily.length === 0 ? (
+      {stats.weekly.length === 0 ? (
         <EmptyChart />
       ) : (
         <ChartFrame heightClass="h-[220px] sm:h-[260px]">
-          <BarChart data={stats.daily}>
+          <BarChart data={stats.weekly}>
             <CartesianGrid stroke={GRID} vertical={false} />
             <XAxis
               dataKey="label"
@@ -549,15 +560,15 @@ export function WeeklyBars({ stats }: { stats: SeasonStats }) {
                 <ChartTooltip
                   active={active}
                   payload={payload as never}
-                  label={`${label}`}
+                  label={`Week of ${label}`}
                 />
               )}
             />
             <Bar dataKey="units" radius={[4, 4, 4, 4]}>
-              {stats.daily.map((d) => (
+              {stats.weekly.map((w) => (
                 <Cell
-                  key={d.date}
-                  fill={d.units >= 0 ? GOLD : RED}
+                  key={w.weekStart}
+                  fill={w.units >= 0 ? GOLD : RED}
                 />
               ))}
             </Bar>

@@ -78,7 +78,7 @@ export default async function HomePage() {
         <SiteHeader stats={stats} />
 
         <section className="mobile-section">
-          <CumulativeChart stats={stats} picks={picks} />
+          <CumulativeChart stats={stats} picks={picks} variant="mobile" />
         </section>
 
         <section className="mobile-section">
@@ -102,7 +102,7 @@ export default async function HomePage() {
           <HeroStats stats={stats} />
         </div>
         <PerformanceCalendar picks={picks} variant="desktop" />
-        <CumulativeChart stats={stats} />
+        <CumulativeChart stats={stats} picks={picks} variant="desktop" />
         <div className="grid gap-5 lg:grid-cols-2">
           <MonthlyBars stats={stats} />
           <WinsLossesDonut stats={stats} />
