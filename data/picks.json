@@ -3298,5 +3298,75 @@
     "units": 0.2,
     "result": "win",
     "notes": "0.5 Unit Play · Premium · Cashed out 0.65u (+0.15u)"
+  },
+  {
+    "id": "2026-10-20-duren-reb-ast",
+    "date": "2026-10-20",
+    "pick": "Duren Over 11.5 Rebounds + Assists",
+    "sport": "Basketball",
+    "odds": -110,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-robinson-pts-ast",
+    "date": "2026-10-20",
+    "pick": "Duncan Robinson Over 12 Points + Assists",
+    "sport": "Basketball",
+    "odds": -119,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-soccer-2leg-parlay",
+    "date": "2026-10-20",
+    "pick": "2 Leg Parlay: Fenerbahce ML / Porto ML",
+    "sport": "Soccer",
+    "odds": 142,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-nyk-phi-over",
+    "date": "2026-10-20",
+    "pick": "Knicks @ 76ers Over 230.5",
+    "sport": "Basketball",
+    "odds": -127,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-okc-sas-under",
+    "date": "2026-10-20",
+    "pick": "Thunder @ Spurs Under 231.5",
+    "sport": "Basketball",
+    "odds": -125,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-bruins-ml",
+    "date": "2026-10-20",
+    "pick": "Boston Bruins ML",
+    "sport": "NHL",
+    "odds": 142,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-20-hughes-assist",
+    "date": "2026-10-20",
+    "pick": "Quinn Hughes 1+ Assist",
+    "sport": "NHL",
+    "odds": -160,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
