@@ -3370,13 +3370,73 @@
     "notes": "0.5 Unit Play · Premium"
   },
   {
+    "id": "2026-10-21-villa-viking-over",
+    "date": "2026-10-21",
+    "pick": "Aston Villa vs Viking Over 3.5 Goals",
+    "sport": "Soccer",
+    "odds": -145,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
     "id": "2026-10-21-nba-3-leg-parlay",
     "date": "2026-10-21",
-    "pick": "3 Leg Parlay: Fred VanVleet 4+ AST / Pascal Siakam 25+ PRA / Luka Doncic 40+ PRA",
+    "pick": "3 Leg Parlay: Fred VanVleet 4+ AST / Pascal Siakam 25+ PRA / Luka Dončić 40+ PRA",
     "sport": "Basketball",
     "odds": -109,
     "units": 1.5,
     "result": "win",
     "notes": "1.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-nba-2-leg-parlay",
+    "date": "2026-10-21",
+    "pick": "2 Leg Parlay: Julius Randle 15+ Pts / LaMelo Ball 10+ Reb+Ast",
+    "sport": "Basketball",
+    "odds": 100,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-kawhi-points",
+    "date": "2026-10-21",
+    "pick": "Kawhi Leonard 25+ Points",
+    "sport": "Basketball",
+    "odds": -139,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-thompson-sog",
+    "date": "2026-10-21",
+    "pick": "Tage Thompson Over 3.5 Shots on Goal",
+    "sport": "NHL",
+    "odds": 112,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-panthers-sens-over",
+    "date": "2026-10-21",
+    "pick": "Panthers @ Senators Over 5.5 Goals",
+    "sport": "NHL",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-vladar-saves",
+    "date": "2026-10-21",
+    "pick": "Dan Vladar Over 24.5 Saves",
+    "sport": "NHL",
+    "odds": -112,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
