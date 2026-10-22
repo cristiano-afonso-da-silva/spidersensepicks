@@ -3368,5 +3368,15 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-21-nba-3-leg-parlay",
+    "date": "2026-10-21",
+    "pick": "3 Leg Parlay: Fred VanVleet 4+ AST / Pascal Siakam 25+ PRA / Luka Doncic 40+ PRA",
+    "sport": "Basketball",
+    "odds": -109,
+    "units": 1.5,
+    "result": "win",
+    "notes": "1.5 Unit Play · Premium"
   }
 ]
