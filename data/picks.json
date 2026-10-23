@@ -3438,5 +3438,85 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-jaylen-brown-points",
+    "date": "2026-10-22",
+    "pick": "Jaylen Brown 20+ Points",
+    "sport": "Basketball",
+    "odds": -139,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-swift-rec-yds",
+    "date": "2026-10-22",
+    "pick": "D'Andre Swift 20+ Rec Yards",
+    "sport": "NFL",
+    "odds": -131,
+    "units": 1.5,
+    "result": "loss",
+    "notes": "1.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-henderson-rush-att",
+    "date": "2026-10-22",
+    "pick": "TreVeyon Henderson Over 5.5 Rushing Attempts",
+    "sport": "NFL",
+    "odds": -136,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-aj-brown-rec-yds",
+    "date": "2026-10-22",
+    "pick": "A.J. Brown Under 69.5 Rec Yards",
+    "sport": "NFL",
+    "odds": -110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-uta-sea-over",
+    "date": "2026-10-22",
+    "pick": "UTA @ SEA Over 6.5 Goals",
+    "sport": "NHL",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-sga-points",
+    "date": "2026-10-22",
+    "pick": "SGA Over 29.5 Points",
+    "sport": "Basketball",
+    "odds": -149,
+    "units": 0.4,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Cashed out 0.1u (-0.4u)"
+  },
+  {
+    "id": "2026-10-22-aaron-gordon-points",
+    "date": "2026-10-22",
+    "pick": "Aaron Gordon Over 14.5 Points",
+    "sport": "Basketball",
+    "odds": -111,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-22-ajay-mitchell-points",
+    "date": "2026-10-22",
+    "pick": "Ajay Mitchell Over 10.5 Points",
+    "sport": "Basketball",
+    "odds": -132,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
