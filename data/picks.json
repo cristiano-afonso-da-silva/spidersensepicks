@@ -3518,5 +3518,85 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-vassell-1q-points",
+    "date": "2026-10-23",
+    "pick": "Devin Vassell Over 2.5 1Q Points",
+    "sport": "Basketball",
+    "odds": -125,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-colorado-1p",
+    "date": "2026-10-23",
+    "pick": "Colorado 1st Period -0.5",
+    "sport": "NHL",
+    "odds": 168,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-brewers-1h-rl",
+    "date": "2026-10-23",
+    "pick": "Brewers -0.5 1st Half Run Line",
+    "sport": "MLB",
+    "odds": -130,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-morant-ast",
+    "date": "2026-10-23",
+    "pick": "Ja Morant Over 5.5 Assists",
+    "sport": "Basketball",
+    "odds": -142,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-vanvleet-ast",
+    "date": "2026-10-23",
+    "pick": "Fred VanVleet Over 5.5 Assists",
+    "sport": "Basketball",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-blackhawks-tt",
+    "date": "2026-10-23",
+    "pick": "Chicago Blackhawks Over 2.5 Team Total",
+    "sport": "NHL",
+    "odds": -128,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-mackinnon-sog",
+    "date": "2026-10-23",
+    "pick": "Nathan MacKinnon Over 3.5 Shots on Goal",
+    "sport": "NHL",
+    "odds": -130,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-23-tulsa-spread",
+    "date": "2026-10-23",
+    "pick": "Tulsa -1.5",
+    "sport": "NCAAF",
+    "odds": -104,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
   }
 ]
