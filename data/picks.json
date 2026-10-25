@@ -3598,5 +3598,75 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-south-carolina-spread",
+    "date": "2026-10-24",
+    "pick": "South Carolina -2.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-flyers-ml",
+    "date": "2026-10-24",
+    "pick": "Philadelphia Flyers ML",
+    "sport": "NHL",
+    "odds": -118,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-sherrill-rec-yds",
+    "date": "2026-10-24",
+    "pick": "Junior Sherrill Over 79.5 Receiving Yards",
+    "sport": "NCAAF",
+    "odds": -114,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-weigman-pass-yds",
+    "date": "2026-10-24",
+    "pick": "Conner Weigman Over 231.5 Pass Yards",
+    "sport": "NCAAF",
+    "odds": -114,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-herro-3pm",
+    "date": "2026-10-24",
+    "pick": "Tyler Herro Over 2.5 Threes",
+    "sport": "Basketball",
+    "odds": -125,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-allen-1q-points",
+    "date": "2026-10-24",
+    "pick": "Jarrett Allen Over 3.5 1Q Points",
+    "sport": "Basketball",
+    "odds": -136,
+    "units": 0.5,
+    "result": "win",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-24-powell-castle-parlay",
+    "date": "2026-10-24",
+    "pick": "2-Leg Parlay: Norman Powell 15+ Pts / Stephon Castle 5+ Ast",
+    "sport": "Basketball",
+    "odds": 100,
+    "units": 0.5,
+    "result": "win",
+    "notes": "2 Unit Play · Premium · Cashed out 2.5u (+0.5u)"
   }
 ]
