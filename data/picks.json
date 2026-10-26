@@ -3668,5 +3668,145 @@
     "units": 0.5,
     "result": "win",
     "notes": "2 Unit Play · Premium · Cashed out 2.5u (+0.5u)"
+  },
+  {
+    "id": "2026-10-25-steelers-spread",
+    "date": "2026-10-25",
+    "pick": "Steelers -2.5",
+    "sport": "NFL",
+    "odds": -140,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-bernard-rec",
+    "date": "2026-10-25",
+    "pick": "Germie Bernard Over 4.5 Receptions",
+    "sport": "NFL",
+    "odds": -172,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.5u (-0.5u)"
+  },
+  {
+    "id": "2026-10-25-falcons-spread",
+    "date": "2026-10-25",
+    "pick": "Falcons +3.5",
+    "sport": "NFL",
+    "odds": -148,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-jets-ml",
+    "date": "2026-10-25",
+    "pick": "Jets ML",
+    "sport": "NFL",
+    "odds": -186,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-szmyt-fg",
+    "date": "2026-10-25",
+    "pick": "Andre Szmyt Over 1.5 Field Goals",
+    "sport": "NFL",
+    "odds": -132,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-chase-rec-yds",
+    "date": "2026-10-25",
+    "pick": "Ja'Marr Chase 80+ Rec Yards",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 0.75,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.25u (-0.75u)"
+  },
+  {
+    "id": "2026-10-25-irving-rush-yds",
+    "date": "2026-10-25",
+    "pick": "Bucky Irving 60+ Rush Yards",
+    "sport": "NFL",
+    "odds": -157,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-coker-rec-yds",
+    "date": "2026-10-25",
+    "pick": "Jalen Coker 60+ Rec Yards",
+    "sport": "NFL",
+    "odds": -155,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-wilson-rec-yds",
+    "date": "2026-10-25",
+    "pick": "Garrett Wilson 60+ Rec Yards",
+    "sport": "NFL",
+    "odds": -132,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Cashed out 0.5u (-0.5u)"
+  },
+  {
+    "id": "2026-10-25-kyren-rush-yds",
+    "date": "2026-10-25",
+    "pick": "Kyren Williams Over 67.5 Rush Yards",
+    "sport": "NFL",
+    "odds": -113,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-george-kessler-parlay",
+    "date": "2026-10-25",
+    "pick": "2-Leg Parlay: Keyonte George 25+ Pts+Ast / Walker Kessler 25+ Pts+Reb",
+    "sport": "Basketball",
+    "odds": 148,
+    "units": 1,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Cashed out 1u (-1u)"
+  },
+  {
+    "id": "2026-10-25-connor-atg",
+    "date": "2026-10-25",
+    "pick": "Kyle Connor Anytime Goal",
+    "sport": "NHL",
+    "odds": 115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-nyi-dal-under",
+    "date": "2026-10-25",
+    "pick": "NYI/DAL Under 5.5",
+    "sport": "NHL",
+    "odds": -122,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-25-lakers-knicks-pacers-parlay",
+    "date": "2026-10-25",
+    "pick": "3-Leg Parlay: Lakers ML / Knicks ML / Pacers ML",
+    "sport": "Basketball",
+    "odds": 177,
+    "units": 1.41,
+    "result": "win",
+    "notes": "2 Unit Play · Premium · Cashed out 4.5u (+2.5u)"
   }
 ]
