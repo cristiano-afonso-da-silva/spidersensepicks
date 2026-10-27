@@ -3808,5 +3808,105 @@
     "units": 1.41,
     "result": "win",
     "notes": "2 Unit Play · Premium · Cashed out 4.5u (+2.5u)"
+  },
+  {
+    "id": "2026-10-26-ad-points",
+    "date": "2026-10-26",
+    "pick": "Anthony Davis Over 21.5 Points",
+    "sport": "Basketball",
+    "odds": -108,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-naz-reid-pts-reb",
+    "date": "2026-10-26",
+    "pick": "Naz Reid Over 25.5 Points + Rebounds",
+    "sport": "Basketball",
+    "odds": -122,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-aaron-gordon-pts",
+    "date": "2026-10-26",
+    "pick": "Aaron Gordon 15+ Points",
+    "sport": "Basketball",
+    "odds": -157,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-powell-giannis-parlay",
+    "date": "2026-10-26",
+    "pick": "2-Leg Parlay: Norman Powell 20+ Pts+Reb / Giannis Antetokounmpo 25+ Pts",
+    "sport": "Basketball",
+    "odds": -101,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-sarr-pra",
+    "date": "2026-10-26",
+    "pick": "Alex Sarr 20+ PRA",
+    "sport": "Basketball",
+    "odds": -107,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-schroder-pts",
+    "date": "2026-10-26",
+    "pick": "Dennis Schroder 15+ Points",
+    "sport": "Basketball",
+    "odds": -140,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-lamelo-pra",
+    "date": "2026-10-26",
+    "pick": "LaMelo Ball 30+ PRA",
+    "sport": "Basketball",
+    "odds": -169,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-bauers-hit",
+    "date": "2026-10-26",
+    "pick": "Jake Bauers 1+ Hit",
+    "sport": "MLB",
+    "odds": -145,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-brewers-tt",
+    "date": "2026-10-26",
+    "pick": "Brewers Over 3.5 Team Total",
+    "sport": "MLB",
+    "odds": 100,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-26-pierce-atd",
+    "date": "2026-10-26",
+    "pick": "Dameon Pierce Anytime TD",
+    "sport": "NFL",
+    "odds": 650,
+    "units": 0.25,
+    "result": "win",
+    "notes": "0.25 Unit Play · Premium"
   }
 ]
