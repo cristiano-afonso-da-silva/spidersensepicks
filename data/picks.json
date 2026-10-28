@@ -3908,5 +3908,75 @@
     "units": 0.25,
     "result": "win",
     "notes": "0.25 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-robinson-pra",
+    "date": "2026-10-27",
+    "pick": "Duncan Robinson Over 16.5 PRA",
+    "sport": "Basketball",
+    "odds": -116,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-porter-pra",
+    "date": "2026-10-27",
+    "pick": "Michael Porter Jr. 30+ PRA",
+    "sport": "Basketball",
+    "odds": 104,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-kessler-pra",
+    "date": "2026-10-27",
+    "pick": "Walker Kessler Over 24.5 PRA",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-morant-reb-ast",
+    "date": "2026-10-27",
+    "pick": "Ja Morant Over 9.5 Rebounds + Assists",
+    "sport": "Basketball",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-achiuwa-pts-reb",
+    "date": "2026-10-27",
+    "pick": "Precious Achiuwa Over 18.5 Points + Rebounds",
+    "sport": "Basketball",
+    "odds": -113,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-lillard-cunningham-parlay",
+    "date": "2026-10-27",
+    "pick": "2-Leg Parlay: Damian Lillard 18+ Pts / Cade Cunningham 7+ Ast",
+    "sport": "Basketball",
+    "odds": -118,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-27-contreras-brewers-parlay",
+    "date": "2026-10-27",
+    "pick": "2-Leg Parlay: William Contreras 1+ Hit / Brewers Over 2.5 Runs",
+    "sport": "MLB",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
