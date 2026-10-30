@@ -4048,5 +4048,35 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-10-30-sabonis-avdija-parlay",
+    "date": "2026-10-30",
+    "pick": "2-Leg Parlay: Domantas Sabonis 30+ Pts+Reb / Deni Avdija 30+ PRA",
+    "sport": "Basketball",
+    "odds": -102,
+    "units": 1,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Cashed out 1u (-1u)"
+  },
+  {
+    "id": "2026-10-30-metchie-rec-yds",
+    "date": "2026-10-30",
+    "pick": "John Metchie III 15+ Rec Yards",
+    "sport": "NFL",
+    "odds": -127,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · 1 yard short"
+  },
+  {
+    "id": "2026-10-30-jacobs-kraft-watson-love-parlay",
+    "date": "2026-10-30",
+    "pick": "4-Leg Parlay: Josh Jacobs 2+ Receptions / Tucker Kraft 25+ Rec Yards / Christian Watson 40+ Rec Yards / Jordan Love 1+ Pass TD",
+    "sport": "NFL",
+    "odds": 168,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
