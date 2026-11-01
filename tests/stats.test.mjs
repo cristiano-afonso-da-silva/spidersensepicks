@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { computeStats } from "../src/lib/stats.ts";
+import { computePeriodStats, computeStats } from "../src/lib/stats.ts";
 
 const summary = {
   date: "2026-10-30",
@@ -85,4 +85,58 @@ test("positive and flat summaries affect day outcomes without adding wins or pus
   assert.equal(stats.wins, 0);
   assert.equal(stats.pushes, 0);
   assert.deepEqual(stats.monthly.map((m) => m.units), [1.5, 0]);
+});
+
+test("a supplied summary stake restores ROI without inventing a pick record", () => {
+  const stats = computeStats([], [{ ...summary, stake: 2.5 }]);
+  assert.equal(stats.daily[0].stake, 2.5);
+  assert.deepEqual(computePeriodStats([], stats.daily, null, null), {
+    profit: -0.8, roi: -32, wins: 0, losses: 0, pushes: 0,
+  });
+});
+
+test("period ROI includes summary stakes exactly once and respects date filters", () => {
+  const picks = [
+    pick("2026-10-29", -102, 1, "loss"),
+    pick("2026-10-29", -127, 1, "loss"),
+    pick("2026-10-29", 168, 1, "win"),
+    pick("2026-10-31", -110, 1, "win"),
+    pick("2026-10-31", 180, 0.5, "win"),
+    pick("2026-11-01", 100, 20, "pending"),
+  ];
+  const stats = computeStats(picks, [{ ...summary, stake: 2.5 }]);
+  assert.deepEqual(computePeriodStats(picks, stats.daily, null, null), {
+    profit: 0.69, roi: 9.86, wins: 3, losses: 2, pushes: 0,
+  });
+  assert.deepEqual(computePeriodStats(picks, stats.daily, "2026-10-31", "2026-10-31"), {
+    profit: 1.81, roi: 120.67, wins: 2, losses: 0, pushes: 0,
+  });
+});
+
+test("summary stakes replace partial pick stakes for the same date", () => {
+  const picks = [pick(summary.date, -110, 1, "loss")];
+  const stats = computeStats(picks, [{ ...summary, stake: 2.5 }]);
+  const period = computePeriodStats(picks, stats.daily, null, null);
+  assert.equal(period.roi, -32);
+  assert.equal(period.losses, 1);
+});
+
+test("missing summary stakes suppress ROI only in affected periods", () => {
+  const picks = [pick("2026-10-31", 100, 1, "win")];
+  const stats = computeStats(picks, [summary]);
+  assert.equal(computePeriodStats(picks, stats.daily, null, null).roi, null);
+  assert.equal(computePeriodStats(picks, stats.daily, "2026-10-31", "2026-10-31").roi, 100);
+});
+
+test("ROI handles empty periods, pushes, and invalid summary stakes", () => {
+  assert.equal(computePeriodStats([], [], null, null).roi, 0);
+  const pushes = [pick("2026-10-31", -110, 1, "push")];
+  const stats = computeStats(pushes);
+  assert.deepEqual(computePeriodStats(pushes, stats.daily, null, null), {
+    profit: 0, roi: 0, wins: 0, losses: 0, pushes: 1,
+  });
+  for (const stake of [-1, Number.NaN, Number.POSITIVE_INFINITY, 0]) {
+    const stats = computeStats([], [{ ...summary, stake }]);
+    assert.equal(computePeriodStats([], stats.daily, null, null).roi, null);
+  }
 });

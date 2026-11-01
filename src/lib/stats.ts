@@ -63,16 +63,18 @@ export function computeStats(
   // --- Daily buckets (drives charts + cumulative curve) ---
   const dayMap = new Map<string, number>();
   const dayPickCount = new Map<string, number>();
+  const dayStake = new Map<string, number>();
   for (const p of settled) {
     dayMap.set(
       p.date,
       round2((dayMap.get(p.date) ?? 0) + unitsFromPick(p.odds, p.units, p.result)),
     );
     dayPickCount.set(p.date, (dayPickCount.get(p.date) ?? 0) + 1);
+    dayStake.set(p.date, round2((dayStake.get(p.date) ?? 0) + p.units));
   }
 
   // Summaries provide the full day's total, never an extra bet or stake.
-  const summaryMap = new Map(summaries.map((s) => [s.date, s.notes]));
+  const summaryMap = new Map(summaries.map((s) => [s.date, s]));
   for (const summary of summaries) {
     dayMap.set(summary.date, round2(summary.units));
   }
@@ -89,7 +91,10 @@ export function computeStats(
         cumulative: dayRunning,
         result: units > 0 ? "WIN" : units < 0 ? "LOSS" : "PUSH",
         pickCount: dayPickCount.get(date) ?? 0,
-        ...(summaryMap.has(date) ? { summary: summaryMap.get(date) } : {}),
+        stake: summaryMap.has(date)
+          ? summaryMap.get(date)?.stake
+          : (dayStake.get(date) ?? 0),
+        ...(summaryMap.has(date) ? { summary: summaryMap.get(date)?.notes } : {}),
       };
     });
 
@@ -357,6 +362,34 @@ export function computeStats(
     monthly,
     bySport,
     annotations,
+  };
+}
+
+/** Profit uses complete daily totals; records use only supplied picks. */
+export function computePeriodStats(
+  picks: Pick[],
+  daily: DayBucket[],
+  start: string | null,
+  end: string | null,
+) {
+  const inRange = (date: string) => (!start || date >= start) && (!end || date <= end);
+  const settled = picks.filter((p) => p.result !== "pending" && inRange(p.date));
+  const days = daily.filter((day) => inRange(day.date));
+  const profit = round2(days.reduce((sum, day) => sum + day.units, 0));
+  const unknownStake = days.some(
+    (day) => day.stake === undefined || !Number.isFinite(day.stake) || day.stake < 0,
+  );
+  const stake = round2(days.reduce((sum, day) => sum + (day.stake ?? 0), 0));
+  const roi = unknownStake || (stake === 0 && profit !== 0)
+    ? null
+    : stake === 0 ? 0 : round2((profit / stake) * 100);
+
+  return {
+    profit,
+    roi,
+    wins: settled.filter((p) => p.result === "win").length,
+    losses: settled.filter((p) => p.result === "loss").length,
+    pushes: settled.filter((p) => p.result === "push").length,
   };
 }
 

@@ -37,6 +37,8 @@ export interface CreatePickInput {
 export interface DailySummary {
   date: string;
   units: number;
+  /** Total units staked for the complete day, when supplied. */
+  stake?: number;
   notes: string;
 }
 
@@ -47,6 +49,8 @@ export interface DayBucket {
   cumulative: number;
   result: "WIN" | "LOSS" | "PUSH";
   pickCount: number;
+  /** Unknown when a daily summary omits the total stake. */
+  stake?: number;
   summary?: string;
 }
 

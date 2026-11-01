@@ -30,8 +30,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { DayBucket, Pick, SeasonStats } from "@/lib/types";
-import { formatSigned, round2 } from "@/lib/stats";
+import type { Pick, SeasonStats } from "@/lib/types";
+import { computePeriodStats, formatSigned, round2 } from "@/lib/stats";
 
 type ChartRange = "week" | "month" | "all";
 
@@ -132,41 +132,6 @@ function formatRangeLabel(
   return `${format(parseISO(start), "MMM d")} – ${format(parseISO(end), "MMM d")}`;
 }
 
-function periodStats(
-  picks: Pick[],
-  daily: DayBucket[],
-  start: string | null,
-  end: string | null,
-) {
-  const settled = picks.filter((p) => {
-    if (p.result === "pending") return false;
-    if (start && p.date < start) return false;
-    if (end && p.date > end) return false;
-    return true;
-  });
-  const days = daily.filter(
-    (d) => (!start || d.date >= start) && (!end || d.date <= end),
-  );
-  const profit = round2(days.reduce((sum, d) => sum + d.units, 0));
-  let stake = 0;
-  let wins = 0;
-  let losses = 0;
-  let pushes = 0;
-  for (const p of settled) {
-    stake = round2(stake + p.units);
-    if (p.result === "win") wins += 1;
-    else if (p.result === "loss") losses += 1;
-    else if (p.result === "push") pushes += 1;
-  }
-  // A daily net total does not tell us how much was staked.
-  const roi = days.some((d) => d.summary !== undefined)
-    ? null
-    : stake === 0
-      ? 0
-      : round2((profit / stake) * 100);
-  return { profit, roi, wins, losses, pushes };
-}
-
 function ChartFrame({
   heightClass,
   children,
@@ -261,7 +226,7 @@ export function CumulativeChart({
     const start =
       range === "all" ? stats.seasonStart : (window?.start ?? null);
     const end = range === "all" ? stats.seasonEnd : (window?.end ?? null);
-    return periodStats(picks, stats.daily, start, end);
+    return computePeriodStats(picks, stats.daily, start, end);
   }, [isMobile, range, window, picks, stats.daily, stats.seasonStart, stats.seasonEnd]);
 
   const rangeLabel = useMemo(() => {

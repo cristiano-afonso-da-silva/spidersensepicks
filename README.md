@@ -22,9 +22,11 @@ When only a day's net units are available, record its `date`, `units`, and
 explanatory `notes` in `data/daily-summaries.json`. This is the complete day's
 total, overriding any pick-derived total for that date. It appears in the calendar,
 ledger, and performance totals without adding invented picks, odds, or stakes.
-Pick records and sport statistics use only the individual picks supplied; ROI is
-unavailable for periods containing a daily summary. Remove the summary when the
-complete individual card is entered.
+Pick records and sport statistics use only the individual picks supplied. Include
+the optional `stake` field with the complete day's total units staked to calculate
+ROI; otherwise ROI is unavailable for periods containing that summary. Summary
+stakes replace any partial pick stakes for that date. Remove the summary when
+the complete individual card is entered.
 
 Run `npm test` with Node.js 22.18+ to check performance calculations.
 
