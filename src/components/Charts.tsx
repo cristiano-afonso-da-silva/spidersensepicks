@@ -30,8 +30,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import type { Pick, SeasonStats } from "@/lib/types";
-import { formatSigned, round2, unitsFromPick } from "@/lib/stats";
+import type { DayBucket, Pick, SeasonStats } from "@/lib/types";
+import { formatSigned, round2 } from "@/lib/stats";
 
 type ChartRange = "week" | "month" | "all";
 
@@ -132,26 +132,38 @@ function formatRangeLabel(
   return `${format(parseISO(start), "MMM d")} – ${format(parseISO(end), "MMM d")}`;
 }
 
-function periodStats(picks: Pick[], start: string | null, end: string | null) {
+function periodStats(
+  picks: Pick[],
+  daily: DayBucket[],
+  start: string | null,
+  end: string | null,
+) {
   const settled = picks.filter((p) => {
     if (p.result === "pending") return false;
     if (start && p.date < start) return false;
     if (end && p.date > end) return false;
     return true;
   });
-  let profit = 0;
+  const days = daily.filter(
+    (d) => (!start || d.date >= start) && (!end || d.date <= end),
+  );
+  const profit = round2(days.reduce((sum, d) => sum + d.units, 0));
   let stake = 0;
   let wins = 0;
   let losses = 0;
   let pushes = 0;
   for (const p of settled) {
     stake = round2(stake + p.units);
-    profit = round2(profit + unitsFromPick(p.odds, p.units, p.result));
     if (p.result === "win") wins += 1;
     else if (p.result === "loss") losses += 1;
     else if (p.result === "push") pushes += 1;
   }
-  const roi = stake === 0 ? 0 : round2((profit / stake) * 100);
+  // A daily net total does not tell us how much was staked.
+  const roi = days.some((d) => d.summary !== undefined)
+    ? null
+    : stake === 0
+      ? 0
+      : round2((profit / stake) * 100);
   return { profit, roi, wins, losses, pushes };
 }
 
@@ -249,8 +261,8 @@ export function CumulativeChart({
     const start =
       range === "all" ? stats.seasonStart : (window?.start ?? null);
     const end = range === "all" ? stats.seasonEnd : (window?.end ?? null);
-    return periodStats(picks, start, end);
-  }, [isMobile, range, window, picks, stats.seasonStart, stats.seasonEnd]);
+    return periodStats(picks, stats.daily, start, end);
+  }, [isMobile, range, window, picks, stats.daily, stats.seasonStart, stats.seasonEnd]);
 
   const rangeLabel = useMemo(() => {
     if (range === "all") {
@@ -311,9 +323,13 @@ export function CumulativeChart({
               />
               <PeriodStat
                 label="ROI"
-                value={`${formatSigned(metrics.roi)}%`}
+                value={metrics.roi === null ? "—" : `${formatSigned(metrics.roi)}%`}
                 tone={
-                  metrics.roi > 0 ? "win" : metrics.roi < 0 ? "loss" : "muted"
+                  metrics.roi === null
+                    ? "muted"
+                    : metrics.roi > 0
+                      ? "win"
+                      : metrics.roi < 0 ? "loss" : "muted"
                 }
               />
               <PeriodStat

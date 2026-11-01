@@ -18,6 +18,16 @@ SMU @ FSU Under 54.5 ✅  -110
 Include for each play when you can: **pick**, **units**, **odds** (American), **win/loss/push**.  
 The agent appends them to `data/picks.json`; the dashboard recalculates automatically.
 
+When only a day's net units are available, record its `date`, `units`, and
+explanatory `notes` in `data/daily-summaries.json`. This is the complete day's
+total, overriding any pick-derived total for that date. It appears in the calendar,
+ledger, and performance totals without adding invented picks, odds, or stakes.
+Pick records and sport statistics use only the individual picks supplied; ROI is
+unavailable for periods containing a daily summary. Remove the summary when the
+complete individual card is entered.
+
+Run `npm test` with Node.js 22.18+ to check performance calculations.
+
 ## Pick record shape
 
 ```json

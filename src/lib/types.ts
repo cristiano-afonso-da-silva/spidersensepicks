@@ -33,6 +33,13 @@ export interface CreatePickInput {
   notes?: string;
 }
 
+/** A complete day's net result when individual picks are unavailable. */
+export interface DailySummary {
+  date: string;
+  units: number;
+  notes: string;
+}
+
 export interface DayBucket {
   date: string;
   label: string;
@@ -40,6 +47,7 @@ export interface DayBucket {
   cumulative: number;
   result: "WIN" | "LOSS" | "PUSH";
   pickCount: number;
+  summary?: string;
 }
 
 export interface WeekBucket {

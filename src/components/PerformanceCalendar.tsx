@@ -13,7 +13,7 @@ import {
   startOfWeek,
   subMonths,
 } from "date-fns";
-import type { Pick } from "@/lib/types";
+import type { DayBucket, Pick } from "@/lib/types";
 import { formatSigned, round2, unitsFromPick } from "@/lib/stats";
 
 type DayStat = {
@@ -23,6 +23,7 @@ type DayStat = {
   wins: number;
   losses: number;
   winRate: number;
+  summary?: string;
 };
 
 const WEEKDAYS_MOBILE = ["S", "M", "T", "W", "T", "F", "S"] as const;
@@ -71,12 +72,29 @@ function formatCellUnits(n: number): string {
 
 export function PerformanceCalendar({
   picks,
+  days,
   variant = "both",
 }: {
   picks: Pick[];
+  days: DayBucket[];
   variant?: "mobile" | "desktop" | "both";
 }) {
-  const dayMap = useMemo(() => buildDayMap(picks), [picks]);
+  const dayMap = useMemo(() => {
+    const map = buildDayMap(picks);
+    for (const day of days) {
+      const stat = map.get(day.date);
+      map.set(day.date, {
+        date: day.date,
+        picks: stat?.picks ?? 0,
+        wins: stat?.wins ?? 0,
+        losses: stat?.losses ?? 0,
+        winRate: stat?.winRate ?? 0,
+        units: day.units,
+        summary: day.summary,
+      });
+    }
+    return map;
+  }, [picks, days]);
 
   const latestWithData = useMemo(() => {
     const dates = Array.from(dayMap.keys()).sort();
@@ -297,7 +315,9 @@ export function PerformanceCalendar({
                           {formatCellUnits(stat.units)}
                         </p>
                         <p className="text-[11px] font-semibold opacity-70">
-                          {stat.picks}p · {stat.winRate.toFixed(0)}%
+                          {stat.summary !== undefined
+                            ? "Daily total"
+                            : `${stat.picks}p · ${stat.winRate.toFixed(0)}%`}
                         </p>
                       </div>
                     );

@@ -6,6 +6,7 @@ import {
   startOfWeek,
 } from "date-fns";
 import type {
+  DailySummary,
   DayBucket,
   MonthBucket,
   Pick,
@@ -43,7 +44,10 @@ function weekBounds(dateStr: string) {
   };
 }
 
-export function computeStats(picks: Pick[]): SeasonStats {
+export function computeStats(
+  picks: Pick[],
+  summaries: DailySummary[] = [],
+): SeasonStats {
   const settled = picks
     .filter((p) => p.result !== "pending")
     .slice()
@@ -67,6 +71,12 @@ export function computeStats(picks: Pick[]): SeasonStats {
     dayPickCount.set(p.date, (dayPickCount.get(p.date) ?? 0) + 1);
   }
 
+  // Summaries provide the full day's total, never an extra bet or stake.
+  const summaryMap = new Map(summaries.map((s) => [s.date, s.notes]));
+  for (const summary of summaries) {
+    dayMap.set(summary.date, round2(summary.units));
+  }
+
   let dayRunning = 0;
   const daily: DayBucket[] = Array.from(dayMap.entries())
     .sort(([a], [b]) => a.localeCompare(b))
@@ -79,6 +89,7 @@ export function computeStats(picks: Pick[]): SeasonStats {
         cumulative: dayRunning,
         result: units > 0 ? "WIN" : units < 0 ? "LOSS" : "PUSH",
         pickCount: dayPickCount.get(date) ?? 0,
+        ...(summaryMap.has(date) ? { summary: summaryMap.get(date) } : {}),
       };
     });
 
@@ -104,8 +115,8 @@ export function computeStats(picks: Pick[]): SeasonStats {
     { weekStart: string; weekEnd: string; label: string; units: number; pickCount: number }
   >();
 
-  for (const p of settled) {
-    const b = weekBounds(p.date);
+  for (const day of daily) {
+    const b = weekBounds(day.date);
     const prev = weekMap.get(b.weekStart) ?? {
       weekStart: b.weekStart,
       weekEnd: b.weekEnd,
@@ -113,8 +124,8 @@ export function computeStats(picks: Pick[]): SeasonStats {
       units: 0,
       pickCount: 0,
     };
-    prev.units = round2(prev.units + unitsFromPick(p.odds, p.units, p.result));
-    prev.pickCount += 1;
+    prev.units = round2(prev.units + day.units);
+    prev.pickCount += day.pickCount;
     weekMap.set(b.weekStart, prev);
   }
 
@@ -134,11 +145,11 @@ export function computeStats(picks: Pick[]): SeasonStats {
 
   // --- Monthly ---
   const monthMap = new Map<string, number>();
-  for (const p of settled) {
-    const key = format(parseISO(p.date), "yyyy-MM");
+  for (const day of daily) {
+    const key = format(parseISO(day.date), "yyyy-MM");
     monthMap.set(
       key,
-      round2((monthMap.get(key) ?? 0) + unitsFromPick(p.odds, p.units, p.result)),
+      round2((monthMap.get(key) ?? 0) + day.units),
     );
   }
   const monthly: MonthBucket[] = Array.from(monthMap.entries())

@@ -12,6 +12,7 @@ import { format, parseISO } from "date-fns";
 import { readPicks } from "@/lib/picks-store";
 import { computeStats, formatMoney, formatSigned } from "@/lib/stats";
 import type { SeasonStats } from "@/lib/types";
+import dailySummaries from "../../data/daily-summaries.json";
 
 function SiteHeader({ stats }: { stats: SeasonStats }) {
   const since = stats.seasonStart
@@ -69,7 +70,7 @@ function SiteHeader({ stats }: { stats: SeasonStats }) {
 
 export default async function HomePage() {
   const picks = await readPicks();
-  const stats = computeStats(picks);
+  const stats = computeStats(picks, dailySummaries);
 
   return (
     <main className="sm:py-10">
@@ -82,7 +83,7 @@ export default async function HomePage() {
         </section>
 
         <section className="mobile-section">
-          <PerformanceCalendar picks={picks} variant="mobile" />
+          <PerformanceCalendar picks={picks} days={stats.daily} variant="mobile" />
         </section>
 
         <section className="mobile-section">
@@ -101,7 +102,7 @@ export default async function HomePage() {
           <SiteHeader stats={stats} />
           <HeroStats stats={stats} />
         </div>
-        <PerformanceCalendar picks={picks} variant="desktop" />
+        <PerformanceCalendar picks={picks} days={stats.daily} variant="desktop" />
         <CumulativeChart stats={stats} picks={picks} variant="desktop" />
         <div className="grid gap-5 lg:grid-cols-2">
           <MonthlyBars stats={stats} />

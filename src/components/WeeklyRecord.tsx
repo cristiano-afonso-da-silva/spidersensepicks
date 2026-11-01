@@ -12,6 +12,7 @@ type DayRow = {
   cumulative: number;
   result: "WIN" | "LOSS" | "PUSH";
   picks: Pick[];
+  summary?: string;
 };
 
 const PAGE_SIZE = 10;
@@ -34,7 +35,9 @@ export function WeeklyRecord({
       byDate.set(p.date, list);
     }
 
-    const dates = Array.from(byDate.keys()).sort((a, b) => a.localeCompare(b));
+    const dailyMap = new Map(stats.daily.map((day) => [day.date, day]));
+    const dates = Array.from(new Set([...byDate.keys(), ...dailyMap.keys()]))
+      .sort((a, b) => a.localeCompare(b));
     let running = 0;
     const rows: DayRow[] = [];
 
@@ -49,7 +52,7 @@ export function WeeklyRecord({
         // still show pending-only days
       }
 
-      const units = round2(
+      const units = dailyMap.get(date)?.units ?? round2(
         dayPicks.reduce(
           (sum, p) => sum + unitsFromPick(p.odds, p.units, p.result),
           0,
@@ -64,15 +67,14 @@ export function WeeklyRecord({
         cumulative: running,
         result: units > 0 ? "WIN" : units < 0 ? "LOSS" : "PUSH",
         picks: dayPicks,
+        summary: dailyMap.get(date)?.summary,
       });
     }
 
     return rows;
-  }, [picks]);
+  }, [picks, stats.daily]);
 
-  const settledDays = days.filter((d) =>
-    d.picks.some((p) => p.result !== "pending"),
-  ).length;
+  const settledDays = stats.daysTracked;
 
   // Newest first — cumulative values were computed oldest → newest above.
   const sortedDays = useMemo(() => [...days].reverse(), [days]);
@@ -184,6 +186,11 @@ export function WeeklyRecord({
 
                   {open ? (
                     <div className="border-t border-border/60 bg-surface-2/50 px-5 py-4 sm:px-7">
+                      {d.summary !== undefined ? (
+                        <p className="mb-3 text-sm text-muted">
+                          Daily total: {formatSigned(d.units, 2)}u. {d.summary}
+                        </p>
+                      ) : null}
                       <ul className="space-y-2">
                         {d.picks.map((p) => {
                           const pl =
