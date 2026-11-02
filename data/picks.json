@@ -4108,7 +4108,7 @@
     "units": 1,
     "stake": 2,
     "result": "loss",
-    "notes": "2 Unit Play · Premium · Cashed out 1u (-1u) · Zay Flowers leg lost"
+    "notes": "2 Unit Play · Premium · Cashed out 1u (-1u) · Starter QB and second QB injured · Zay Flowers leg lost"
   },
   {
     "id": "2026-11-01-jaguars-lions-parlay",
@@ -4128,7 +4128,7 @@
     "odds": 105,
     "units": 1,
     "result": "loss",
-    "notes": "1 Unit Play · Premium · Lamar Jackson injured · Aaron Rodgers 2 yards short"
+    "notes": "1 Unit Play · Premium · Lamar Jackson injured · Aaron Rodgers 3 yards short"
   },
   {
     "id": "2026-11-01-irving-tuten-williams-parlay",
@@ -4148,7 +4148,7 @@
     "odds": 152,
     "units": 1,
     "result": "loss",
-    "notes": "1 Unit Play · Premium · Jarace Walker leg lost"
+    "notes": "1 Unit Play · Premium · Jarace Walker 1 assist short"
   },
   {
     "id": "2026-11-01-diggs-goedert-mckee-parlay",
@@ -4157,8 +4157,8 @@
     "sport": "NFL",
     "odds": 139,
     "units": 1,
-    "result": "loss",
-    "notes": "1 Unit Play · Premium · Tanner McKee leg lost"
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   },
   {
     "id": "2026-11-01-jones-lendeborg-jackson-parlay",
