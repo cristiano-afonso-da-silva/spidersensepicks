@@ -140,3 +140,18 @@ test("ROI handles empty periods, pushes, and invalid summary stakes", () => {
     assert.equal(computePeriodStats([], stats.daily, null, null).roi, null);
   }
 });
+
+test("cash-out original stakes drive ROI and sport stake share without changing profit", () => {
+  const picks = [
+    { ...pick("2026-11-01", 157, 1, "loss"), sport: "NFL", stake: 2 },
+    { ...pick("2026-11-01", 295, 1, "push"), sport: "Basketball" },
+  ];
+  const stats = computeStats(picks);
+  assert.equal(stats.netUnits, -1);
+  assert.equal(stats.daily[0].stake, 3);
+  assert.deepEqual(computePeriodStats(picks, stats.daily, null, null), {
+    profit: -1, roi: -33.33, wins: 0, losses: 1, pushes: 1,
+  });
+  assert.equal(stats.bySport.find((s) => s.sport === "NFL").stakeShare, 66.67);
+  assert.equal(stats.bySport.find((s) => s.sport === "Basketball").stakeShare, 33.33);
+});

@@ -17,6 +17,8 @@ export interface Pick {
   odds: number;
   /** Stake size in units (0.5, 1, 1.5, 2, …) */
   units: number;
+  /** Original stake for cash-outs whose units were adjusted to reflect net profit. */
+  stake?: number;
   /** Outcome after the game settles */
   result: PickResult;
   /** Optional note */
@@ -29,6 +31,7 @@ export interface CreatePickInput {
   sport?: string;
   odds: number;
   units: number;
+  stake?: number;
   result: PickResult;
   notes?: string;
 }

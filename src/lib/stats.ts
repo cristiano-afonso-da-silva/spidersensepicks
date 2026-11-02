@@ -70,7 +70,7 @@ export function computeStats(
       round2((dayMap.get(p.date) ?? 0) + unitsFromPick(p.odds, p.units, p.result)),
     );
     dayPickCount.set(p.date, (dayPickCount.get(p.date) ?? 0) + 1);
-    dayStake.set(p.date, round2((dayStake.get(p.date) ?? 0) + p.units));
+    dayStake.set(p.date, round2((dayStake.get(p.date) ?? 0) + (p.stake ?? p.units)));
   }
 
   // Summaries provide the full day's total, never an extra bet or stake.
@@ -193,8 +193,8 @@ export function computeStats(
     else if (p.result === "loss") prev.losses += 1;
     else if (p.result === "push") prev.pushes += 1;
     prev.units = round2(prev.units + unitsFromPick(p.odds, p.units, p.result));
-    prev.stake = round2(prev.stake + p.units);
-    totalStake = round2(totalStake + p.units);
+    prev.stake = round2(prev.stake + (p.stake ?? p.units));
+    totalStake = round2(totalStake + (p.stake ?? p.units));
     sportMap.set(sport, prev);
   }
 

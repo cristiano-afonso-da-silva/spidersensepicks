@@ -43,7 +43,8 @@ export function WeeklyRecord({
 
     for (const date of dates) {
       const dayPicks = (byDate.get(date) ?? []).slice().sort((a, b) => {
-        if (b.units !== a.units) return b.units - a.units;
+        const stakeDifference = (b.stake ?? b.units) - (a.stake ?? a.units);
+        if (stakeDifference !== 0) return stakeDifference;
         return a.pick.localeCompare(b.pick);
       });
 
@@ -204,7 +205,7 @@ export function WeeklyRecord({
                             >
                               <p className="text-sm text-foreground">{p.pick}</p>
                               <span className="font-semibold tabular-nums text-[13px] text-muted sm:justify-self-end">
-                                {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.units}u
+                                {p.odds > 0 ? `+${p.odds}` : p.odds} · {p.stake ?? p.units}u
                               </span>
                               {p.sport ? (
                                 <span className="justify-self-end rounded-full bg-white/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wide text-muted">

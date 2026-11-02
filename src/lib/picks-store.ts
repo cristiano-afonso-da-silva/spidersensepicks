@@ -63,6 +63,9 @@ function validateInput(input: CreatePickInput): string | null {
   if (typeof input.units !== "number" || Number.isNaN(input.units) || input.units <= 0) {
     return "units must be a positive number";
   }
+  if (input.stake !== undefined && (!Number.isFinite(input.stake) || input.stake <= 0)) {
+    return "stake must be a positive number";
+  }
   if (!["win", "loss", "push", "pending"].includes(input.result)) {
     return "result must be win, loss, push, or pending";
   }
@@ -81,6 +84,7 @@ export async function createPick(input: CreatePickInput): Promise<Pick> {
     sport: input.sport?.trim() || undefined,
     odds: input.odds,
     units: input.units,
+    ...(input.stake !== undefined ? { stake: input.stake } : {}),
     result: input.result,
     notes: input.notes?.trim() || undefined,
   };

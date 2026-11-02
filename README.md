@@ -32,6 +32,10 @@ Run `npm test` with Node.js 22.18+ to check performance calculations.
 
 ## Pick record shape
 
+For cash-outs recorded with adjusted `units` to match the net profit or loss,
+include `stake` with the original wager size. ROI, stake share, and the ledger use
+this original stake; profit continues to use the adjusted `units` and `result`.
+
 ```json
 {
   "id": "2026-09-08-fsu",

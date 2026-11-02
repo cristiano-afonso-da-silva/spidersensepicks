@@ -4098,5 +4098,76 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-01-henry-flowers-wilson-parlay",
+    "date": "2026-11-01",
+    "pick": "3-Leg Parlay: Derrick Henry 50+ Rush Yards / Zay Flowers 5+ Receptions / Michael Wilson 4+ Receptions",
+    "sport": "NFL",
+    "odds": 157,
+    "units": 1,
+    "stake": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Cashed out 1u (-1u) · Zay Flowers leg lost"
+  },
+  {
+    "id": "2026-11-01-jaguars-lions-parlay",
+    "date": "2026-11-01",
+    "pick": "2-Leg Parlay: Jacksonville Jaguars ML / Detroit Lions ML",
+    "sport": "NFL",
+    "odds": 120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-01-jackson-rodgers-lawrence-cousins-parlay",
+    "date": "2026-11-01",
+    "pick": "4-Leg Parlay: Lamar Jackson 175+ Pass Yards / Aaron Rodgers 175+ Pass Yards / Trevor Lawrence 175+ Pass Yards / Kirk Cousins 150+ Pass Yards",
+    "sport": "NFL",
+    "odds": 105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Lamar Jackson injured · Aaron Rodgers 2 yards short"
+  },
+  {
+    "id": "2026-11-01-irving-tuten-williams-parlay",
+    "date": "2026-11-01",
+    "pick": "3-Leg Parlay: Bucky Irving 14+ Rush Attempts / Bhayshul Tuten 60+ Rush+Rec Yards / Kyren Williams 40+ Rush Yards",
+    "sport": "NFL",
+    "odds": -101,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-01-walker-porter-parlay",
+    "date": "2026-11-01",
+    "pick": "3-Leg Parlay: Jarace Walker 4+ Assists / Michael Porter Jr. 8+ Reb / Michael Porter Jr. 20+ Points",
+    "sport": "Basketball",
+    "odds": 152,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Jarace Walker leg lost"
+  },
+  {
+    "id": "2026-11-01-diggs-goedert-mckee-parlay",
+    "date": "2026-11-01",
+    "pick": "3-Leg Parlay: Stefon Diggs 30+ Rec Yards / Dallas Goedert 30+ Rec Yards / Tanner McKee 175+ Pass Yards",
+    "sport": "NFL",
+    "odds": 139,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Tanner McKee leg lost"
+  },
+  {
+    "id": "2026-11-01-jones-lendeborg-jackson-parlay",
+    "date": "2026-11-01",
+    "pick": "3-Leg Parlay: Derrick Jones Jr. 10+ Points / Yaxel Lendeborg 30+ Points / Isaiah Jackson 10+ Reb",
+    "sport": "Basketball",
+    "odds": 295,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
   }
 ]
