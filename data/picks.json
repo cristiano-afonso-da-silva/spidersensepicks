@@ -4169,5 +4169,55 @@
     "units": 1,
     "result": "push",
     "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
+  },
+  {
+    "id": "2026-11-02-mitchell-bane-parlay",
+    "date": "2026-11-02",
+    "pick": "2-Leg Parlay: D. Mitchell Over 19.5 Pts+Ast / Desmond Bane Under 8.5 Reb+Ast",
+    "sport": "Basketball",
+    "odds": 271,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-02-odunze-burden-jsn-swift-parlay",
+    "date": "2026-11-02",
+    "pick": "5-Leg Parlay: Rome Odunze 3+ Receptions / Luther Burden III 4+ Receptions / Jaxon Smith-Njigba 80+ Rec Yards / Jaxon Smith-Njigba Anytime TD / D'Andre Swift Anytime TD",
+    "sport": "NFL",
+    "odds": 1269,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-02-brunson-maxey-dybantsa-boozer-parlay",
+    "date": "2026-11-02",
+    "pick": "4-Leg Parlay: Jalen Brunson 20+ Points / Tyrese Maxey 20+ Points / AJ Dybantsa 15+ Points / Cameron Boozer 15+ Points",
+    "sport": "Basketball",
+    "odds": 420,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-02-panthers-avalanche-parlay",
+    "date": "2026-11-02",
+    "pick": "2-Leg Parlay: Florida Panthers ML / Colorado Avalanche ML",
+    "sport": "NHL",
+    "odds": 121,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-02-barner-kupp-odunze-darnold-under-parlay",
+    "date": "2026-11-02",
+    "pick": "5-Leg Parlay: AJ Barner 10+ Rec Yards / Cooper Kupp 10+ Rec Yards / Rome Odunze 10+ Rec Yards / Sam Darnold 175+ Pass Yards / Under 61.5",
+    "sport": "NFL",
+    "odds": -101,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
   }
 ]
