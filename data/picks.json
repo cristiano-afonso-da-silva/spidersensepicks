@@ -4239,5 +4239,55 @@
     "units": 0.5,
     "result": "loss",
     "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-04-embiid-peterson-young-parlay",
+    "date": "2026-11-04",
+    "pick": "3-Leg Parlay: Joel Embiid 10+ Reb+Ast / Darryn Peterson 15+ Pts+Reb / Trae Young 8+ Ast",
+    "sport": "Basketball",
+    "odds": 135,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Trae Young leg lost"
+  },
+  {
+    "id": "2026-11-04-randle-brown-dybantsa-avdija-parlay",
+    "date": "2026-11-04",
+    "pick": "4-Leg Parlay: Julius Randle 10+ Reb+Ast / Jaylen Brown 15+ Pts / AJ Dybantsa 15+ Pts / Deni Avdija 30+ PRA",
+    "sport": "Basketball",
+    "odds": 193,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · AJ Dybantsa leg lost"
+  },
+  {
+    "id": "2026-11-04-brunson-wilson-george-avdija-mitchell-parlay",
+    "date": "2026-11-04",
+    "pick": "5-Leg Parlay: Jalen Brunson 20+ Points / Caleb Wilson 15+ Points / Paul George 20+ Pts+Reb / Deni Avdija 20+ Points / Davion Mitchell 15+ Pts+Ast",
+    "sport": "Basketball",
+    "odds": 286,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-04-sixers-wizards-raptors-parlay",
+    "date": "2026-11-04",
+    "pick": "3-Leg Parlay: Philadelphia 76ers ML / Washington Wizards ML / Toronto Raptors ML",
+    "sport": "Basketball",
+    "odds": 1581,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Washington Wizards leg lost"
+  },
+  {
+    "id": "2026-11-04-wells-flagg-parlay",
+    "date": "2026-11-04",
+    "pick": "2-Leg Parlay: Jaylen Wells 10+ Points / Cooper Flagg 25+ Points",
+    "sport": "Basketball",
+    "odds": 198,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
