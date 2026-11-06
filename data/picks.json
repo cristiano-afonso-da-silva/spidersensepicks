@@ -4341,24 +4341,24 @@
     "notes": "1 Unit Play · Premium"
   },
   {
-    "id": "2026-11-05-henry-strange-parlay",
+    "id": "2026-11-05-henry-strange-tuten-parlay",
     "date": "2026-11-05",
-    "pick": "Parlay: Derrick Henry 1+ TD / Brenton Strange 30+ Rec Yards",
+    "pick": "3-Leg Parlay: Derrick Henry 1+ TD / Brenton Strange 30+ Rec Yards / Bhayshul Tuten 1+ TD",
     "sport": "NFL",
     "odds": 845,
     "units": 0.5,
     "result": "loss",
-    "notes": "0.5 Unit Play · Premium · Reported as 3 legs; only 2 selections supplied"
+    "notes": "0.5 Unit Play · Premium"
   },
   {
-    "id": "2026-11-05-tuten-wagner-booker-curry-parlay",
+    "id": "2026-11-05-wagner-booker-curry-parlay",
     "date": "2026-11-05",
-    "pick": "Parlay: Bhayshul Tuten 1+ TD / Franz Wagner 30+ PRA / Devin Booker 20+ Points / Stephen Curry 25+ Points",
-    "sport": "Mixed",
+    "pick": "3-Leg Parlay: Franz Wagner 30+ PRA / Devin Booker 20+ Points / Stephen Curry 25+ Points",
+    "sport": "Basketball",
     "odds": 161,
     "units": 1,
     "result": "win",
-    "notes": "1 Unit Play · Premium · Reported as 3 legs; 4 selections supplied"
+    "notes": "1 Unit Play · Premium"
   },
   {
     "id": "2026-11-05-bridges-booker-wagner-carter-suns-live-parlay",
