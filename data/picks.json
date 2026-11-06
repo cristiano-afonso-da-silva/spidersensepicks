@@ -4289,5 +4289,85 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-ravens-spread",
+    "date": "2026-11-05",
+    "pick": "Ravens +10.5",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-south-florida-depaul-under",
+    "date": "2026-11-05",
+    "pick": "South Florida vs DePaul Under 150.5",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-wake-forest-spread",
+    "date": "2026-11-05",
+    "pick": "Wake Forest +17.5",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-virginia-tech-spread",
+    "date": "2026-11-05",
+    "pick": "Virginia Tech -20.5",
+    "sport": "Basketball",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-mammoth-ml",
+    "date": "2026-11-05",
+    "pick": "Utah Mammoth ML",
+    "sport": "NHL",
+    "odds": -114,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-05-henry-strange-parlay",
+    "date": "2026-11-05",
+    "pick": "Parlay: Derrick Henry 1+ TD / Brenton Strange 30+ Rec Yards",
+    "sport": "NFL",
+    "odds": 845,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Reported as 3 legs; only 2 selections supplied"
+  },
+  {
+    "id": "2026-11-05-tuten-wagner-booker-curry-parlay",
+    "date": "2026-11-05",
+    "pick": "Parlay: Bhayshul Tuten 1+ TD / Franz Wagner 30+ PRA / Devin Booker 20+ Points / Stephen Curry 25+ Points",
+    "sport": "Mixed",
+    "odds": 161,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium · Reported as 3 legs; 4 selections supplied"
+  },
+  {
+    "id": "2026-11-05-bridges-booker-wagner-carter-suns-live-parlay",
+    "date": "2026-11-05",
+    "pick": "5-Leg Live Parlay: Miles Bridges 10+ Rebounds / Devin Booker 30+ Points / Franz Wagner 9+ Assists / Wendell Carter Jr. 11+ Rebounds / Suns ML",
+    "sport": "Basketball",
+    "odds": 494,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Live Bet · Premium"
   }
 ]
