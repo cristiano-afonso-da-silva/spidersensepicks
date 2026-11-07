@@ -4369,5 +4369,45 @@
     "units": 2,
     "result": "win",
     "notes": "2 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-06-brown-james-embiid-castle-reaves-parlay",
+    "date": "2026-11-06",
+    "pick": "Parlay: Jaylen Brown 15+ Points / LeBron James 10+ Points / Joel Embiid 6+ Rebounds / Stephon Castle 4+ Rebounds / Austin Reaves 20+ PRA",
+    "sport": "Basketball",
+    "odds": 163,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Reported as 4 legs; 5 selections supplied"
+  },
+  {
+    "id": "2026-11-06-doncic-avdija-barrett-flagg-parlay",
+    "date": "2026-11-06",
+    "pick": "4-Leg Parlay: Luka Doncic 35+ Points / Deni Avdija 30+ PRA / RJ Barrett 25+ Points / Cooper Flagg 25+ Points",
+    "sport": "Basketball",
+    "odds": 631,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-06-alexander-walker-ayton-daniels-george-live-parlay",
+    "date": "2026-11-06",
+    "pick": "4-Leg Live Parlay: Nickeil Alexander-Walker 25+ Points / Deandre Ayton 10+ Rebounds / Dyson Daniels 12+ Rebounds / Kyshawn George 18+ Points",
+    "sport": "Basketball",
+    "odds": 134,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-06-avdija-blazers-kessler-live-parlay",
+    "date": "2026-11-06",
+    "pick": "4-Leg Live Parlay: Deni Avdija 10+ Rebounds / Portland Blazers ML / Walker Kessler 10+ Rebounds / Deni Avdija 10+ Assists",
+    "sport": "Basketball",
+    "odds": 242,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Live Bet · Premium"
   }
 ]
