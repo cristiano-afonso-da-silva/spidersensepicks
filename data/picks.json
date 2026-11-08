@@ -4486,10 +4486,9 @@
     "pick": "3-Leg Parlay: Julius Randle 25+ PRA / Yaxel Lendeborg 20+ PA / Fred VanVleet 2+ 3PM",
     "sport": "Basketball",
     "odds": 165,
-    "units": 0.5,
-    "stake": 2,
-    "result": "loss",
-    "notes": "2 Unit Play · Premium · Cashed out 1.5u (-0.5u)"
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
   },
   {
     "id": "2026-11-07-towns-mitchell-live-parlay",
