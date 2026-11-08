@@ -4409,5 +4409,96 @@
     "units": 2,
     "result": "loss",
     "notes": "2 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-07-arkansas-auburn-over",
+    "date": "2026-11-07",
+    "pick": "Arkansas vs Auburn Over 53.5",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 1.5,
+    "result": "loss",
+    "notes": "1.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-texas-spread",
+    "date": "2026-11-07",
+    "pick": "Texas -2.5 @ Missouri",
+    "sport": "NCAAF",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-alabama-spread",
+    "date": "2026-11-07",
+    "pick": "Alabama +7.5 @ LSU",
+    "sport": "NCAAF",
+    "odds": -119,
+    "units": 1.5,
+    "result": "win",
+    "notes": "1.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-houston-spread",
+    "date": "2026-11-07",
+    "pick": "Houston -9.5 @ Cincinnati",
+    "sport": "NCAAF",
+    "odds": -136,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-kansas-spread",
+    "date": "2026-11-07",
+    "pick": "Kansas -3.5 @ UCF",
+    "sport": "NCAAF",
+    "odds": -124,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-south-carolina-texas-am-under",
+    "date": "2026-11-07",
+    "pick": "South Carolina vs Texas A&M Under 52.5",
+    "sport": "NCAAF",
+    "odds": -112,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-georgia-spread",
+    "date": "2026-11-07",
+    "pick": "Georgia -2.5 @ Ole Miss",
+    "sport": "NCAAF",
+    "odds": -148,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-07-randle-lendeborg-vanvleet-parlay",
+    "date": "2026-11-07",
+    "pick": "3-Leg Parlay: Julius Randle 25+ PRA / Yaxel Lendeborg 20+ PA / Fred VanVleet 2+ 3PM",
+    "sport": "Basketball",
+    "odds": 165,
+    "units": 0.5,
+    "stake": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium · Cashed out 1.5u (-0.5u)"
+  },
+  {
+    "id": "2026-11-07-towns-mitchell-live-parlay",
+    "date": "2026-11-07",
+    "pick": "2-Leg Live Parlay: Karl-Anthony Towns 28+ Points / Donovan Mitchell 18+ Points",
+    "sport": "Basketball",
+    "odds": 104,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Live Bet · Premium"
   }
 ]
