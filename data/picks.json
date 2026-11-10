@@ -4569,5 +4569,85 @@
     "units": 1,
     "result": "win",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-bills-spread",
+    "date": "2026-11-09",
+    "pick": "Bills -3",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-alabama-spread",
+    "date": "2026-11-09",
+    "pick": "Alabama -32.5",
+    "sport": "Basketball",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-towson-spread",
+    "date": "2026-11-09",
+    "pick": "Towson -7.5",
+    "sport": "Basketball",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-grambling-texas-over",
+    "date": "2026-11-09",
+    "pick": "Grambling vs Texas Over 154.5",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-smith-mobley-booker-thompson-parlay",
+    "date": "2026-11-09",
+    "pick": "4-Leg Parlay: Jabari Smith Jr. 10+ Points / Evan Mobley 20+ Pts+Reb / Devin Booker Over 1.5 3PM / Ausar Thompson 8+ Reb+Ast",
+    "sport": "Basketball",
+    "odds": 169,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-cook-jefferson-parlay",
+    "date": "2026-11-09",
+    "pick": "2-Leg Parlay: James Cook 1+ TD / Justin Jefferson 1+ TD",
+    "sport": "NFL",
+    "odds": 450,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-davis-doncic-okongwu-parlay",
+    "date": "2026-11-09",
+    "pick": "3-Leg Parlay: Anthony Davis 25+ Points / Luka Doncic 30+ Points / Onyeka Okongwu 15+ Points",
+    "sport": "Basketball",
+    "odds": 242,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-09-kessler-grizzlies-davis-collins-siakam-irving-live-parlay",
+    "date": "2026-11-09",
+    "pick": "6-Leg Live Parlay: Walker Kessler 10+ Rebounds / Memphis Grizzlies ML / Anthony Davis 10+ Rebounds / John Collins 9+ Rebounds / Pascal Siakam 30+ Points / Kyrie Irving 25+ Points",
+    "sport": "Basketball",
+    "odds": 879,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
   }
 ]
