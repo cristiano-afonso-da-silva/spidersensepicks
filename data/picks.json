@@ -4649,5 +4649,76 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-10-panthers-ml",
+    "date": "2026-11-10",
+    "pick": "Florida Panthers ML",
+    "sport": "NHL",
+    "odds": -125,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-10-duke-spread",
+    "date": "2026-11-10",
+    "pick": "Duke -7.5",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-10-vanderbilt-spread",
+    "date": "2026-11-10",
+    "pick": "Vanderbilt -14.5",
+    "sport": "Basketball",
+    "odds": -108,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-10-black-antetokounmpo-parlay",
+    "date": "2026-11-10",
+    "pick": "Parlay: Anthony Black 22+ PRA / Giannis Antetokounmpo 11+ Reb",
+    "sport": "Basketball",
+    "odds": 100,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium · Reported as 4 legs; only 2 selections supplied"
+  },
+  {
+    "id": "2026-11-10-tatum-embiid-brown-parlay",
+    "date": "2026-11-10",
+    "pick": "4-Leg Parlay: Jayson Tatum 30+ Points / Jayson Tatum 6+ Assists / Joel Embiid 8+ Rebounds / Jaylen Brown 30+ Points",
+    "sport": "Basketball",
+    "odds": 2990,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-10-nba-10-leg-parlay",
+    "date": "2026-11-10",
+    "pick": "NBA 10-Leg Parlay",
+    "sport": "Basketball",
+    "odds": 517,
+    "units": 0.58,
+    "stake": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium · Cashed out 4u (+3u) · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-10-nba-9-leg-parlay",
+    "date": "2026-11-10",
+    "pick": "NBA 9-Leg Parlay",
+    "sport": "Basketball",
+    "odds": 1044,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Individual selections not supplied"
   }
 ]
