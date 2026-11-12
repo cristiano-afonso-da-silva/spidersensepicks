@@ -4720,5 +4720,35 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-11-vcu-spread",
+    "date": "2026-11-11",
+    "pick": "VCU -33.5",
+    "sport": "Basketball",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-11-houston-spread",
+    "date": "2026-11-11",
+    "pick": "Houston -33.5",
+    "sport": "Basketball",
+    "odds": -115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-11-randle-nembhard-kessler-parlay",
+    "date": "2026-11-11",
+    "pick": "3-Leg Parlay: Julius Randle 18+ Points / Andrew Nembhard 20+ PRA / Walker Kessler 20+ Pts+Reb",
+    "sport": "Basketball",
+    "odds": 122,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
