@@ -4750,5 +4750,55 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-12-diggs-okonkwo-nabers-likely-parlay",
+    "date": "2026-11-12",
+    "pick": "4-Leg Parlay: Stefon Diggs 30+ Rec Yards / Chigoziem Okonkwo 30+ Rec Yards / Malik Nabers 90+ Rec Yards / Isaiah Likely 50+ Rec Yards",
+    "sport": "NFL",
+    "odds": 1560,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-12-allen-maxey-ball-george-young-threes-parlay",
+    "date": "2026-11-12",
+    "pick": "5-Leg Parlay: Grayson Allen 3+ 3PM / Tyrese Maxey 3+ 3PM / LaMelo Ball 4+ 3PM / Kyshawn George 2+ 3PM / Trae Young 2+ 3PM",
+    "sport": "Basketball",
+    "odds": 1354,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-12-davis-points-rebounds-total-live-parlay",
+    "date": "2026-11-12",
+    "pick": "3-Leg Live Parlay: Anthony Davis 25+ Points / Anthony Davis 11+ Rebounds / Game Total Over 229.5",
+    "sport": "Basketball",
+    "odds": 114,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-12-maxey-barrett-davis-cunningham-live-parlay",
+    "date": "2026-11-12",
+    "pick": "6-Leg Live Parlay: Tyrese Maxey 25+ Points / RJ Barrett 20+ Points / Anthony Davis 25+ Points / Anthony Davis 11+ Rebounds / Cade Cunningham 10+ Assists / Cade Cunningham 18+ Points",
+    "sport": "Basketball",
+    "odds": 207,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-12-suns-booker-diabate-white-live-parlay",
+    "date": "2026-11-12",
+    "pick": "5-Leg Live Parlay: Phoenix Suns ML / Devin Booker 7+ Assists / Moussa Diabate 10+ Rebounds / Coby White 15+ Points / Devin Booker 25+ Points",
+    "sport": "Basketball",
+    "odds": 320,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
   }
 ]
