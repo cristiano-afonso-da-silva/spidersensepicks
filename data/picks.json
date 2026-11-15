@@ -4840,5 +4840,65 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-14-lsu-texas-manning-parlay",
+    "date": "2026-11-14",
+    "pick": "4-Leg Parlay: LSU +4.5 / LSU 325+ Total Yards / Texas 250+ Total Yards / Arch Manning 150+ Passing Yards",
+    "sport": "NCAAF",
+    "odds": 145,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-14-florida-spread",
+    "date": "2026-11-14",
+    "pick": "Florida +4.5",
+    "sport": "NCAAF",
+    "odds": -140,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-14-missouri-spread",
+    "date": "2026-11-14",
+    "pick": "Missouri +17.5",
+    "sport": "NCAAF",
+    "odds": -136,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-14-michigan-spread",
+    "date": "2026-11-14",
+    "pick": "Michigan +10.5",
+    "sport": "NCAAF",
+    "odds": -120,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-14-lsu-gonzaga-over",
+    "date": "2026-11-14",
+    "pick": "LSU vs Gonzaga Over 160.5",
+    "sport": "Basketball",
+    "odds": -110,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-14-villanova-spread",
+    "date": "2026-11-14",
+    "pick": "Villanova -34.5",
+    "sport": "Basketball",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
   }
 ]
