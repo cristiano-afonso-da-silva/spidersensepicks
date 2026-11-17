@@ -4990,5 +4990,75 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-16-chargers-ml",
+    "date": "2026-11-16",
+    "pick": "Chargers ML",
+    "sport": "NFL",
+    "odds": 188,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-16-antetokounmpo-mitchell-parlay",
+    "date": "2026-11-16",
+    "pick": "2-Leg NBA Parlay: Giannis Antetokounmpo 35+ Pts+Reb / Davion Mitchell 20+ Pts+Ast",
+    "sport": "Basketball",
+    "odds": 115,
+    "units": 2,
+    "result": "push",
+    "notes": "2 Unit Play · Premium · Cashed out 2u (stake returned)"
+  },
+  {
+    "id": "2026-11-16-vanvleet-mitchell-da-silva-george-ball-threes-parlay",
+    "date": "2026-11-16",
+    "pick": "5-Leg NBA Parlay: Fred VanVleet 3+ 3PM / Davion Mitchell 2+ 3PM / Tristan da Silva 4+ 3PM / Kyshawn George 3+ 3PM / LaMelo Ball 4+ 3PM",
+    "sport": "Basketball",
+    "odds": 4590,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-16-johnston-hampton-henry-parlay",
+    "date": "2026-11-16",
+    "pick": "3-Leg NFL Parlay: Quentin Johnston 20+ Rec Yards / Omarion Hampton 20+ Rush Yards / Derrick Henry 40+ Rush Yards",
+    "sport": "NFL",
+    "odds": 163,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-16-smith-davis-george-live-parlay",
+    "date": "2026-11-16",
+    "pick": "3-Leg Live Parlay: Jalen Smith 15+ Pts / Anthony Davis 25+ Pts / Paul George 20+ Pts",
+    "sport": "Basketball",
+    "odds": 128,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-16-nba-6-leg-live-parlay",
+    "date": "2026-11-16",
+    "pick": "6-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 500,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-16-nba-8-leg-live-parlay",
+    "date": "2026-11-16",
+    "pick": "8-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 456,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
   }
 ]
