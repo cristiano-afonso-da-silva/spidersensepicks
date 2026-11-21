@@ -5181,5 +5181,55 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-20-tulsa-mississippi-state-arkansas-utah-parlay",
+    "date": "2026-11-20",
+    "pick": "3-Leg CBB Parlay: Tulsa vs Mississippi State Over 148.5 / Arkansas -34.5 / Utah +1.5",
+    "sport": "Basketball",
+    "odds": 391,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-20-nembhard-young-smith-doncic-parlay",
+    "date": "2026-11-20",
+    "pick": "NBA Parlay: Andrew Nembhard 7+ Ast / Trae Young 9+ Ast / Jabari Smith Jr. 20+ PRA / Luka Doncic 30+ Pts",
+    "sport": "Basketball",
+    "odds": 471,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium · Reported as 3 legs; 4 selections supplied"
+  },
+  {
+    "id": "2026-11-20-porter-jokic-smith-parlay",
+    "date": "2026-11-20",
+    "pick": "3-Leg NBA Parlay: Michael Porter Jr. 18+ Pts / Nikola Jokic 8+ Ast / Jalen Smith 18+ Pts+Reb",
+    "sport": "Basketball",
+    "odds": 188,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-20-williamson-sga-porter-cunningham-live-parlay",
+    "date": "2026-11-20",
+    "pick": "4-Leg NBA Live Parlay: Zion Williamson 20+ Pts / SGA 30+ Pts / Michael Porter Jr. 20+ Pts / Cade Cunningham 25+ Pts",
+    "sport": "Basketball",
+    "odds": 132,
+    "units": 2,
+    "result": "loss",
+    "notes": "2 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-20-sengun-mamukelashvili-sabonis-live-parlay",
+    "date": "2026-11-20",
+    "pick": "3-Leg NBA Live Parlay: Alperen Sengun 35+ Pts+Reb / Sandro Mamukelashvili Under 10.5 Reb / Domantas Sabonis Under 21.5 Pts",
+    "sport": "Basketball",
+    "odds": 418,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
   }
 ]
