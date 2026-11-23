@@ -5301,5 +5301,116 @@
     "units": 0.5,
     "result": "win",
     "notes": "0.5 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-22-bills-steelers-panthers-chiefs-jets-totals-parlay",
+    "date": "2026-11-22",
+    "pick": "5-Leg NFL Parlay: Bills Over 23.5 / Steelers Over 13.5 / Panthers Over 16.5 / Chiefs Over 20.5 / Jets Under 26.5",
+    "sport": "NFL",
+    "odds": 166,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-22-flournoy-swift-laporta-meyers-hockenson-atd-parlay",
+    "date": "2026-11-22",
+    "pick": "5-Leg NFL Parlay: Ryan Flournoy Anytime TD / D'Andre Swift Anytime TD / Sam LaPorta Anytime TD / Jakobi Meyers Anytime TD / T.J. Hockenson Anytime TD",
+    "sport": "NFL",
+    "odds": 22882,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-22-black-pollard-parlay",
+    "date": "2026-11-22",
+    "pick": "2-Leg Parlay: Kaelon Black 20+ Rush Yards / Tony Pollard 80+ Rush+Rec Yards",
+    "sport": "NFL",
+    "odds": 100,
+    "units": 1,
+    "result": "push",
+    "notes": "1 Unit Play · Premium · Cashed out 1u (stake returned)"
+  },
+  {
+    "id": "2026-11-22-lions-steelers-jaguars-vikings-spreads-parlay",
+    "date": "2026-11-22",
+    "pick": "4-Leg Parlay: Lions +4.5 / Steelers +4.5 / Jaguars +4.5 / Vikings +14.5",
+    "sport": "NFL",
+    "odds": 112,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-22-hall-swift-laporta-parlay",
+    "date": "2026-11-22",
+    "pick": "3-Leg Parlay: Breece Hall 40+ Rush Yards / D'Andre Swift 14+ Rush Attempts / Sam LaPorta 25+ Rec Yards",
+    "sport": "NFL",
+    "odds": 203,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-22-cunningham-joe-alexander-walker-live-parlay",
+    "date": "2026-11-22",
+    "pick": "3-Leg NBA Live Parlay: Cade Cunningham 12+ Ast / Isaiah Joe 20+ Pts / Nickeil Alexander-Walker 15+ Pts",
+    "sport": "Basketball",
+    "odds": 289,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-22-cousins-purdy-mccaffrey-evans-parlay",
+    "date": "2026-11-22",
+    "pick": "4-Leg NFL Parlay: Kirk Cousins 1+ Pass TD / Brock Purdy 1+ Pass TD / Christian McCaffrey 30+ Rush Yards / Mike Evans 20+ Rec Yards",
+    "sport": "NFL",
+    "odds": 150,
+    "units": 0.6667,
+    "stake": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium · Cashed out 3u (+1u)"
+  },
+  {
+    "id": "2026-11-22-nba-9-leg-live-parlay",
+    "date": "2026-11-22",
+    "pick": "9-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 1021,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-22-nfl-5-leg-parlay",
+    "date": "2026-11-22",
+    "pick": "5-Leg NFL Parlay",
+    "sport": "NFL",
+    "odds": 1235,
+    "units": 0.5,
+    "result": "loss",
+    "notes": "0.5 Unit Play · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-22-towns-brunson-live-parlay",
+    "date": "2026-11-22",
+    "pick": "3-Leg NBA Live Parlay: Karl-Anthony Towns 20+ Pts / Karl-Anthony Towns 12+ Reb / Jalen Brunson 20+ Pts",
+    "sport": "Basketball",
+    "odds": 219,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-22-nba-6-leg-live-parlay",
+    "date": "2026-11-22",
+    "pick": "6-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 364,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
   }
 ]
