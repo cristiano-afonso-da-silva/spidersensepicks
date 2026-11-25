@@ -5492,5 +5492,75 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-24-flagg-pritchard-parlay",
+    "date": "2026-11-24",
+    "pick": "2-Leg NBA Parlay: Cooper Flagg 25+ Pts+Ast / Payton Pritchard 4+ Ast",
+    "sport": "Basketball",
+    "odds": -116,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-24-young-jokic-parlay",
+    "date": "2026-11-24",
+    "pick": "2-Leg NBA Parlay: Trae Young 2+ 3PM / Nikola Jokic 8+ Ast",
+    "sport": "Basketball",
+    "odds": -105,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-24-queta-braun-parlay",
+    "date": "2026-11-24",
+    "pick": "2-Leg NBA Parlay: Neemias Queta 8+ Reb / Christian Braun 1+ 3PM",
+    "sport": "Basketball",
+    "odds": -126,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-24-tatum-collins-first-quarter-parlay",
+    "date": "2026-11-24",
+    "pick": "2-Leg NBA Parlay: Jayson Tatum 7+ 1Q Pts / John Collins 2+ 1Q Pts",
+    "sport": "Basketball",
+    "odds": -123,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-24-tatum-davis-wagner-carter-parlay",
+    "date": "2026-11-24",
+    "pick": "4-Leg NBA Parlay: Jayson Tatum 35+ PRA / Anthony Davis 25+ PRA / Franz Wagner 18+ Pts / Wendell Carter Jr. 6+ Reb",
+    "sport": "Basketball",
+    "odds": 155,
+    "units": 2,
+    "result": "win",
+    "notes": "2 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-24-tatum-george-davis-live-parlay",
+    "date": "2026-11-24",
+    "pick": "3-Leg NBA Live Parlay: Jayson Tatum Under 32.5 Pts / Paul George 12+ Pts / Anthony Davis 10+ Reb",
+    "sport": "Basketball",
+    "odds": 203,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-24-jokic-martin-washington-braun-flagg-live-parlay",
+    "date": "2026-11-24",
+    "pick": "NBA Live Parlay: Nikola Jokic 10+ Reb / Caleb Martin 8+ Pts / P.J. Washington 5+ Reb / Christian Braun 5+ Ast / Cooper Flagg 8+ Ast / Nikola Jokic 20+ Pts",
+    "sport": "Basketball",
+    "odds": 390,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Reported as 3 legs; 6 selections supplied"
   }
 ]
