@@ -5562,5 +5562,126 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Live Bet · Premium · Reported as 3 legs; 6 selections supplied"
+  },
+  {
+    "id": "2026-11-25-corum-anytime-td",
+    "date": "2026-11-25",
+    "pick": "Blake Corum 1+ TD",
+    "sport": "NFL",
+    "odds": 140,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-corum-two-tds",
+    "date": "2026-11-25",
+    "pick": "Blake Corum 2+ TD",
+    "sport": "NFL",
+    "odds": 450,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-golden-anytime-td",
+    "date": "2026-11-25",
+    "pick": "Matthew Golden 1+ TD",
+    "sport": "NFL",
+    "odds": 175,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-love-pass-tds",
+    "date": "2026-11-25",
+    "pick": "Jordan Love 2+ Pass TD",
+    "sport": "NFL",
+    "odds": -102,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-corum-love-golden-packers-parlay",
+    "date": "2026-11-25",
+    "pick": "4-Leg NFL Parlay: Blake Corum 40+ Rush Yards / Jordan Love 200+ Pass Yards / Matthew Golden 50+ Rec Yards / Green Bay Packers Over 9.5",
+    "sport": "NFL",
+    "odds": 176,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-ware-vanvleet-parlay",
+    "date": "2026-11-25",
+    "pick": "2-Leg NBA Parlay: Kel'el Ware 6+ Reb / Fred VanVleet 13+ Pts",
+    "sport": "Basketball",
+    "odds": 216,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-watson-sharpe-ware-parlay",
+    "date": "2026-11-25",
+    "pick": "3-Leg NBA Parlay: P. Watson 18+ PRA / D. Sharpe 10+ Pts / Kel'el Ware 14+ Pts+Reb",
+    "sport": "Basketball",
+    "odds": 487,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-mcdaniels-edgecombe-parlay",
+    "date": "2026-11-25",
+    "pick": "2-Leg NBA Parlay: Jaden McDaniels Over 8.5 Reb+Ast / VJ Edgecombe 4+ Ast",
+    "sport": "Basketball",
+    "odds": 183,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-25-gilgeous-alexander-antetokounmpo-sengun-parlay",
+    "date": "2026-11-25",
+    "pick": "NBA Parlay: Shai Gilgeous-Alexander 28+ Pts / Giannis Antetokounmpo 24+ Pts / Alperen Sengun 30+ PRA",
+    "sport": "Basketball",
+    "odds": 115,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium · Reported as 2 legs; 3 selections supplied"
+  },
+  {
+    "id": "2026-11-25-james-wiggins-mitchell-live-parlay",
+    "date": "2026-11-25",
+    "pick": "3-Leg NBA Live Parlay: LeBron James Under 25.5 Pts / Andrew Wiggins 8+ Pts / Davion Mitchell 25+ Pts+Ast",
+    "sport": "Basketball",
+    "odds": 267,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium"
+  },
+  {
+    "id": "2026-11-25-nba-five-leg-live-parlay",
+    "date": "2026-11-25",
+    "pick": "5-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 325,
+    "units": 0.07692308,
+    "stake": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Live Bet · Premium · Cashed out 1.25u (+0.25u) · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-25-nba-ten-leg-live-parlay",
+    "date": "2026-11-25",
+    "pick": "10-Leg NBA Live Parlay",
+    "sport": "Basketball",
+    "odds": 361,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
   }
 ]
