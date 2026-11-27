@@ -5683,5 +5683,45 @@
     "units": 1,
     "result": "loss",
     "notes": "1 Unit Play · Live Bet · Premium · Individual selections not supplied"
+  },
+  {
+    "id": "2026-11-26-bears-moneyline",
+    "date": "2026-11-26",
+    "pick": "Chicago Bears ML",
+    "sport": "NFL",
+    "odds": -120,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-26-gibbs-williams-touchdowns-parlay",
+    "date": "2026-11-26",
+    "pick": "2-Leg NFL Parlay: Jahmyr Gibbs ATD / Javonte Williams ATD",
+    "sport": "NFL",
+    "odds": 111,
+    "units": 1,
+    "result": "win",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-26-cowboys-bills-total-parlay",
+    "date": "2026-11-26",
+    "pick": "3-Leg NFL Parlay: Dallas Cowboys -6.5 1st Half / Buffalo Bills -3 / Kansas City Chiefs @ Buffalo Bills Over 45.5",
+    "sport": "NFL",
+    "odds": 646,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
+  },
+  {
+    "id": "2026-11-26-nfl-seven-leg-parlay",
+    "date": "2026-11-26",
+    "pick": "7-Leg NFL Parlay: Dak Prescott 230+ Pass Yards / Caleb Williams 2+ Pass TDs / Jameson Williams 30+ Rec Yards / Caleb Williams 20+ Pass Completions / James Cook 18+ Rush Attempts / Patrick Mahomes 2+ Pass TDs / Travis Kelce 25+ Rec Yards",
+    "sport": "NFL",
+    "odds": 999,
+    "units": 1,
+    "result": "loss",
+    "notes": "1 Unit Play · Premium"
   }
 ]
